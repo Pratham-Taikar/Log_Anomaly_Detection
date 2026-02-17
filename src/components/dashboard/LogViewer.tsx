@@ -1,0 +1,114 @@
+import { useState, useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { Search, Filter } from 'lucide-react';
+import { LogEntry } from '@/data/mockLogs';
+import { cn } from '@/lib/utils';
+
+interface LogViewerProps {
+  logs: LogEntry[];
+}
+
+const levelColors = {
+  INFO: 'text-primary',
+  WARN: 'text-accent',
+  ERROR: 'text-destructive',
+  DEBUG: 'text-muted-foreground',
+};
+
+const levelBg = {
+  INFO: 'bg-primary/10',
+  WARN: 'bg-accent/10',
+  ERROR: 'bg-destructive/10',
+  DEBUG: 'bg-muted',
+};
+
+export function LogViewer({ logs }: LogViewerProps) {
+  const [search, setSearch] = useState('');
+  const [levelFilter, setLevelFilter] = useState<string>('ALL');
+  const [showTemplates, setShowTemplates] = useState(false);
+
+  const filtered = useMemo(() => {
+    return logs.filter(log => {
+      if (levelFilter !== 'ALL' && log.level !== levelFilter) return false;
+      if (search && !log.raw.toLowerCase().includes(search.toLowerCase())) return false;
+      return true;
+    });
+  }, [logs, search, levelFilter]);
+
+  return (
+    <div className="space-y-4">
+      <div className="flex gap-3 items-center">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Search logs..."
+            className="w-full bg-secondary border border-border rounded-md pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+          />
+        </div>
+        <div className="flex gap-1">
+          {['ALL', 'ERROR', 'WARN', 'INFO', 'DEBUG'].map(level => (
+            <button
+              key={level}
+              onClick={() => setLevelFilter(level)}
+              className={cn(
+                'px-3 py-2 text-xs font-mono rounded-md transition-all',
+                levelFilter === level ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground hover:text-foreground'
+              )}
+            >
+              {level}
+            </button>
+          ))}
+        </div>
+        <button
+          onClick={() => setShowTemplates(!showTemplates)}
+          className={cn(
+            'flex items-center gap-2 px-3 py-2 text-xs font-medium rounded-md transition-all',
+            showTemplates ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground hover:text-foreground'
+          )}
+        >
+          <Filter className="w-3 h-3" />
+          Templates
+        </button>
+      </div>
+
+      <div className="glass-card rounded-lg border border-border overflow-hidden">
+        <div className="grid grid-cols-[160px_70px_120px_1fr] gap-4 px-4 py-2.5 bg-muted/50 text-xs font-medium text-muted-foreground uppercase tracking-wider border-b border-border">
+          <span>Timestamp</span>
+          <span>Level</span>
+          <span>Component</span>
+          <span>{showTemplates ? 'Template' : 'Message'}</span>
+        </div>
+        <div className="max-h-[500px] overflow-y-auto scrollbar-thin">
+          {filtered.slice(0, 100).map((log, i) => (
+            <motion.div
+              key={log.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: i * 0.01 }}
+              className={cn(
+                'grid grid-cols-[160px_70px_120px_1fr] gap-4 px-4 py-2 text-xs font-mono border-b border-border/50 hover:bg-secondary/50 transition-colors',
+                log.level === 'ERROR' && 'bg-destructive/5'
+              )}
+            >
+              <span className="text-muted-foreground">{log.timestamp}</span>
+              <span className={cn('font-semibold', levelColors[log.level])}>
+                <span className={cn('px-1.5 py-0.5 rounded text-[10px]', levelBg[log.level])}>
+                  {log.level}
+                </span>
+              </span>
+              <span className="text-secondary-foreground">{log.component}</span>
+              <span className="text-foreground truncate">
+                {showTemplates ? log.template : log.raw}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+        <div className="px-4 py-2 bg-muted/30 text-xs text-muted-foreground border-t border-border">
+          Showing {Math.min(filtered.length, 100)} of {filtered.length} entries
+        </div>
+      </div>
+    </div>
+  );
+}
