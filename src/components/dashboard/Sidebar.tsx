@@ -1,4 +1,4 @@
-import { Activity, BarChart3, Brain, FileText, GitMerge, LayoutDashboard, Settings } from 'lucide-react';
+import { Activity, BarChart3, Brain, FileText, GitMerge, LayoutDashboard, Settings, Upload } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SidebarProps {
@@ -7,6 +7,7 @@ interface SidebarProps {
 }
 
 const navItems = [
+  { id: 'upload', label: 'Upload Logs', icon: Upload },
   { id: 'overview', label: 'Overview', icon: LayoutDashboard },
   { id: 'logs', label: 'Log Viewer', icon: FileText },
   { id: 'pipeline', label: 'Pipeline', icon: GitMerge },
