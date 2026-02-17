@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { AlertTriangle, FileText, Activity, ShieldAlert, Clock, BarChart3 } from 'lucide-react';
 import { MetricCard } from './MetricCard';
 import { AnomalyChart } from './AnomalyChart';
-import { AnomalyPoint, LogEntry } from '@/data/mockLogs';
+import { AnomalyPoint, LogEntry } from '@/types/dataTypes';
 
 interface OverviewTabProps {
   logs: LogEntry[];

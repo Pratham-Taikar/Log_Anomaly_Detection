@@ -6,23 +6,18 @@ import { PipelineView } from '@/components/dashboard/PipelineView';
 import { AnomalyDetection } from '@/components/dashboard/AnomalyDetection';
 import { FeatureTable } from '@/components/dashboard/FeatureTable';
 import { FileUpload } from '@/components/dashboard/FileUpload';
-import { generateLogs, generateTimeSeriesData, generateFeatureVectors } from '@/data/mockLogs';
 import { PipelineResult } from '@/lib/logParser';
 import { Clock, Database } from 'lucide-react';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('upload');
-  const [dataSource, setDataSource] = useState<'mock' | 'uploaded'>('mock');
+  // No demo/static data by default — start in uploaded mode
+  const [dataSource, setDataSource] = useState<'uploaded'>('uploaded');
   const [uploadedResult, setUploadedResult] = useState<PipelineResult | null>(null);
-
-  const mockLogs = useMemo(() => generateLogs(), []);
-  const mockTimeSeries = useMemo(() => generateTimeSeriesData(), []);
-  const mockFeatures = useMemo(() => generateFeatureVectors(), []);
-
-  // Use uploaded data if available and selected, otherwise mock
-  const logs = dataSource === 'uploaded' && uploadedResult ? uploadedResult.logs : mockLogs;
-  const timeSeriesData = dataSource === 'uploaded' && uploadedResult ? uploadedResult.anomalies : mockTimeSeries;
-  const featureVectors = dataSource === 'uploaded' && uploadedResult ? uploadedResult.features : mockFeatures;
+  // Use uploaded data; if none uploaded yet, default to empty arrays
+  const logs = uploadedResult ? uploadedResult.logs : [];
+  const timeSeriesData = uploadedResult ? uploadedResult.anomalies : [];
+  const featureVectors = uploadedResult ? uploadedResult.features : [];
 
   const handlePipelineComplete = useCallback((result: PipelineResult) => {
     setUploadedResult(result);
@@ -48,30 +43,17 @@ const Index = () => {
             <p className="text-xs text-muted-foreground font-mono">Monitoring Active</p>
           </div>
           <div className="flex items-center gap-3">
-            {/* Data source toggle */}
             <div className="flex items-center gap-1 bg-secondary rounded-md p-0.5">
-              <button
-                onClick={() => setDataSource('mock')}
-                className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
-                  dataSource === 'mock'
-                    ? 'bg-primary/20 text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                <Database className="w-3 h-3 inline mr-1.5" />
-                Demo Data
-              </button>
               <button
                 onClick={() => uploadedResult && setDataSource('uploaded')}
                 disabled={!uploadedResult}
                 className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
-                  dataSource === 'uploaded'
-                    ? 'bg-primary/20 text-primary'
-                    : uploadedResult
-                      ? 'text-muted-foreground hover:text-foreground'
-                      : 'text-muted-foreground/40 cursor-not-allowed'
+                  uploadedResult
+                    ? 'text-muted-foreground hover:text-foreground'
+                    : 'text-muted-foreground/40 cursor-not-allowed'
                 }`}
               >
+                <Database className="w-3 h-3 inline mr-1.5" />
                 Uploaded Data
               </button>
             </div>

@@ -1,6 +1,15 @@
 import { motion } from 'framer-motion';
 import { FileText, Code, Database, BarChart3, Brain, GitMerge, Monitor, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { PIPELINE_STEPS } from '@/data/mockLogs';
+
+const PIPELINE_STEPS = [
+  { id: 'collect', label: 'Log Collection', description: 'Ingest raw log files from software systems', icon: 'FileText' },
+  { id: 'parse', label: 'Log Parsing', description: 'Extract templates using Drain-style parsing', icon: 'Code' },
+  { id: 'store', label: 'Database Storage', description: 'Store structured logs for querying', icon: 'Database' },
+  { id: 'extract', label: 'Feature Extraction', description: 'Compute numerical feature vectors', icon: 'BarChart3' },
+  { id: 'detect', label: 'Anomaly Detection', description: 'Isolation Forest + Statistical thresholds', icon: 'Brain' },
+  { id: 'hybrid', label: 'Hybrid Decision', description: 'Combine ML and statistical results', icon: 'GitMerge' },
+  { id: 'visualize', label: 'Visualization', description: 'Dashboard with actionable insights', icon: 'Monitor' },
+];
 import { cn } from '@/lib/utils';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {

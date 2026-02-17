@@ -24,8 +24,8 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
             <Activity className="w-5 h-5 text-primary" />
           </div>
           <div>
-            <h1 className="font-semibold text-sm text-foreground tracking-tight">LogSentry</h1>
-            <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-widest">Anomaly Detection</p>
+            <h1 className="font-semibold text-sm text-foreground tracking-tight">Log Anomaly Detector</h1>
+            <p className="text-[10px] text-muted-foreground font-serial uppercase tracking-widest">Anomaly Detection</p>
           </div>
         </div>
       </div>

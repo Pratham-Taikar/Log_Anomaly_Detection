@@ -3,7 +3,7 @@
  * This implements the full pipeline: Parse → Structure → Extract → Detect → Decide
  */
 
-import { LogEntry, AnomalyPoint, FeatureVector } from '@/data/mockLogs';
+import { LogEntry, AnomalyPoint, FeatureVector } from '@/types/dataTypes';
 
 // ─── Log Parsing (Drain-style template extraction) ───────────────────────────
 

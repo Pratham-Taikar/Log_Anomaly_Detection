@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FeatureVector } from '@/data/mockLogs';
+import { FeatureVector } from '@/types/dataTypes';
 import { cn } from '@/lib/utils';
 
 interface FeatureTableProps {

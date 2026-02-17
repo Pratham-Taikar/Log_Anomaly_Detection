@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { AnomalyPoint } from '@/data/mockLogs';
+import { AnomalyPoint } from '@/types/dataTypes';
 import { cn } from '@/lib/utils';
 import { Shield, ShieldAlert, ShieldCheck, AlertTriangle } from 'lucide-react';
 

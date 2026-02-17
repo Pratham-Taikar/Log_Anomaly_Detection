@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { AnomalyPoint } from '@/data/mockLogs';
+import { AnomalyPoint } from '@/types/dataTypes';
 
 interface AnomalyChartProps {
   data: AnomalyPoint[];

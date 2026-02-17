@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter } from 'lucide-react';
-import { LogEntry } from '@/data/mockLogs';
+import { LogEntry } from '@/types/dataTypes';
 import { cn } from '@/lib/utils';
 
 interface LogViewerProps {
