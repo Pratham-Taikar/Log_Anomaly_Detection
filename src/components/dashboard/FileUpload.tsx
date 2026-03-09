@@ -6,12 +6,23 @@ import { runPipeline, PipelineResult } from '@/lib/logParser';
 
 interface FileUploadProps {
   onPipelineComplete: (result: PipelineResult) => void;
+  // Called when user wants to clear the system (remove loaded result)
+  onClearSystem?: () => void;
 }
 
 const ACCEPTED_EXTENSIONS = ['.log', '.txt', '.csv'];
 const MAX_FILE_SIZE = 20 * 1024 * 1024; // 20MB
 
-export function FileUpload({ onPipelineComplete }: FileUploadProps) {
+type HistoryEntry = {
+  id: string;
+  fileName: string;
+  timestamp: string;
+  result: PipelineResult;
+};
+
+const HISTORY_KEY = 'seapm_upload_history_v1';
+
+export function FileUpload({ onPipelineComplete, onClearSystem }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [result, setResult] = useState<PipelineResult | null>(null);
@@ -19,6 +30,23 @@ export function FileUpload({ onPipelineComplete }: FileUploadProps) {
   const [fileName, setFileName] = useState<string>('');
   const [pipelineStage, setPipelineStage] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // history helpers
+  const loadHistory = (): HistoryEntry[] => {
+    try {
+      const raw = localStorage.getItem(HISTORY_KEY);
+      if (!raw) return [];
+      return JSON.parse(raw) as HistoryEntry[];
+    } catch {
+      return [];
+    }
+  };
+
+  const saveHistory = (items: HistoryEntry[]) => {
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(items)); } catch {}
+  };
+
+  const [history, setHistory] = useState<HistoryEntry[]>(() => loadHistory());
 
   const stages = [
     'Validating file...',
@@ -67,6 +95,19 @@ export function FileUpload({ onPipelineComplete }: FileUploadProps) {
 
       setResult(pipelineResult);
       onPipelineComplete(pipelineResult);
+
+      // persist to history (most-recent-first)
+      try {
+        const entry: HistoryEntry = {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+          fileName: file.name,
+          timestamp: new Date().toISOString(),
+          result: pipelineResult,
+        };
+        const next = [entry, ...loadHistory()];
+        setHistory(next);
+        saveHistory(next);
+      } catch {}
     } catch (err) {
       setError('Failed to process log file. Please check format.');
     } finally {
@@ -92,6 +133,33 @@ export function FileUpload({ onPipelineComplete }: FileUploadProps) {
     setError(null);
     setFileName('');
     if (fileInputRef.current) fileInputRef.current.value = '';
+  };
+
+  const removeHistory = (id: string) => {
+    const next = history.filter(h => h.id !== id);
+    setHistory(next);
+    saveHistory(next);
+  };
+
+  const clearHistory = () => {
+    setHistory([]);
+    saveHistory([]);
+  };
+
+  const loadEntry = (entry: HistoryEntry) => {
+    setResult(entry.result);
+    onPipelineComplete(entry.result);
+    setFileName(entry.fileName);
+  };
+
+  const removeCurrentAndClear = () => {
+    // remove possible matches by fileName or parsedLogs
+    if (result) {
+      const found = history.find(h => h.fileName === fileName || h.result.stats.parsedLogs === result.stats.parsedLogs);
+      if (found) removeHistory(found.id);
+    }
+    reset();
+    onClearSystem && onClearSystem();
   };
 
   return (
@@ -212,6 +280,18 @@ export function FileUpload({ onPipelineComplete }: FileUploadProps) {
             >
               Upload Another
             </button>
+            <button
+              onClick={removeCurrentAndClear}
+              className="text-xs px-3 py-1.5 rounded-md bg-destructive/10 text-destructive hover:bg-destructive/20 ml-2"
+            >
+              Remove & Clear
+            </button>
+            <button
+              onClick={() => { reset(); onClearSystem && onClearSystem(); }}
+              className="text-xs px-3 py-1.5 rounded-md bg-secondary text-muted-foreground hover:text-foreground ml-2"
+            >
+              Clear System Detections
+            </button>
           </div>
 
           <div className="grid grid-cols-4 gap-3">
@@ -268,6 +348,32 @@ export function FileUpload({ onPipelineComplete }: FileUploadProps) {
                 {i < 7 && <ArrowRight className="w-3 h-3 text-border" />}
               </span>
             ))}
+          </div>
+        </div>
+      )}
+      {/* Upload history */}
+      {history.length > 0 && (
+        <div className="glass-card rounded-lg border border-border p-5">
+          <h3 className="text-sm font-semibold text-foreground mb-3">Upload History</h3>
+          <div className="space-y-2 text-xs font-mono">
+            {history.map(h => (
+              <div key={h.id} className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <FileText className="w-4 h-4 text-muted-foreground" />
+                  <div>
+                    <div className="text-foreground">{h.fileName}</div>
+                    <div className="text-muted-foreground text-[11px]">{new Date(h.timestamp).toLocaleString()}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => loadEntry(h)} className="text-xs px-2 py-1 rounded bg-secondary">Load</button>
+                  <button onClick={() => removeHistory(h.id)} className="text-xs px-2 py-1 rounded bg-destructive/10 text-destructive">Remove</button>
+                </div>
+              </div>
+            ))}
+            <div className="pt-3">
+              <button onClick={clearHistory} className="text-xs px-3 py-1.5 rounded-md bg-secondary text-muted-foreground">Clear History</button>
+            </div>
           </div>
         </div>
       )}

@@ -24,6 +24,11 @@ const Index = () => {
     setDataSource('uploaded');
   }, []);
 
+  const handleClearSystem = useCallback(() => {
+    setUploadedResult(null);
+    setDataSource('uploaded');
+  }, []);
+
   const tabTitles: Record<string, string> = {
     upload: 'Log File Upload',
     overview: 'System Overview',
@@ -68,7 +73,9 @@ const Index = () => {
           </div>
         </header>
         <div className="p-8">
-          {activeTab === 'upload' && <FileUpload onPipelineComplete={handlePipelineComplete} />}
+          {activeTab === 'upload' && (
+            <FileUpload onPipelineComplete={handlePipelineComplete} onClearSystem={handleClearSystem} />
+          )}
           {activeTab === 'overview' && <OverviewTab logs={logs} timeSeriesData={timeSeriesData} />}
           {activeTab === 'logs' && <LogViewer logs={logs} />}
           {activeTab === 'pipeline' && <PipelineView />}
