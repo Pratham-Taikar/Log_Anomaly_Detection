@@ -6,8 +6,9 @@ import { runPipeline, PipelineResult } from '@/lib/logParser';
 
 interface FileUploadProps {
   onPipelineComplete: (result: PipelineResult) => void;
-  // Called when user wants to clear the system (remove loaded result)
   onClearSystem?: () => void;
+  /** When backend is available, send ingested content for ML analysis */
+  onBackendIngest?: (content: string) => Promise<void>;
 }
 
 const ACCEPTED_EXTENSIONS = ['.log', '.txt', '.csv'];
@@ -22,7 +23,7 @@ type HistoryEntry = {
 
 const HISTORY_KEY = 'seapm_upload_history_v1';
 
-export function FileUpload({ onPipelineComplete, onClearSystem }: FileUploadProps) {
+export function FileUpload({ onPipelineComplete, onClearSystem, onBackendIngest }: FileUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [result, setResult] = useState<PipelineResult | null>(null);
@@ -96,6 +97,15 @@ export function FileUpload({ onPipelineComplete, onClearSystem }: FileUploadProp
       setResult(pipelineResult);
       onPipelineComplete(pipelineResult);
 
+      if (onBackendIngest) {
+        try {
+          await onBackendIngest(content);
+          // View switches to ML Backend; user sees real ML + rule detection
+        } catch {
+          // Client pipeline already ran; backend ingest failed (e.g. server down)
+        }
+      }
+
       // persist to history (most-recent-first)
       try {
         const entry: HistoryEntry = {
@@ -114,7 +124,7 @@ export function FileUpload({ onPipelineComplete, onClearSystem }: FileUploadProp
       setProcessing(false);
       setPipelineStage(0);
     }
-  }, [onPipelineComplete]);
+  }, [onPipelineComplete, onBackendIngest]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -271,7 +281,9 @@ export function FileUpload({ onPipelineComplete, onClearSystem }: FileUploadProp
             <div className="flex-1">
               <p className="text-sm font-medium text-foreground">Pipeline Complete — {fileName}</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                All stages executed successfully. Data loaded into dashboard.
+                {onBackendIngest
+                  ? 'ML backend analysis complete. View Overview, Logs, and Anomalies for results.'
+                  : 'All stages executed successfully. Data loaded into dashboard.'}
               </p>
             </div>
             <button

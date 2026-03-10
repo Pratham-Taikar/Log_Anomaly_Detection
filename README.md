@@ -60,6 +60,35 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Machine‑Learning Backend (ML)
+
+The server includes an unsupervised Isolation Forest model that flags anomalous log messages. A few notes:
+
+1. **Training** – before starting the API (`uvicorn backend.api.server:app`), run the training script:
+
+   ```sh
+   cd backend
+   python train.py
+   ```
+
+   This reads the datasets in `backend/datasets/` and saves `anomaly_model.pkl` and `tfidf_vectorizer.pkl` to `backend/models`.
+   A startup hook in `server.py` will attempt to train automatically if those files are missing, but you should re‑run training any time you add new data.
+
+2. **Limitations** – the model is *unsupervised* and works on TF‑IDF vectors of the message text. It learns "normal" vocabulary from the training set, so
+   - messages containing only unknown words map to an empty feature vector and are treated as anomalies (a heuristic added recently);
+   - generic errors or warnings that appear in the training data will often still be classified as <code>Normal</code>. Rule‑based detection in
+     `backend/rules/rule_engine.py` is used to capture those cases.
+   - the confinement has been tuned with a sigmoid scaling factor and a small confidence threshold; you can adjust
+     <code>scale</code> or <code>contamination</code> in <code>backend/ml/anomaly_model.py</code> if you need more/less sensitivity.
+
+3. **Re‑training** – to improve results, gather representative normal logs and, if possible, rarer anomalous samples. Re‑run <code>python backend/train.py</code>
+   or restart the server (it will retrain automatically when it notices missing model files).
+
+4. **Testing** – a helper script <code>generate_test_logs.py</code> generates 1500 lines of synthetic unstructured logs for use in the upload UI. Feel free to
+   modify it to produce more anomalies.
+
+The rest of the README remains unchanged.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.

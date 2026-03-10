@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Sidebar } from '@/components/dashboard/Sidebar';
 import { OverviewTab } from '@/components/dashboard/OverviewTab';
 import { LogViewer } from '@/components/dashboard/LogViewer';
@@ -7,27 +7,125 @@ import { AnomalyDetection } from '@/components/dashboard/AnomalyDetection';
 import { FeatureTable } from '@/components/dashboard/FeatureTable';
 import { FileUpload } from '@/components/dashboard/FileUpload';
 import { PipelineResult } from '@/lib/logParser';
-import { Clock, Database } from 'lucide-react';
+import {
+  fetchLogs,
+  fetchStats,
+  fetchRecentAnomalies,
+  ingestLogs,
+  checkBackend,
+  type ApiLogEntry,
+  type StatsResponse,
+  type RecentAnomaly,
+} from '@/api/logApi';
+import { LogEntry, AnomalyPoint } from '@/types/dataTypes';
+import { Clock, Database, Cpu } from 'lucide-react';
+
+function apiLogToLogEntry(api: ApiLogEntry, i: number): LogEntry {
+  const level = (api.log_level?.toUpperCase() || 'INFO') as LogEntry['level'];
+  const validLevels: LogEntry['level'][] = ['INFO', 'WARN', 'ERROR', 'DEBUG'];
+  const lvl = validLevels.includes(level) ? level : 'INFO';
+  return {
+    id: api.id ?? `api-${i}`,
+    timestamp: api.timestamp ?? '',
+    level: lvl,
+    raw: api.message ?? api.raw ?? '',
+    template: api.template ?? api.message ?? '',
+    params: api.params ?? [],
+    component: api.service ?? api.component ?? 'System',
+    prediction: api.prediction as 'Normal' | 'Anomaly' | undefined,
+    confidence: api.confidence,
+    source: api.source,
+    detection_reason: api.detection_reason,
+  };
+}
+
+function apiAnomalyToPoint(a: RecentAnomaly, i: number): AnomalyPoint {
+  return {
+    time: a.timestamp ?? `#${i + 1}`,
+    anomalyScore: a.confidence ?? 0,
+    isAnomaly: true,
+    hybridDecision: 'anomaly',
+    message: a.message,
+    source: a.source,
+    detection_reason: a.detection_reason,
+    service: a.service,
+    log_level: a.log_level,
+  };
+}
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('upload');
-  // No demo/static data by default — start in uploaded mode
-  const [dataSource, setDataSource] = useState<'uploaded'>('uploaded');
+  const [dataSource, setDataSource] = useState<'uploaded' | 'backend'>('uploaded');
   const [uploadedResult, setUploadedResult] = useState<PipelineResult | null>(null);
-  // Use uploaded data; if none uploaded yet, default to empty arrays
-  const logs = uploadedResult ? uploadedResult.logs : [];
-  const timeSeriesData = uploadedResult ? uploadedResult.anomalies : [];
-  const featureVectors = uploadedResult ? uploadedResult.features : [];
+  const [backendAvailable, setBackendAvailable] = useState(false);
+  const [backendLogs, setBackendLogs] = useState<LogEntry[]>([]);
+  const [backendStats, setBackendStats] = useState<StatsResponse | null>(null);
+  const [backendAnomalies, setBackendAnomalies] = useState<AnomalyPoint[]>([]);
+  const [backendLoading, setBackendLoading] = useState(false);
+  const [liveRefresh, setLiveRefresh] = useState(false);
+
+  const refetchBackend = useCallback(async () => {
+    setBackendLoading(true);
+    try {
+      const [logsRes, statsRes, anomaliesRes] = await Promise.all([
+        fetchLogs(),
+        fetchStats(),
+        fetchRecentAnomalies(),
+      ]);
+      setBackendLogs((logsRes.logs ?? []).map(apiLogToLogEntry));
+      setBackendStats(statsRes);
+      setBackendAnomalies((anomaliesRes.anomalies ?? []).map(apiAnomalyToPoint));
+    } catch {
+      setBackendLogs([]);
+      setBackendStats(null);
+      setBackendAnomalies([]);
+    } finally {
+      setBackendLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!liveRefresh || !backendAvailable || dataSource !== 'backend') return;
+    const id = setInterval(refetchBackend, 5000);
+    return () => clearInterval(id);
+  }, [liveRefresh, backendAvailable, dataSource, refetchBackend]);
+
+  useEffect(() => {
+    checkBackend().then(ok => {
+      setBackendAvailable(ok);
+      if (ok) refetchBackend();
+    });
+  }, [refetchBackend]);
 
   const handlePipelineComplete = useCallback((result: PipelineResult) => {
     setUploadedResult(result);
     setDataSource('uploaded');
   }, []);
 
+  const handleBackendIngest = useCallback(
+    async (content: string) => {
+      if (!backendAvailable) return;
+      try {
+        await ingestLogs(content);
+        await refetchBackend();
+        setDataSource('backend');
+      } catch {
+        // Fallback to client pipeline
+      }
+    },
+    [backendAvailable, refetchBackend]
+  );
+
   const handleClearSystem = useCallback(() => {
     setUploadedResult(null);
     setDataSource('uploaded');
   }, []);
+
+  const logs = dataSource === 'backend' ? backendLogs : uploadedResult?.logs ?? [];
+  const timeSeriesData =
+    uploadedResult?.anomalies ?? (dataSource === 'backend' ? backendAnomalies : []);
+  const featureVectors = uploadedResult?.features ?? [];
+  const apiStats = dataSource === 'backend' ? backendStats : null;
 
   const tabTitles: Record<string, string> = {
     upload: 'Log File Upload',
@@ -59,27 +157,61 @@ const Index = () => {
                 }`}
               >
                 <Database className="w-3 h-3 inline mr-1.5" />
-                Uploaded Data
+                Uploaded
+              </button>
+              <button
+                onClick={() => backendAvailable && setDataSource('backend')}
+                disabled={!backendAvailable || backendLoading}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                  backendAvailable && !backendLoading
+                    ? 'text-muted-foreground hover:text-foreground'
+                    : 'text-muted-foreground/40 cursor-not-allowed'
+                }`}
+              >
+                <Cpu className="w-3 h-3 inline mr-1.5" />
+                ML Backend
               </button>
             </div>
+            {backendAvailable && dataSource === 'backend' && (
+              <button
+                onClick={() => setLiveRefresh(!liveRefresh)}
+                className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
+                  liveRefresh ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {liveRefresh ? '● Live' : '○ Live'}
+              </button>
+            )}
             <div className="flex items-center gap-2 text-xs text-success">
               <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
               System Online
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-secondary rounded-md text-xs text-muted-foreground">
               <Clock className="w-3 h-3" />
-              {dataSource === 'uploaded' ? 'Uploaded' : 'Demo'}
+              {dataSource === 'backend' ? 'ML Backend' : 'Uploaded'}
             </div>
           </div>
         </header>
         <div className="p-8">
           {activeTab === 'upload' && (
-            <FileUpload onPipelineComplete={handlePipelineComplete} onClearSystem={handleClearSystem} />
+            <FileUpload
+              onPipelineComplete={handlePipelineComplete}
+              onClearSystem={handleClearSystem}
+              onBackendIngest={backendAvailable ? handleBackendIngest : undefined}
+            />
           )}
-          {activeTab === 'overview' && <OverviewTab logs={logs} timeSeriesData={timeSeriesData} />}
+          {activeTab === 'overview' && (
+            <OverviewTab
+              logs={logs}
+              timeSeriesData={timeSeriesData}
+              apiStats={apiStats}
+            />
+          )}
           {activeTab === 'logs' && <LogViewer logs={logs} />}
           {activeTab === 'pipeline' && <PipelineView />}
-          {activeTab === 'anomalies' && <AnomalyDetection data={timeSeriesData} />}
+          {activeTab === 'anomalies' && (
+            <AnomalyDetection data={timeSeriesData} logs={logs} dataSource={dataSource} />
+          )}
           {activeTab === 'features' && <FeatureTable data={featureVectors} />}
         </div>
       </main>

@@ -1,0 +1,293 @@
+"""
+Log Parsing Engine - Supports multiple log formats with automatic type detection.
+Extracts: timestamp, service, log_level, message, ip_address, user_id, status_code
+"""
+import re
+import json
+from typing import Any
+from dataclasses import dataclass, asdict
+
+
+@dataclass
+class ParsedLog:
+    """Structured log entry with extracted fields."""
+    timestamp: str
+    service: str
+    log_level: str
+    message: str
+    ip_address: str | None
+    user_id: str | None
+    status_code: str | None
+    raw: str
+    log_type: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+# Regex patterns for different log formats
+APACHE_NGINX_RE = re.compile(
+    r'^(\S+ \S+) (\S+) (\S+) \[([^\]]+)\] "([^"]*)" (\d{3}) (\d+|-)?'
+)
+JSON_TIMESTAMP_RE = re.compile(
+    r'\d{4}[-/]\d{2}[-/]\d{2}[T\s]\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?'
+)
+TIMESTAMP_RE = re.compile(
+    r'^(\d{4}[-/]\d{2}[-/]\d{2}[\sT]\d{2}:\d{2}:\d{2}(?:\.\d+)?)\s*'
+)
+LEVEL_RE = re.compile(
+    r'\b(INFO|WARN|WARNING|ERROR|DEBUG|TRACE|FATAL|CRITICAL)\b', re.I
+)
+IP_RE = re.compile(
+    r'\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
+)
+USER_ID_RE = re.compile(
+    r'(?:user|userId|user_id|username)[\s=:]+[\'"]?([a-zA-Z0-9_-]+)[\'"]?',
+    re.I
+)
+STATUS_CODE_RE = re.compile(
+    r'(?:status|code|status_code)[\s=:]+(\d{3})', re.I
+)
+HTTP_STATUS_RE = re.compile(
+    r'\b(200|201|301|302|400|401|403|404|500|502|503)\b'
+)
+
+
+def _normalize_level(raw: str) -> str:
+    u = raw.upper()
+    if u in ('WARNING', 'CRITICAL', 'FATAL'):
+        return 'ERROR'
+    if u == 'TRACE':
+        return 'DEBUG'
+    return u if u in ('INFO', 'WARN', 'ERROR', 'DEBUG') else 'INFO'
+
+
+def _guess_service(message: str) -> str:
+    m = message.lower()
+    if 'auth' in m or 'login' in m or 'token' in m:
+        return 'AuthService'
+    if 'block' in m or 'replica' in m:
+        return 'BlockManager'
+    if 'pipeline' in m or 'stage' in m:
+        return 'DataPipeline'
+    if 'api' in m or 'endpoint' in m or 'request' in m:
+        return 'APIGateway'
+    if 'cache' in m or 'hit' in m or 'miss' in m:
+        return 'CacheService'
+    if 'database' in m or 'query' in m or 'sql' in m or 'connection pool' in m:
+        return 'DatabaseService'
+    if 'payment' in m or 'payment gateway' in m:
+        return 'PaymentService'
+    if 'notification' in m or 'email' in m:
+        return 'NotificationService'
+    if 'network' in m or 'timeout' in m or 'socket' in m:
+        return 'NetworkService'
+    return 'System'
+
+
+def _extract_ip(text: str) -> str | None:
+    m = IP_RE.search(text)
+    return m.group(0) if m else None
+
+
+def _extract_user(text: str) -> str | None:
+    m = USER_ID_RE.search(text)
+    return m.group(1) if m else None
+
+
+def _extract_status(text: str) -> str | None:
+    m = STATUS_CODE_RE.search(text) or HTTP_STATUS_RE.search(text)
+    return m.group(1) if m else None
+
+
+def detect_log_type(line: str) -> str:
+    """Detect log format: apache_nginx, json, csv, application, plain."""
+    line = line.strip()
+    if not line:
+        return 'plain'
+    if line.startswith('{'):
+        try:
+            json.loads(line)
+            return 'json'
+        except json.JSONDecodeError:
+            pass
+    # csv detection: require at least three commas and a timestamp start.  Many
+    # application messages contain commas, so we avoid false positives.
+    if TIMESTAMP_RE.match(line) and line.count(',') >= 3:
+        return 'csv'
+    if APACHE_NGINX_RE.match(line):
+        return 'apache_nginx'
+    if TIMESTAMP_RE.match(line) or LEVEL_RE.search(line):
+        return 'application'
+    return 'plain'
+
+
+def parse_apache_nginx(line: str) -> ParsedLog | None:
+    """Parse Apache/Nginx combined log format."""
+    m = APACHE_NGINX_RE.match(line)
+    if not m:
+        return None
+    _, remote_ip, _, timestamp, request, status, _ = m.groups()
+    return ParsedLog(
+        timestamp=timestamp,
+        service='WebServer',
+        log_level='INFO' if status and status.startswith('2') else 'ERROR',
+        message=request or line,
+        ip_address=remote_ip if remote_ip != '-' else None,
+        user_id=None,
+        status_code=status,
+        raw=line,
+        log_type='apache_nginx'
+    )
+
+
+def parse_json(line: str) -> ParsedLog | None:
+    """Parse JSON structured log."""
+    try:
+        data = json.loads(line)
+        ts = data.get('timestamp', data.get('time', data.get('@timestamp', '')))
+        if isinstance(ts, (int, float)):
+            from datetime import datetime
+            ts = datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+        level = _normalize_level(
+            str(data.get('level', data.get('log_level', 'INFO')))
+        )
+        msg = data.get('message', data.get('msg', str(data)))
+        return ParsedLog(
+            timestamp=str(ts)[:19] if ts else '',
+            service=str(data.get('service', data.get('service_name', _guess_service(msg)))),
+            log_level=level,
+            message=str(msg),
+            ip_address=data.get('ip', data.get('ip_address', _extract_ip(str(msg)))),
+            user_id=data.get('user_id', data.get('userId', _extract_user(str(msg)))),
+            status_code=str(data.get('status_code', data.get('status', ''))) or _extract_status(str(msg)),
+            raw=line,
+            log_type='json'
+        )
+    except (json.JSONDecodeError, TypeError):
+        return None
+
+
+def parse_csv(line: str) -> ParsedLog | None:
+    """Parse CSV-style log (timestamp,service,log_level,message,...)."""
+    parts = [p.strip() for p in line.split(',')]
+    if len(parts) < 4:
+        return None
+    ts = parts[0] if len(parts) > 0 else ''
+    svc = parts[1] if len(parts) > 1 else 'System'
+    lvl = _normalize_level(parts[2]) if len(parts) > 2 else 'INFO'
+    msg = parts[3] if len(parts) > 3 else line
+    return ParsedLog(
+        timestamp=ts[:19] if ts else '',
+        service=svc,
+        log_level=lvl,
+        message=msg,
+        ip_address=_extract_ip(line),
+        user_id=_extract_user(line),
+        status_code=_extract_status(line),
+        raw=line,
+        log_type='csv'
+    )
+
+
+def parse_application(line: str) -> ParsedLog:
+    """Parse application log (timestamp level message)."""
+    ts_match = TIMESTAMP_RE.match(line)
+    timestamp = ts_match.group(1).replace('T', ' ')[:19] if ts_match else ''
+    remainder = line[ts_match.end():] if ts_match else line
+    lvl_match = LEVEL_RE.search(remainder)
+    level = _normalize_level(lvl_match.group(1)) if lvl_match else 'INFO'
+    message = remainder
+    if lvl_match:
+        message = remainder.replace(lvl_match.group(0), '', 1)
+    # strip leading separators
+    message = re.sub(r'^[\s\-:|]+', '', message).strip() or line
+
+    # if the message begins with a bracketed service name, extract it
+    svc_match = re.match(r'^\[([^\]]+)\]\s*(.*)', message)
+    service = None
+    if svc_match:
+        service = svc_match.group(1)
+        message = svc_match.group(2)
+    if not service:
+        service = _guess_service(message)
+
+    return ParsedLog(
+        timestamp=timestamp,
+        service=service,
+        log_level=level,
+        message=message,
+        ip_address=_extract_ip(line),
+        user_id=_extract_user(line),
+        status_code=_extract_status(line),
+        raw=message,
+        log_type='application'
+    )
+
+
+def parse_plain(line: str) -> ParsedLog:
+    """Parse plain text log."""
+    ts = TIMESTAMP_RE.search(line)
+    timestamp = ts.group(1).replace('T', ' ')[:19] if ts else ''
+    lvl = LEVEL_RE.search(line)
+    level = _normalize_level(lvl.group(1)) if lvl else 'INFO'
+    message = line.strip()
+    return ParsedLog(
+        timestamp=timestamp,
+        service=_guess_service(message),
+        log_level=level,
+        message=message,
+        ip_address=_extract_ip(line),
+        user_id=_extract_user(line),
+        status_code=_extract_status(line),
+        raw=message,
+        log_type='plain'
+    )
+
+
+def parse_line(line: str) -> ParsedLog | None:
+    """Parse a single log line with automatic format detection."""
+    line = line.strip()
+    if not line:
+        return None
+    log_type = detect_log_type(line)
+    if log_type == 'apache_nginx':
+        return parse_apache_nginx(line)
+    if log_type == 'json':
+        return parse_json(line)
+    if log_type == 'csv':
+        return parse_csv(line)
+    if log_type == 'application':
+        return parse_application(line)
+    return parse_plain(line)
+
+
+def parse_logs(content: str) -> list[dict[str, Any]]:
+    """
+    Parse multiple log lines and return list of structured dictionaries.
+    Also works with file path - reads file if content looks like a path (single line).
+    """
+    lines = content.split('\n') if '\n' in content or content.strip() else []
+    if not lines and len(content) < 260:
+        try:
+            with open(content, 'r', encoding='utf-8', errors='ignore') as f:
+                lines = f.readlines()
+        except (OSError, IOError):
+            pass
+    results = []
+    for i, line in enumerate(lines):
+        parsed = parse_line(line)
+        if parsed:
+            d = parsed.to_dict()
+            d['id'] = f'log-{i}'
+            results.append(d)
+    return results
+
+
+if __name__ == '__main__':
+    import sys
+    path = sys.argv[1] if len(sys.argv) > 1 else 'datasets/log_example.txt'
+    with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+        logs = parse_logs(f.read())
+    for log in logs[:5]:
+        print(log)

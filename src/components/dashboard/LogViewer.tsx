@@ -25,15 +25,18 @@ const levelBg = {
 export function LogViewer({ logs }: LogViewerProps) {
   const [search, setSearch] = useState('');
   const [levelFilter, setLevelFilter] = useState<string>('ALL');
+  const [predictionFilter, setPredictionFilter] = useState<string>('ALL');
   const [showTemplates, setShowTemplates] = useState(false);
+  const hasPredictions = logs.some(l => l.prediction);
 
   const filtered = useMemo(() => {
     return logs.filter(log => {
       if (levelFilter !== 'ALL' && log.level !== levelFilter) return false;
+      if (predictionFilter !== 'ALL' && log.prediction !== predictionFilter) return false;
       if (search && !log.raw.toLowerCase().includes(search.toLowerCase())) return false;
       return true;
     });
-  }, [logs, search, levelFilter]);
+  }, [logs, search, levelFilter, predictionFilter]);
 
   return (
     <div className="space-y-4">
@@ -61,6 +64,22 @@ export function LogViewer({ logs }: LogViewerProps) {
             </button>
           ))}
         </div>
+        {hasPredictions && (
+          <div className="flex gap-1">
+            {['ALL', 'Anomaly', 'Normal'].map(p => (
+              <button
+                key={p}
+                onClick={() => setPredictionFilter(p)}
+                className={cn(
+                  'px-3 py-2 text-xs font-medium rounded-md transition-all',
+                  predictionFilter === p ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground hover:text-foreground'
+                )}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+        )}
         <button
           onClick={() => setShowTemplates(!showTemplates)}
           className={cn(
@@ -74,11 +93,17 @@ export function LogViewer({ logs }: LogViewerProps) {
       </div>
 
       <div className="glass-card rounded-lg border border-border overflow-hidden">
-        <div className="grid grid-cols-[160px_70px_120px_1fr] gap-4 px-4 py-2.5 bg-muted/50 text-xs font-medium text-muted-foreground uppercase tracking-wider border-b border-border">
+        <div
+          className={cn(
+            'grid gap-4 px-4 py-2.5 bg-muted/50 text-xs font-medium text-muted-foreground uppercase tracking-wider border-b border-border',
+            hasPredictions ? 'grid-cols-[140px_60px_100px_1fr_130px]' : 'grid-cols-[160px_70px_120px_1fr]'
+          )}
+        >
           <span>Timestamp</span>
           <span>Level</span>
-          <span>Component</span>
+          <span>Service</span>
           <span>{showTemplates ? 'Template' : 'Message'}</span>
+          {hasPredictions && <span>Detection</span>}
         </div>
         <div className="max-h-[500px] overflow-y-auto scrollbar-thin">
           {filtered.slice(0, 100).map((log, i) => (
@@ -88,8 +113,10 @@ export function LogViewer({ logs }: LogViewerProps) {
               animate={{ opacity: 1 }}
               transition={{ delay: i * 0.01 }}
               className={cn(
-                'grid grid-cols-[160px_70px_120px_1fr] gap-4 px-4 py-2 text-xs font-mono border-b border-border/50 hover:bg-secondary/50 transition-colors',
-                log.level === 'ERROR' && 'bg-destructive/5'
+                'grid gap-4 px-4 py-2.5 text-xs font-mono border-b border-border/50 hover:bg-secondary/50 transition-colors',
+                log.level === 'ERROR' && 'bg-destructive/5',
+                log.prediction === 'Anomaly' && 'bg-destructive/5',
+                hasPredictions ? 'grid-cols-[140px_60px_100px_1fr_130px]' : 'grid-cols-[160px_70px_120px_1fr]'
               )}
             >
               <span className="text-muted-foreground">{log.timestamp}</span>
@@ -98,10 +125,30 @@ export function LogViewer({ logs }: LogViewerProps) {
                   {log.level}
                 </span>
               </span>
-              <span className="text-secondary-foreground">{log.component}</span>
+              <span className="text-secondary-foreground truncate">{log.component}</span>
               <span className="text-foreground truncate">
                 {showTemplates ? log.template : log.raw}
               </span>
+              {hasPredictions && (
+                <div className="flex flex-col gap-0.5">
+                  <span
+                    className={cn(
+                      'font-medium',
+                      log.prediction === 'Anomaly' ? 'text-destructive' : 'text-success'
+                    )}
+                  >
+                    {log.prediction ?? '—'}
+                    {log.confidence != null && (
+                      <span className="text-muted-foreground ml-1">({(log.confidence * 100).toFixed(0)}%)</span>
+                    )}
+                  </span>
+                  {log.detection_reason && log.prediction === 'Anomaly' && (
+                    <span className="text-[10px] text-muted-foreground truncate" title={log.detection_reason}>
+                      {log.detection_reason}
+                    </span>
+                  )}
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

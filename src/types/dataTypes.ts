@@ -6,18 +6,29 @@ export interface LogEntry {
   template: string;
   params: string[];
   component: string;
+  /** ML/Rule prediction when from backend */
+  prediction?: 'Normal' | 'Anomaly';
+  confidence?: number;
+  source?: string;
+  detection_reason?: string;
 }
 
 export interface AnomalyPoint {
   time: string;
-  errorCount: number;
-  avgResponseTime: number;
-  uniqueTemplates: number;
+  errorCount?: number;
+  avgResponseTime?: number;
+  uniqueTemplates?: number;
   anomalyScore: number;
   isAnomaly: boolean;
-  isolationForest: 'normal' | 'anomaly';
-  statistical: 'normal' | 'anomaly';
+  isolationForest?: 'normal' | 'anomaly';
+  statistical?: 'normal' | 'anomaly';
   hybridDecision: 'normal' | 'warning' | 'anomaly';
+  /** From backend: message, source, detection reason */
+  message?: string;
+  source?: string;
+  detection_reason?: string;
+  service?: string;
+  log_level?: string;
 }
 
 export interface FeatureVector {
