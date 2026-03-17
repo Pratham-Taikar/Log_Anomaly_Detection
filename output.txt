@@ -1,0 +1,55 @@
+Generated 10000 logs to datasets\logs_2.txt.
+Ingest Response: {'message': 'OK', 'count': 10000, 'anomalies': 1085}
+
+Backend Stats:
+{
+  "total_logs": 10000,
+  "anomaly_count": 1085,
+  "normal_count": 8915,
+  "anomaly_percentage": 10.8
+}
+
+=== Anomaly Breakdown ===
+ML Only Anomalies: 256
+Rule Only Anomalies: 815
+ML + Rule Anomalies: 14
+  
+=== Rule Triggers ===
+  - Suspicious internal IP in auth context: 10.0.0.5: 72
+  - Database connection failure detected: 69
+  - Multiple login failures (3) detected: 447
+  - Unauthorized access detected: 69
+  - Brute force attempt detected: 65
+  - Multiple login failures (4) detected: 21
+  - Multiple login failures (5) detected: 13
+  - Multiple login failures (6) detected: 8
+  - Known attack pattern detected: 65
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Generated 10000 logs to datasets\logs_7.txt.
+Ingest Response: {'message': 'OK', 'count': 10000, 'anomalies': 1277}
+
+Backend Stats:
+{
+  "total_logs": 10000,
+  "anomaly_count": 1277,
+  "normal_count": 8723,
+  "anomaly_percentage": 12.8
+}
+
+=== Anomaly Breakdown ===
+ML Only Anomalies: 264
+Rule Only Anomalies: 999
+ML + Rule Anomalies: 14
+
+=== Rule Triggers ===
+  - Database connection failure detected: 63
+  - Unauthorized access detected: 70
+  - Suspicious internal IP in auth context: 10.0.0.5: 94
+  - Known attack pattern detected: 63
+  - Brute force attempt detected: 73
+  - Multiple login failures (3) detected: 571
+  - Multiple login failures (4) detected: 62
+  - Multiple login failures (5) detected: 8
+  - Multiple login failures (6) detected: 9
