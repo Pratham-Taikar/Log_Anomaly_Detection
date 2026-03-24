@@ -419,46 +419,6 @@ CMD ["python", "-m", "api.server"]
 - **Backend**: PEP 8 Python style guide
 - **Commits**: Descriptive messages with context
 
-## 📝 License
-
-This project is licensed under the MIT License - see LICENSE file for details.
-
-## 🆘 Support & Documentation
-
-- **Setup Guide**: See [SETUP_AND_RUN.md](RUN_INSTRUCTIONS.md)
-- **API Reference**: See [API Documentation](API.md) (in development)
-- **Issues**: Report bugs via GitHub Issues
-- **Discussions**: Share ideas in GitHub Discussions
-
-## 📈 Project Statistics Summary
-
-```
-CODEBASE SNAPSHOT (as of latest)
-═════════════════════════════════════════════════════════════
-Total Files: 97
-Total Lines of Code: 15,938
-  Frontend: 14,884 LOC (93.4%)
-  Backend: 1,054 LOC (6.6%)
-
-PERFORMANCE METRICS
-═════════════════════════════════════════════════════════════
-Anomaly Detection Rate: 7.3% (baseline)
-Model Inference Time: < 1ms per message
-Batch Processing (1,500): ~1.2 seconds
-TF-IDF Feature Space: 1,210 dimensions
-ML Model Size: ~2.5 MB (on disk)
-
-COMPONENT COUNTS
-═════════════════════════════════════════════════════════════
-React Components: 57 (48 UI + 9 Dashboard)
-API Endpoints: 5 (fully functional)
-Rule Detection Patterns: 6
-Log Format Parsers: 6+
-Database Schemas: 0 (in-memory for MVP)
-═════════════════════════════════════════════════════════════
-```
-
----
 
 **Last Updated**: 2024  
 **Status**: Production Ready (MVP)  
@@ -499,17 +459,3 @@ The server includes an unsupervised Isolation Forest model that flags anomalous 
 
 3. **Re‑training** – to improve results, gather representative normal logs and, if possible, rarer anomalous samples. Re‑run <code>python backend/train.py</code>
    or restart the server (it will retrain automatically when it notices missing model files).
-
-The rest of the README remains unchanged.
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
