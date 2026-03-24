@@ -4,26 +4,6 @@
 
 > Detect unusual patterns in massive log datasets with 7.3% baseline anomaly detection rate | 1,210 TF-IDF features | Hybrid ML + Rules approach
 
-## 📊 Project Metrics
-
-| Category     | Metric                      | Value                    |
-| ------------ | --------------------------- | ------------------------ |
-| **Codebase** | Total Files                 | 97                       |
-|              | Total Lines of Code         | 15,938                   |
-|              | Frontend LOC                | 14,884 (93.4%)           |
-|              | Backend LOC                 | 1,054 (6.6%)             |
-| **Frontend** | React Components            | 57 (48 UI + 9 Dashboard) |
-|              | JavaScript/TypeScript Files | 85                       |
-| **Backend**  | Python Modules              | 12                       |
-|              | API Endpoints               | 5                        |
-| **ML Model** | Training Data Size          | 600 messages             |
-|              | TF-IDF Vocabulary           | 1,210 features           |
-|              | Isolation Forest Trees      | 100 estimators           |
-|              | Anomaly Contamination       | 10%                      |
-| **Testing**  | Test Dataset                | 1,500 log lines          |
-|              | Anomalies Detected          | 110 (7.3%)               |
-|              | Parser Formats Supported    | 6+                       |
-
 ## 🎯 Overview
 
 SEAPM CP is an enterprise-grade anomaly detection system that analyzes application and system logs in real-time. It combines:
