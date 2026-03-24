@@ -6,23 +6,23 @@
 
 ## 📊 Project Metrics
 
-| Category | Metric | Value |
-|----------|--------|-------|
-| **Codebase** | Total Files | 97 |
-| | Total Lines of Code | 15,938 |
-| | Frontend LOC | 14,884 (93.4%) |
-| | Backend LOC | 1,054 (6.6%) |
-| **Frontend** | React Components | 57 (48 UI + 9 Dashboard) |
-| | JavaScript/TypeScript Files | 85 |
-| **Backend** | Python Modules | 12 |
-| | API Endpoints | 5 |
-| **ML Model** | Training Data Size | 600 messages |
-| | TF-IDF Vocabulary | 1,210 features |
-| | Isolation Forest Trees | 100 estimators |
-| | Anomaly Contamination | 10% |
-| **Testing** | Test Dataset | 1,500 log lines |
-| | Anomalies Detected | 110 (7.3%) |
-| | Parser Formats Supported | 6+ |
+| Category     | Metric                      | Value                    |
+| ------------ | --------------------------- | ------------------------ |
+| **Codebase** | Total Files                 | 97                       |
+|              | Total Lines of Code         | 15,938                   |
+|              | Frontend LOC                | 14,884 (93.4%)           |
+|              | Backend LOC                 | 1,054 (6.6%)             |
+| **Frontend** | React Components            | 57 (48 UI + 9 Dashboard) |
+|              | JavaScript/TypeScript Files | 85                       |
+| **Backend**  | Python Modules              | 12                       |
+|              | API Endpoints               | 5                        |
+| **ML Model** | Training Data Size          | 600 messages             |
+|              | TF-IDF Vocabulary           | 1,210 features           |
+|              | Isolation Forest Trees      | 100 estimators           |
+|              | Anomaly Contamination       | 10%                      |
+| **Testing**  | Test Dataset                | 1,500 log lines          |
+|              | Anomalies Detected          | 110 (7.3%)               |
+|              | Parser Formats Supported    | 6+                       |
 
 ## 🎯 Overview
 
@@ -34,6 +34,7 @@ SEAPM CP is an enterprise-grade anomaly detection system that analyzes applicati
 - **Hybrid Decision Logic**: Combines ML and rule-based signals for reliable detection
 
 ### Use Cases
+
 - Real-time security threat detection (unauthorized access, brute force attacks)
 - Data integrity monitoring (database connection failures, replication issues)
 - Performance anomaly detection (unusual request patterns, resource spikes)
@@ -98,35 +99,39 @@ SEAPM CP is an enterprise-grade anomaly detection system that analyzes applicati
 ## 🛠️ Technology Stack
 
 ### Frontend
-| Technology | Purpose | Version |
-|------------|---------|---------|
-| React | UI Framework | 18+ |
-| TypeScript | Type Safety | 5.0+ |
-| Vite | Build Tool & Dev Server | 4.0+ |
-| Tailwind CSS | Styling | 3.0+ |
-| shadcn/ui | Component Library | Latest |
-| Framer Motion | Animations | 10.0+ |
+
+| Technology    | Purpose                 | Version |
+| ------------- | ----------------------- | ------- |
+| React         | UI Framework            | 18+     |
+| TypeScript    | Type Safety             | 5.0+    |
+| Vite          | Build Tool & Dev Server | 4.0+    |
+| Tailwind CSS  | Styling                 | 3.0+    |
+| shadcn/ui     | Component Library       | Latest  |
+| Framer Motion | Animations              | 10.0+   |
 
 ### Backend
-| Technology | Purpose | Version |
-|------------|---------|---------|
-| Python | Runtime | 3.10+ |
-| FastAPI | API Framework | 0.100+ |
-| scikit-learn | ML Library | 1.6.1 |
-| joblib | Model Serialization | 1.3+ |
-| Pydantic | Data Validation | 2.0+ |
+
+| Technology   | Purpose             | Version |
+| ------------ | ------------------- | ------- |
+| Python       | Runtime             | 3.10+   |
+| FastAPI      | API Framework       | 0.100+  |
+| scikit-learn | ML Library          | 1.6.1   |
+| joblib       | Model Serialization | 1.3+    |
+| Pydantic     | Data Validation     | 2.0+    |
 
 ### ML Components
-| Component | Algorithm | Configuration |
-|-----------|-----------|----------------|
-| Anomaly Detector | Isolation Forest | 100 trees, 10% contamination |
-| Vectorizer | TF-IDF | Max 5,000 features, (1,2)-grams |
-| Feature Engineering | TF-IDF | Min freq 1, Max freq 95% |
-| Vocabulary | English Stopwords | 1,210 unique features |
+
+| Component           | Algorithm         | Configuration                   |
+| ------------------- | ----------------- | ------------------------------- |
+| Anomaly Detector    | Isolation Forest  | 100 trees, 10% contamination    |
+| Vectorizer          | TF-IDF            | Max 5,000 features, (1,2)-grams |
+| Feature Engineering | TF-IDF            | Min freq 1, Max freq 95%        |
+| Vocabulary          | English Stopwords | 1,210 unique features           |
 
 ## 🚀 Features
 
 ### 1. **Multi-Format Log Parsing**
+
 - ✅ JSON logs
 - ✅ CSV formatted logs
 - ✅ Apache/Nginx access logs
@@ -137,6 +142,7 @@ SEAPM CP is an enterprise-grade anomaly detection system that analyzes applicati
 Extracted fields: `timestamp`, `service`, `log_level`, `message`, `ip_address`, `user_id`, `status_code`
 
 ### 2. **Intelligent Log Preprocessing**
+
 - Automatic message cleaning (lowercase, special char removal)
 - Timestamp extraction and normalization
 - Stopword filtering (English)
@@ -144,6 +150,7 @@ Extracted fields: `timestamp`, `service`, `log_level`, `message`, `ip_address`, 
 - Metadata preservation for forensics
 
 ### 3. **Machine Learning Anomaly Detection**
+
 - **Algorithm**: Unsupervised Isolation Forest (100 trees)
 - **Features**: TF-IDF vectorization (1,210 features max)
 - **Confidence Scoring**: Sigmoid-scaled decision boundary
@@ -151,7 +158,9 @@ Extracted fields: `timestamp`, `service`, `log_level`, `message`, `ip_address`, 
 - **Inference Speed**: < 1ms per message
 
 ### 4. **Rule-Based Detection Engine**
+
 6 specialized detection patterns:
+
 1. **Repeated Login Failures**: 3+ failures in 10-log sliding window
 2. **Brute Force Attacks**: 10+ consecutive failed login attempts
 3. **Database Issues**: Connection failures, timeout patterns
@@ -160,6 +169,7 @@ Extracted fields: `timestamp`, `service`, `log_level`, `message`, `ip_address`, 
 6. **Known Signatures**: Attack patterns & suspicious IPs
 
 ### 5. **Hybrid Decision Logic**
+
 ```
 if (rule_triggered && ml_anomaly):
     confidence = 0.95, source = "ML + Rules"
@@ -172,6 +182,7 @@ else:
 ```
 
 ### 6. **Interactive Dashboard**
+
 - **Upload Tab**: Drag-drop log file import
 - **Overview Tab**: System statistics and metrics
 - **Logs Tab**: Sortable, filterable log viewer
@@ -181,17 +192,18 @@ else:
 
 ### 7. **REST API**
 
-| Endpoint | Method | Purpose | Response |
-|----------|--------|---------|----------|
-| `/analyze-log` | POST | Analyze single message | `{prediction, confidence, is_anomaly}` |
-| `/ingest` | POST | Batch process logs | `{total, parsed, anomalies}` |
-| `/logs` | GET | Retrieve stored logs | `[{id, timestamp, message, ...}]` |
-| `/stats` | GET | Anomaly statistics | `{total, normal_count, anomaly_count, %}` |
-| `/recent-anomalies` | GET | Recent anomalies | `[{log_id, reason, rules_triggered}]` |
+| Endpoint            | Method | Purpose                | Response                                  |
+| ------------------- | ------ | ---------------------- | ----------------------------------------- |
+| `/analyze-log`      | POST   | Analyze single message | `{prediction, confidence, is_anomaly}`    |
+| `/ingest`           | POST   | Batch process logs     | `{total, parsed, anomalies}`              |
+| `/logs`             | GET    | Retrieve stored logs   | `[{id, timestamp, message, ...}]`         |
+| `/stats`            | GET    | Anomaly statistics     | `{total, normal_count, anomaly_count, %}` |
+| `/recent-anomalies` | GET    | Recent anomalies       | `[{log_id, reason, rules_triggered}]`     |
 
 ## 📥 Installation & Setup
 
 ### Prerequisites
+
 - Node.js 16+ (with npm or bun)
 - Python 3.10+
 - Git
@@ -227,6 +239,7 @@ npm run dev
 ## 🧠 ML Model Documentation
 
 ### Training Data
+
 - **Dataset Size**: 600 diverse log messages
 - **Message Types**: System events, application logs, security events
 - **Average Length**: 37.1 characters (range: 10-55)
@@ -235,6 +248,7 @@ npm run dev
 ### Model Specifications
 
 #### Isolation Forest
+
 ```
 Algorithm: Unsupervised anomaly detection
 Estimators: 100 decision trees
@@ -244,6 +258,7 @@ Random State: 42 (reproducible)
 ```
 
 #### TF-IDF Vectorizer
+
 ```
 Max Features: 5,000
 N-gram Range: (1, 2) - unigrams and bigrams
@@ -265,25 +280,25 @@ $$\text{confidence} = \frac{1}{1 + e^{-10 \times \text{decision\_function}}}$$
 
 ### Prediction Examples
 
-| Input Message | Decision | Confidence | Reason |
-|---------------|----------|-----------|--------|
-| "User login successful" | Normal | 0.45 | Common pattern in training |
-| "Database connection timeout" | Normal | 0.46 | Expected database event |
-| "Block replicated successfully" | Normal | 0.45 | Normal blockchain operation |
-| "Authentication failed unauthorized" | Normal | 0.45 | Expected in logs, not isolated |
-| "Memory usage normal" | Normal | 0.45 | Routine system message |
+| Input Message                        | Decision | Confidence | Reason                         |
+| ------------------------------------ | -------- | ---------- | ------------------------------ |
+| "User login successful"              | Normal   | 0.45       | Common pattern in training     |
+| "Database connection timeout"        | Normal   | 0.46       | Expected database event        |
+| "Block replicated successfully"      | Normal   | 0.45       | Normal blockchain operation    |
+| "Authentication failed unauthorized" | Normal   | 0.45       | Expected in logs, not isolated |
+| "Memory usage normal"                | Normal   | 0.45       | Routine system message         |
 
 **Note**: Individual messages show normal scores because Isolation Forest is trained on message patterns. Rule-based detection provides context-aware flagging for suspicious sequences.
 
 ### Model Performance
 
-| Metric | Value | Notes |
-|--------|-------|-------|
-| Training Time | ~500ms | Single 600-message batch |
-| Inference (per message) | < 1ms | Optimized for real-time use |
-| Inference (1500 msgs) | ~1,200ms | Batch processing |
-| Feature Extraction | TF-IDF | 1,210-dimensional sparse vectors |
-| Anomaly Detection Rate (test) | 7.3% | 110/1,500 on synthetic dataset |
+| Metric                        | Value    | Notes                            |
+| ----------------------------- | -------- | -------------------------------- |
+| Training Time                 | ~500ms   | Single 600-message batch         |
+| Inference (per message)       | < 1ms    | Optimized for real-time use      |
+| Inference (1500 msgs)         | ~1,200ms | Batch processing                 |
+| Feature Extraction            | TF-IDF   | 1,210-dimensional sparse vectors |
+| Anomaly Detection Rate (test) | 7.3%     | 110/1,500 on synthetic dataset   |
 
 ### Test Results (1,500-line synthetic log)
 
@@ -313,16 +328,19 @@ Response Time: < 2s for full batch processing
 The system combines ML and rule-based approaches:
 
 ### ML Layer (Isolation Forest)
+
 - **Strength**: Detects subtle patterns through data distribution analysis
 - **Weakness**: Context-blind (doesn't understand attack sequences)
 - **Use**: Identifies statistical outliers
 
 ### Rules Layer
+
 - **Strength**: Context-aware, detects known threat patterns
 - **Weakness**: Limited to pre-defined rules
 - **Use**: Targets specific security/integrity threats
 
 ### Hybrid Decision
+
 ```
 CONFIDENCE LEVELS:
 ┌─────────────────────────────────────────────────┐
@@ -347,11 +365,10 @@ npm run test
 cd backend
 python -c "from api.server import app; print('API loaded')"
 
-# Generate test data
-python generate_test_logs.py  # Creates 1,500 synthetic logs
 ```
 
 ### Test Coverage
+
 - ✅ Log parser (6+ formats)
 - ✅ ML model predictions
 - ✅ Rule engine triggers
@@ -362,6 +379,7 @@ python generate_test_logs.py  # Creates 1,500 synthetic logs
 ## 🚢 Deployment
 
 ### Production Checklist
+
 - [ ] Set environment variables (API_URL, LOG_RETENTION_DAYS)
 - [ ] Configure CORS for frontend origin
 - [ ] Enable authentication/authorization
@@ -370,6 +388,7 @@ python generate_test_logs.py  # Creates 1,500 synthetic logs
 - [ ] Monitor memory usage (model + stored logs)
 
 ### Docker Support (Future)
+
 ```dockerfile
 FROM python:3.10-slim
 COPY backend/ /app/backend
@@ -380,6 +399,7 @@ CMD ["python", "-m", "api.server"]
 ```
 
 ### Scaling Considerations
+
 - **Horizontal**: Deploy multiple API instances behind load balancer
 - **Vertical**: Increase memory for large model/log retention
 - **Caching**: Implement Redis for predictions cache
@@ -394,6 +414,7 @@ CMD ["python", "-m", "api.server"]
 5. Open Pull Request
 
 ### Code Style
+
 - **Frontend**: Follow TypeScript/React conventions
 - **Backend**: PEP 8 Python style guide
 - **Commits**: Descriptive messages with context
@@ -442,6 +463,7 @@ Database Schemas: 0 (in-memory for MVP)
 **Last Updated**: 2024  
 **Status**: Production Ready (MVP)  
 **Maintainers**: Project Team
+
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
 ## What technologies are used for this project?
@@ -465,10 +487,10 @@ The server includes an unsupervised Isolation Forest model that flags anomalous 
    python train.py
    ```
 
-   This reads the datasets in `backend/datasets/` and saves `anomaly_model.pkl` and `tfidf_vectorizer.pkl` to `backend/models`.
+   This reads the datasets in `datasets/` and saves `anomaly_model.pkl` and `tfidf_vectorizer.pkl` to `backend/models`.
    A startup hook in `server.py` will attempt to train automatically if those files are missing, but you should re‑run training any time you add new data.
 
-2. **Limitations** – the model is *unsupervised* and works on TF‑IDF vectors of the message text. It learns "normal" vocabulary from the training set, so
+2. **Limitations** – the model is _unsupervised_ and works on TF‑IDF vectors of the message text. It learns "normal" vocabulary from the training set, so
    - messages containing only unknown words map to an empty feature vector and are treated as anomalies (a heuristic added recently);
    - generic errors or warnings that appear in the training data will often still be classified as <code>Normal</code>. Rule‑based detection in
      `backend/rules/rule_engine.py` is used to capture those cases.
@@ -477,9 +499,6 @@ The server includes an unsupervised Isolation Forest model that flags anomalous 
 
 3. **Re‑training** – to improve results, gather representative normal logs and, if possible, rarer anomalous samples. Re‑run <code>python backend/train.py</code>
    or restart the server (it will retrain automatically when it notices missing model files).
-
-4. **Testing** – a helper script <code>generate_test_logs.py</code> generates 1500 lines of synthetic unstructured logs for use in the upload UI. Feel free to
-   modify it to produce more anomalies.
 
 The rest of the README remains unchanged.
 

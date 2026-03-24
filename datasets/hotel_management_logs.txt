@@ -1,0 +1,1000 @@
+2026-03-23 10:52:27 INFO Wi-Fi access granted for guest Mason Wilson (IP: 192.168.1.169)
+2026-03-23 11:03:57 INFO Guest Amelia Gonzalez requested additional towels for room 107
+2026-03-23 11:06:01 INFO Wi-Fi access granted for guest John Garcia (IP: 192.168.1.160)
+2026-03-23 11:17:07 DEBUG Database query executed: SELECT * FROM bookings WHERE room=215
+2026-03-23 11:21:41 INFO Guest James Gonzalez checked into room 306
+2026-03-23 11:23:37 INFO Guest Olivia Wilson requested additional towels for room 209
+2026-03-23 11:33:58 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-23 11:38:20 INFO Breakfast service started for guest Isabella Davis
+2026-03-23 11:40:25 DEBUG System internal state updated for room 307
+2026-03-23 11:51:28 INFO Guest Amelia Williams requested additional towels for room 109
+2026-03-23 12:05:47 INFO Wi-Fi access granted for guest Mia Smith (IP: 192.168.1.73)
+2026-03-23 12:12:06 INFO Payment of $481 processed for guest Noah Miller
+2026-03-23 12:22:18 ERROR Database connection timeout during guest lookup
+2026-03-23 12:27:13 WARN Late check-out requested for room 203
+2026-03-23 12:37:31 INFO Guest Olivia Hernandez requested additional towels for room 211
+2026-03-23 12:38:41 ERROR Payment failed for guest Lucas Lopez - Insufficient funds
+2026-03-23 12:49:01 ERROR Database connection timeout during guest lookup
+2026-03-23 12:54:36 INFO Guest Mason Hernandez requested additional towels for room 119
+2026-03-23 13:05:15 INFO Breakfast service started for guest Isabella Gonzalez
+2026-03-23 13:13:59 INFO Guest Mason Miller checked out from room 101
+2026-03-23 13:22:31 INFO Wi-Fi access granted for guest Benjamin Gonzalez (IP: 192.168.1.141)
+2026-03-23 13:27:47 INFO Breakfast service started for guest Emma Wilson
+2026-03-23 13:28:01 DEBUG System internal state updated for room 304
+2026-03-23 13:39:33 INFO Wi-Fi access granted for guest Amelia Brown (IP: 192.168.1.35)
+2026-03-23 13:45:53 INFO Guest Ava Wilson checked into room 218
+2026-03-23 13:59:57 INFO Guest Sophia Martinez checked out from room 118
+2026-03-23 14:08:19 INFO Room 119 marked as cleaned by housekeeping
+2026-03-23 14:11:32 INFO Breakfast service started for guest Charlotte Martinez
+2026-03-23 14:19:41 DEBUG Database query executed: SELECT * FROM bookings WHERE room=208
+2026-03-23 14:26:28 INFO Room 206 marked as cleaned by housekeeping
+2026-03-23 14:39:27 INFO Guest Liam Johnson checked out from room 110
+2026-03-23 14:50:22 INFO Payment of $292 processed for guest Sophia Rodriguez
+2026-03-23 14:51:01 WARN Late check-out requested for room 116
+2026-03-23 14:59:25 INFO Payment of $79 processed for guest Sophia Wilson
+2026-03-23 15:02:46 INFO Wi-Fi access granted for guest Emma Gonzalez (IP: 192.168.1.199)
+2026-03-23 15:15:04 INFO Payment of $144 processed for guest Emma Williams
+2026-03-23 15:18:18 WARN Late check-out requested for room 219
+2026-03-23 15:21:08 INFO Room 204 marked as cleaned by housekeeping
+2026-03-23 15:33:55 INFO Breakfast service started for guest Mason Lopez
+2026-03-23 15:45:22 DEBUG Database query executed: SELECT * FROM bookings WHERE room=306
+2026-03-23 15:54:29 DEBUG System internal state updated for room 305
+2026-03-23 16:06:34 INFO New booking received for John Smith, room 105
+2026-03-23 16:09:12 DEBUG System internal state updated for room 116
+2026-03-23 16:12:35 INFO Guest Mason Anderson checked into room 307
+2026-03-23 16:22:26 INFO New booking received for Olivia Miller, room 101
+2026-03-23 16:32:48 INFO Breakfast service started for guest Charlotte Davis
+2026-03-23 16:45:34 INFO New booking received for Amelia Williams, room 215
+2026-03-23 16:52:50 INFO Guest Sophia Johnson requested additional towels for room 212
+2026-03-23 16:55:43 INFO Guest Ava Lopez checked into room 109
+2026-03-23 17:05:25 DEBUG Database query executed: SELECT * FROM bookings WHERE room=309
+2026-03-23 17:20:18 INFO Guest Ava Williams requested additional towels for room 204
+2026-03-23 17:28:59 DEBUG System internal state updated for room 309
+2026-03-23 17:41:48 INFO Guest Isabella Rodriguez checked into room 209
+2026-03-23 17:52:44 INFO Room 309 marked as cleaned by housekeeping
+2026-03-23 18:01:27 INFO Guest Amelia Miller checked out from room 301
+2026-03-23 18:03:11 INFO Wi-Fi access granted for guest Mia Jones (IP: 192.168.1.156)
+2026-03-23 18:06:30 INFO Breakfast service started for guest Olivia Lopez
+2026-03-23 18:21:05 INFO Guest Liam Davis requested additional towels for room 119
+2026-03-23 18:22:38 ERROR Payment failed for guest Ava Smith - Insufficient funds
+2026-03-23 18:29:52 WARN Late check-out requested for room 309
+2026-03-23 18:34:52 DEBUG Database query executed: SELECT * FROM bookings WHERE room=218
+2026-03-23 18:44:28 DEBUG Database query executed: SELECT * FROM bookings WHERE room=119
+2026-03-23 18:50:01 INFO Guest Noah Johnson checked into room 101
+2026-03-23 18:53:33 INFO New booking received for Charlotte Garcia, room 305
+2026-03-23 19:01:00 INFO New booking received for Mia Hernandez, room 215
+2026-03-23 19:02:42 DEBUG System internal state updated for room 204
+2026-03-23 19:14:53 WARN Late check-out requested for room 308
+2026-03-23 19:15:23 INFO Payment of $121 processed for guest Noah Brown
+2026-03-23 19:24:57 DEBUG Database query executed: SELECT * FROM bookings WHERE room=207
+2026-03-23 19:37:36 INFO Guest Benjamin Rodriguez checked out from room 118
+2026-03-23 19:42:52 INFO Wi-Fi access granted for guest Mason Williams (IP: 192.168.1.42)
+2026-03-23 19:51:45 DEBUG Database query executed: SELECT * FROM bookings WHERE room=103
+2026-03-23 20:05:52 INFO Guest Amelia Smith checked into room 308
+2026-03-23 20:14:31 INFO Breakfast service started for guest Liam Lopez
+2026-03-23 20:15:03 INFO Room 215 marked as cleaned by housekeeping
+2026-03-23 20:26:18 INFO Guest Mia Anderson requested additional towels for room 302
+2026-03-23 20:34:37 INFO Payment of $481 processed for guest Benjamin Davis
+2026-03-23 20:41:13 DEBUG System internal state updated for room 111
+2026-03-23 20:54:01 DEBUG Database query executed: SELECT * FROM bookings WHERE room=115
+2026-03-23 20:59:51 INFO Wi-Fi access granted for guest Lucas Anderson (IP: 192.168.1.115)
+2026-03-23 21:06:36 DEBUG Database query executed: SELECT * FROM bookings WHERE room=308
+2026-03-23 21:07:09 INFO Guest Mia Garcia requested additional towels for room 113
+2026-03-23 21:11:12 INFO Guest Amelia Miller checked into room 303
+2026-03-23 21:25:09 INFO New booking received for Benjamin Hernandez, room 113
+2026-03-23 21:27:01 INFO Breakfast service started for guest Isabella Wilson
+2026-03-23 21:35:23 INFO Guest Emma Smith checked into room 302
+2026-03-23 21:49:46 INFO Guest James Johnson checked into room 215
+2026-03-23 21:52:33 INFO Guest Sophia Jones checked out from room 308
+2026-03-23 21:54:43 ERROR Database connection timeout during guest lookup
+2026-03-23 21:57:08 INFO Payment of $70 processed for guest Sophia Martinez
+2026-03-23 22:03:27 INFO Room 107 marked as cleaned by housekeeping
+2026-03-23 22:08:32 INFO Wi-Fi access granted for guest Sophia Jones (IP: 192.168.1.175)
+2026-03-23 22:16:39 WARN Late check-out requested for room 301
+2026-03-23 22:17:16 INFO Room 306 marked as cleaned by housekeeping
+2026-03-23 22:29:26 WARN Minibar restock required for room 107
+2026-03-23 22:30:40 INFO Guest James Davis requested additional towels for room 113
+2026-03-23 22:36:39 INFO Breakfast service started for guest Amelia Hernandez
+2026-03-23 22:41:04 INFO Wi-Fi access granted for guest Amelia Brown (IP: 192.168.1.179)
+2026-03-23 22:44:12 DEBUG Database query executed: SELECT * FROM bookings WHERE room=204
+2026-03-23 22:47:47 DEBUG System internal state updated for room 214
+2026-03-23 22:50:57 INFO Guest Benjamin Wilson requested additional towels for room 201
+2026-03-23 23:04:37 INFO Room 114 marked as cleaned by housekeeping
+2026-03-23 23:13:11 DEBUG System internal state updated for room 213
+2026-03-23 23:19:19 CRITICAL Fire alarm system heartbeat failure detected in floor 3
+2026-03-23 23:32:58 INFO Payment of $384 processed for guest Olivia Smith
+2026-03-23 23:41:30 DEBUG System internal state updated for room 116
+2026-03-23 23:49:54 INFO Payment of $238 processed for guest Lucas Hernandez
+2026-03-23 23:53:23 WARN Late check-out requested for room 308
+2026-03-23 23:55:03 INFO Guest James Hernandez checked into room 107
+2026-03-24 00:01:21 ERROR Database connection timeout during guest lookup
+2026-03-24 00:14:35 INFO New booking received for John Miller, room 303
+2026-03-24 00:20:45 INFO Guest Sophia Smith checked into room 212
+2026-03-24 00:24:38 DEBUG System internal state updated for room 117
+2026-03-24 00:33:12 INFO Wi-Fi access granted for guest Amelia Martinez (IP: 192.168.1.179)
+2026-03-24 00:42:07 INFO Payment of $181 processed for guest Benjamin Martinez
+2026-03-24 00:52:48 INFO Room 106 marked as cleaned by housekeeping
+2026-03-24 00:53:33 INFO Wi-Fi access granted for guest Lucas Lopez (IP: 192.168.1.184)
+2026-03-24 01:07:36 INFO Guest Ava Smith checked into room 105
+2026-03-24 01:10:02 INFO New booking received for James Gonzalez, room 216
+2026-03-24 01:23:47 INFO Room 101 marked as cleaned by housekeeping
+2026-03-24 01:34:13 DEBUG Database query executed: SELECT * FROM bookings WHERE room=103
+2026-03-24 01:40:29 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-24 01:42:40 WARN Late check-out requested for room 111
+2026-03-24 01:43:16 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-24 01:49:52 INFO Payment of $91 processed for guest Lucas Smith
+2026-03-24 01:58:51 INFO Wi-Fi access granted for guest Mason Garcia (IP: 192.168.1.96)
+2026-03-24 02:03:43 INFO New booking received for Charlotte Hernandez, room 210
+2026-03-24 02:08:12 ERROR Database connection timeout during guest lookup
+2026-03-24 02:22:48 INFO Guest John Miller checked into room 111
+2026-03-24 02:28:05 DEBUG System internal state updated for room 202
+2026-03-24 02:28:43 INFO Payment of $353 processed for guest Mason Jones
+2026-03-24 02:41:36 INFO Payment of $374 processed for guest Emma Martinez
+2026-03-24 02:45:29 INFO Guest James Jones checked out from room 216
+2026-03-24 02:47:39 ERROR Payment failed for guest John Jones - Insufficient funds
+2026-03-24 02:54:47 INFO Payment of $154 processed for guest Ava Williams
+2026-03-24 03:06:17 INFO Guest Mason Gonzalez checked out from room 104
+2026-03-24 03:14:02 INFO Breakfast service started for guest Amelia Lopez
+2026-03-24 03:28:21 DEBUG System internal state updated for room 103
+2026-03-24 03:35:51 INFO Guest Benjamin Wilson requested additional towels for room 205
+2026-03-24 03:44:22 INFO Breakfast service started for guest Ava Davis
+2026-03-24 03:47:34 DEBUG System internal state updated for room 211
+2026-03-24 03:50:17 INFO Guest James Smith checked out from room 104
+2026-03-24 03:53:10 INFO Guest Liam Jones checked into room 204
+2026-03-24 04:06:46 INFO Guest James Wilson requested additional towels for room 210
+2026-03-24 04:10:12 ERROR Payment failed for guest Benjamin Garcia - Insufficient funds
+2026-03-24 04:21:14 INFO Guest Noah Anderson checked out from room 202
+2026-03-24 04:27:09 ERROR Failed to assign room 302 - Room already occupied
+2026-03-24 04:28:37 INFO Wi-Fi access granted for guest Charlotte Johnson (IP: 192.168.1.144)
+2026-03-24 04:39:07 INFO Wi-Fi access granted for guest Sophia Brown (IP: 192.168.1.238)
+2026-03-24 04:50:18 INFO Guest Charlotte Hernandez checked into room 106
+2026-03-24 04:53:15 INFO Guest Benjamin Anderson checked into room 307
+2026-03-24 04:54:36 INFO Guest Olivia Smith checked out from room 103
+2026-03-24 04:56:05 WARN Late check-out requested for room 118
+2026-03-24 04:57:27 WARN Late check-out requested for room 215
+2026-03-24 05:10:18 INFO Wi-Fi access granted for guest Mason Rodriguez (IP: 192.168.1.94)
+2026-03-24 05:17:48 DEBUG System internal state updated for room 105
+2026-03-24 05:25:59 DEBUG System internal state updated for room 213
+2026-03-24 05:34:39 INFO Breakfast service started for guest James Anderson
+2026-03-24 05:41:57 INFO Payment of $242 processed for guest Benjamin Brown
+2026-03-24 05:56:45 INFO New booking received for Isabella Garcia, room 305
+2026-03-24 06:00:24 CRITICAL Unauthorized access attempt to admin panel from IP 192.168.1.31
+2026-03-24 06:13:10 INFO Guest Sophia Martinez requested additional towels for room 115
+2026-03-24 06:24:34 INFO Room 202 marked as cleaned by housekeeping
+2026-03-24 06:28:31 WARN Minibar restock required for room 218
+2026-03-24 06:31:42 ERROR Failed to assign room 305 - Room already occupied
+2026-03-24 06:33:15 CRITICAL Unauthorized access attempt to admin panel from IP 192.168.1.44
+2026-03-24 06:42:40 INFO Payment of $102 processed for guest Benjamin Lopez
+2026-03-24 06:52:22 INFO New booking received for Lucas Davis, room 118
+2026-03-24 07:04:03 INFO Payment of $444 processed for guest Amelia Gonzalez
+2026-03-24 07:05:46 DEBUG System internal state updated for room 104
+2026-03-24 07:15:50 INFO Room 207 marked as cleaned by housekeeping
+2026-03-24 07:24:59 INFO Breakfast service started for guest Emma Anderson
+2026-03-24 07:34:44 INFO Payment of $415 processed for guest John Johnson
+2026-03-24 07:39:32 INFO Room 102 marked as cleaned by housekeeping
+2026-03-24 07:40:02 DEBUG System internal state updated for room 303
+2026-03-24 07:48:37 DEBUG System internal state updated for room 103
+2026-03-24 07:53:16 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-24 08:01:39 INFO Guest Olivia Johnson requested additional towels for room 112
+2026-03-24 08:03:34 INFO Guest Isabella Wilson checked into room 211
+2026-03-24 08:10:36 INFO Payment of $423 processed for guest Isabella Garcia
+2026-03-24 08:23:57 INFO Guest Amelia Miller checked out from room 106
+2026-03-24 08:35:15 INFO Breakfast service started for guest Isabella Davis
+2026-03-24 08:42:12 WARN Minibar restock required for room 110
+2026-03-24 08:52:17 INFO Wi-Fi access granted for guest Emma Brown (IP: 192.168.1.232)
+2026-03-24 08:55:53 ERROR Payment failed for guest Noah Anderson - Insufficient funds
+2026-03-24 09:08:19 INFO Wi-Fi access granted for guest Charlotte Williams (IP: 192.168.1.55)
+2026-03-24 09:20:43 INFO Room 209 marked as cleaned by housekeeping
+2026-03-24 09:22:59 WARN Minibar restock required for room 114
+2026-03-24 09:31:08 INFO Breakfast service started for guest Ava Brown
+2026-03-24 09:43:25 INFO Room 309 marked as cleaned by housekeeping
+2026-03-24 09:51:06 DEBUG System internal state updated for room 218
+2026-03-24 10:01:43 WARN Late check-out requested for room 114
+2026-03-24 10:09:25 WARN Late check-out requested for room 103
+2026-03-24 10:13:55 ERROR Failed to assign room 114 - Room already occupied
+2026-03-24 10:23:43 WARN Minibar restock required for room 215
+2026-03-24 10:26:04 INFO Payment of $99 processed for guest Olivia Jones
+2026-03-24 10:33:05 INFO Payment of $237 processed for guest Noah Gonzalez
+2026-03-24 10:36:53 INFO New booking received for Mia Davis, room 101
+2026-03-24 10:40:38 DEBUG System internal state updated for room 118
+2026-03-24 10:46:11 DEBUG System internal state updated for room 108
+2026-03-24 10:55:38 INFO Room 307 marked as cleaned by housekeeping
+2026-03-24 11:06:15 INFO New booking received for Emma Anderson, room 308
+2026-03-24 11:16:03 INFO Room 308 marked as cleaned by housekeeping
+2026-03-24 11:29:27 INFO Room 214 marked as cleaned by housekeeping
+2026-03-24 11:33:22 WARN Minibar restock required for room 104
+2026-03-24 11:44:19 INFO Wi-Fi access granted for guest Sophia Brown (IP: 192.168.1.16)
+2026-03-24 11:51:42 INFO Guest Emma Anderson requested additional towels for room 217
+2026-03-24 12:03:28 INFO Wi-Fi access granted for guest Amelia Smith (IP: 192.168.1.62)
+2026-03-24 12:05:03 INFO Guest John Smith checked into room 217
+2026-03-24 12:13:05 INFO Breakfast service started for guest Olivia Williams
+2026-03-24 12:21:28 INFO Guest Mia Wilson checked out from room 308
+2026-03-24 12:28:57 INFO Guest Benjamin Garcia checked into room 305
+2026-03-24 12:34:25 INFO Payment of $257 processed for guest Mason Johnson
+2026-03-24 12:44:37 INFO Breakfast service started for guest Amelia Martinez
+2026-03-24 12:50:15 INFO Wi-Fi access granted for guest Charlotte Davis (IP: 192.168.1.206)
+2026-03-24 12:52:11 INFO Breakfast service started for guest Noah Anderson
+2026-03-24 12:53:26 DEBUG System internal state updated for room 209
+2026-03-24 13:00:28 DEBUG System internal state updated for room 117
+2026-03-24 13:13:54 INFO Wi-Fi access granted for guest Isabella Brown (IP: 192.168.1.89)
+2026-03-24 13:19:09 WARN Minibar restock required for room 115
+2026-03-24 13:29:08 CRITICAL Fire alarm system heartbeat failure detected in floor 3
+2026-03-24 13:31:19 INFO New booking received for Charlotte Garcia, room 219
+2026-03-24 13:39:01 INFO Wi-Fi access granted for guest Mia Miller (IP: 192.168.1.223)
+2026-03-24 13:46:57 INFO New booking received for Benjamin Rodriguez, room 303
+2026-03-24 13:52:07 INFO Guest Isabella Smith requested additional towels for room 202
+2026-03-24 14:04:03 INFO Guest Olivia Smith requested additional towels for room 106
+2026-03-24 14:08:07 INFO Room 211 marked as cleaned by housekeeping
+2026-03-24 14:16:04 INFO Guest Liam Martinez requested additional towels for room 212
+2026-03-24 14:22:06 INFO Wi-Fi access granted for guest Olivia Garcia (IP: 192.168.1.54)
+2026-03-24 14:22:16 INFO Payment of $259 processed for guest Charlotte Brown
+2026-03-24 14:34:33 WARN Late check-out requested for room 111
+2026-03-24 14:47:11 INFO Guest Benjamin Anderson checked out from room 104
+2026-03-24 14:56:05 DEBUG System internal state updated for room 202
+2026-03-24 15:09:51 INFO Guest James Miller checked into room 303
+2026-03-24 15:11:29 CRITICAL Fire alarm system heartbeat failure detected in floor 3
+2026-03-24 15:25:00 INFO Payment of $492 processed for guest James Davis
+2026-03-24 15:28:26 INFO Guest Amelia Jones checked into room 306
+2026-03-24 15:30:50 ERROR Failed to assign room 216 - Room already occupied
+2026-03-24 15:41:58 INFO New booking received for Benjamin Anderson, room 118
+2026-03-24 15:49:39 INFO Guest Charlotte Anderson checked out from room 219
+2026-03-24 15:58:01 INFO Breakfast service started for guest Ava Jones
+2026-03-24 16:01:03 DEBUG System internal state updated for room 116
+2026-03-24 16:13:47 ERROR Payment failed for guest Olivia Lopez - Insufficient funds
+2026-03-24 16:17:34 ERROR Database connection timeout during guest lookup
+2026-03-24 16:19:38 INFO New booking received for Olivia Williams, room 309
+2026-03-24 16:26:01 DEBUG System internal state updated for room 307
+2026-03-24 16:37:00 INFO Guest Emma Martinez checked into room 217
+2026-03-24 16:43:08 INFO Breakfast service started for guest Isabella Rodriguez
+2026-03-24 16:57:20 ERROR Payment failed for guest James Miller - Insufficient funds
+2026-03-24 17:07:00 WARN Minibar restock required for room 111
+2026-03-24 17:20:10 WARN Late check-out requested for room 117
+2026-03-24 17:34:16 INFO Guest Noah Rodriguez checked out from room 215
+2026-03-24 17:34:45 INFO Guest Liam Garcia checked out from room 106
+2026-03-24 17:35:46 INFO Guest Isabella Martinez checked into room 304
+2026-03-24 17:46:23 INFO Guest Emma Williams checked out from room 303
+2026-03-24 17:47:18 ERROR Database connection timeout during guest lookup
+2026-03-24 17:59:45 WARN Late check-out requested for room 213
+2026-03-24 18:04:00 DEBUG System internal state updated for room 201
+2026-03-24 18:17:18 INFO Guest Benjamin Williams requested additional towels for room 104
+2026-03-24 18:32:04 DEBUG System internal state updated for room 307
+2026-03-24 18:32:52 INFO Breakfast service started for guest Charlotte Williams
+2026-03-24 18:36:32 INFO Breakfast service started for guest Emma Miller
+2026-03-24 18:45:22 INFO Payment of $67 processed for guest Ava Miller
+2026-03-24 18:54:45 INFO Guest Liam Gonzalez checked out from room 303
+2026-03-24 19:05:18 INFO Guest Mia Davis checked into room 219
+2026-03-24 19:19:38 INFO New booking received for Sophia Hernandez, room 309
+2026-03-24 19:33:28 ERROR Failed to assign room 201 - Room already occupied
+2026-03-24 19:34:58 INFO Payment of $483 processed for guest John Davis
+2026-03-24 19:36:28 INFO Guest Ava Brown requested additional towels for room 309
+2026-03-24 19:43:36 INFO New booking received for Ava Martinez, room 119
+2026-03-24 19:46:26 INFO Guest Charlotte Davis checked into room 301
+2026-03-24 19:59:44 INFO Payment of $348 processed for guest Olivia Wilson
+2026-03-24 20:09:40 WARN Late check-out requested for room 210
+2026-03-24 20:15:30 INFO Guest James Rodriguez checked out from room 203
+2026-03-24 20:17:57 INFO Breakfast service started for guest Mia Lopez
+2026-03-24 20:20:12 DEBUG Database query executed: SELECT * FROM bookings WHERE room=114
+2026-03-24 20:30:00 INFO Guest Amelia Anderson checked into room 116
+2026-03-24 20:32:01 INFO Payment of $382 processed for guest John Jones
+2026-03-24 20:45:42 INFO Wi-Fi access granted for guest Isabella Hernandez (IP: 192.168.1.199)
+2026-03-24 20:58:09 WARN Late check-out requested for room 107
+2026-03-24 21:11:18 INFO Guest Sophia Brown checked into room 213
+2026-03-24 21:16:10 INFO Guest Emma Hernandez requested additional towels for room 301
+2026-03-24 21:29:10 INFO Room 219 marked as cleaned by housekeeping
+2026-03-24 21:34:55 INFO New booking received for Lucas Rodriguez, room 303
+2026-03-24 21:42:17 DEBUG System internal state updated for room 217
+2026-03-24 21:46:34 INFO New booking received for Olivia Williams, room 205
+2026-03-24 21:56:04 INFO Guest Isabella Garcia requested additional towels for room 207
+2026-03-24 22:08:56 INFO Guest Isabella Johnson requested additional towels for room 211
+2026-03-24 22:23:20 INFO Guest Benjamin Hernandez requested additional towels for room 104
+2026-03-24 22:33:12 INFO Guest Liam Hernandez requested additional towels for room 102
+2026-03-24 22:39:31 INFO Breakfast service started for guest Isabella Miller
+2026-03-24 22:47:53 DEBUG System internal state updated for room 102
+2026-03-24 22:48:39 INFO Guest Charlotte Hernandez checked into room 215
+2026-03-24 23:03:21 INFO Guest Emma Lopez checked out from room 104
+2026-03-24 23:08:30 WARN Minibar restock required for room 208
+2026-03-24 23:16:29 INFO Breakfast service started for guest James Martinez
+2026-03-24 23:16:59 INFO Room 201 marked as cleaned by housekeeping
+2026-03-24 23:23:56 INFO Payment of $243 processed for guest Noah Anderson
+2026-03-24 23:32:26 INFO Payment of $96 processed for guest Benjamin Jones
+2026-03-24 23:42:06 DEBUG System internal state updated for room 211
+2026-03-24 23:48:58 INFO Guest Liam Anderson checked into room 210
+2026-03-24 23:52:06 INFO Guest Isabella Williams checked out from room 118
+2026-03-24 23:57:28 INFO New booking received for Olivia Brown, room 105
+2026-03-24 23:58:22 INFO Guest Olivia Jones checked into room 106
+2026-03-24 23:59:11 INFO Guest Amelia Martinez checked into room 217
+2026-03-25 00:11:49 INFO Guest Benjamin Anderson checked into room 219
+2026-03-25 00:26:07 INFO Wi-Fi access granted for guest Noah Brown (IP: 192.168.1.103)
+2026-03-25 00:39:58 ERROR Database connection timeout during guest lookup
+2026-03-25 00:53:16 INFO New booking received for Lucas Wilson, room 110
+2026-03-25 01:00:01 INFO Wi-Fi access granted for guest Noah Gonzalez (IP: 192.168.1.15)
+2026-03-25 01:09:33 INFO New booking received for Ava Miller, room 109
+2026-03-25 01:19:18 ERROR Failed to assign room 206 - Room already occupied
+2026-03-25 01:33:48 INFO Breakfast service started for guest James Miller
+2026-03-25 01:34:44 INFO Guest Lucas Jones checked out from room 204
+2026-03-25 01:48:21 INFO Breakfast service started for guest Mia Williams
+2026-03-25 01:56:59 INFO Payment of $465 processed for guest Emma Rodriguez
+2026-03-25 01:59:53 DEBUG System internal state updated for room 117
+2026-03-25 02:08:56 ERROR Database connection timeout during guest lookup
+2026-03-25 02:16:37 INFO Guest Lucas Smith checked into room 208
+2026-03-25 02:29:50 INFO Guest Isabella Gonzalez checked into room 108
+2026-03-25 02:33:34 INFO Guest Olivia Lopez checked into room 216
+2026-03-25 02:47:42 INFO Guest Sophia Johnson checked out from room 108
+2026-03-25 02:54:03 INFO Payment of $360 processed for guest Olivia Garcia
+2026-03-25 02:57:44 INFO Guest Olivia Davis checked into room 107
+2026-03-25 02:59:01 INFO Room 117 marked as cleaned by housekeeping
+2026-03-25 03:00:10 DEBUG System internal state updated for room 306
+2026-03-25 03:05:16 INFO Guest Emma Gonzalez checked into room 113
+2026-03-25 03:16:23 INFO Room 219 marked as cleaned by housekeeping
+2026-03-25 03:30:51 DEBUG System internal state updated for room 213
+2026-03-25 03:36:28 INFO Guest Liam Brown checked into room 117
+2026-03-25 03:39:41 WARN Minibar restock required for room 306
+2026-03-25 03:46:10 INFO Guest Amelia Garcia checked into room 210
+2026-03-25 03:56:22 DEBUG System internal state updated for room 219
+2026-03-25 04:11:16 INFO Guest Mia Hernandez checked out from room 304
+2026-03-25 04:19:49 WARN Late check-out requested for room 207
+2026-03-25 04:22:45 INFO Breakfast service started for guest Isabella Lopez
+2026-03-25 04:35:30 INFO Breakfast service started for guest Mason Wilson
+2026-03-25 04:43:22 INFO Guest Emma Miller checked out from room 306
+2026-03-25 04:53:54 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-25 05:05:14 DEBUG Database query executed: SELECT * FROM bookings WHERE room=302
+2026-03-25 05:13:40 INFO Wi-Fi access granted for guest Charlotte Davis (IP: 192.168.1.113)
+2026-03-25 05:26:44 INFO Guest Isabella Lopez requested additional towels for room 113
+2026-03-25 05:32:04 DEBUG System internal state updated for room 113
+2026-03-25 05:41:56 DEBUG Database query executed: SELECT * FROM bookings WHERE room=110
+2026-03-25 05:42:12 INFO Payment of $357 processed for guest James Johnson
+2026-03-25 05:51:18 INFO Payment of $271 processed for guest Mia Martinez
+2026-03-25 05:56:10 ERROR Payment failed for guest Mia Lopez - Insufficient funds
+2026-03-25 05:59:12 DEBUG Database query executed: SELECT * FROM bookings WHERE room=210
+2026-03-25 06:02:38 INFO Guest Isabella Williams checked into room 201
+2026-03-25 06:15:20 INFO Breakfast service started for guest Sophia Miller
+2026-03-25 06:15:46 INFO New booking received for Sophia Brown, room 109
+2026-03-25 06:27:53 INFO Breakfast service started for guest Lucas Miller
+2026-03-25 06:37:05 ERROR Database connection timeout during guest lookup
+2026-03-25 06:44:44 INFO Payment of $375 processed for guest Lucas Jones
+2026-03-25 06:47:33 WARN Minibar restock required for room 119
+2026-03-25 06:54:03 DEBUG System internal state updated for room 105
+2026-03-25 07:03:28 INFO Payment of $442 processed for guest Sophia Hernandez
+2026-03-25 07:10:46 DEBUG Database query executed: SELECT * FROM bookings WHERE room=219
+2026-03-25 07:11:15 INFO Room 203 marked as cleaned by housekeeping
+2026-03-25 07:22:07 DEBUG System internal state updated for room 209
+2026-03-25 07:25:48 INFO Payment of $312 processed for guest Olivia Williams
+2026-03-25 07:33:40 INFO Breakfast service started for guest Amelia Jones
+2026-03-25 07:47:19 INFO Wi-Fi access granted for guest Mia Hernandez (IP: 192.168.1.34)
+2026-03-25 07:54:07 INFO Room 106 marked as cleaned by housekeeping
+2026-03-25 08:05:01 WARN Minibar restock required for room 119
+2026-03-25 08:07:20 INFO Guest Lucas Williams checked into room 103
+2026-03-25 08:15:58 INFO Room 308 marked as cleaned by housekeeping
+2026-03-25 08:19:38 INFO Wi-Fi access granted for guest Olivia Jones (IP: 192.168.1.92)
+2026-03-25 08:21:31 DEBUG Database query executed: SELECT * FROM bookings WHERE room=105
+2026-03-25 08:22:00 INFO Guest Sophia Miller checked out from room 114
+2026-03-25 08:31:45 DEBUG System internal state updated for room 103
+2026-03-25 08:46:32 INFO Guest Amelia Gonzalez requested additional towels for room 118
+2026-03-25 08:58:18 INFO New booking received for Lucas Jones, room 112
+2026-03-25 09:08:14 INFO Breakfast service started for guest Olivia Davis
+2026-03-25 09:11:09 INFO Guest Amelia Williams checked out from room 214
+2026-03-25 09:13:29 INFO Guest Olivia Davis checked into room 108
+2026-03-25 09:28:03 INFO New booking received for Sophia Lopez, room 108
+2026-03-25 09:37:13 INFO Room 213 marked as cleaned by housekeeping
+2026-03-25 09:47:37 INFO Guest James Brown requested additional towels for room 111
+2026-03-25 09:56:55 INFO Room 213 marked as cleaned by housekeeping
+2026-03-25 10:09:17 DEBUG System internal state updated for room 101
+2026-03-25 10:24:16 INFO Wi-Fi access granted for guest Benjamin Miller (IP: 192.168.1.99)
+2026-03-25 10:33:50 INFO Guest Emma Garcia checked out from room 106
+2026-03-25 10:35:34 INFO Room 301 marked as cleaned by housekeeping
+2026-03-25 10:37:55 DEBUG System internal state updated for room 105
+2026-03-25 10:49:29 INFO Guest Liam Miller requested additional towels for room 211
+2026-03-25 11:04:01 INFO Guest Liam Miller checked into room 103
+2026-03-25 11:13:16 INFO Guest Mason Martinez checked out from room 214
+2026-03-25 11:23:10 INFO Guest James Smith checked into room 108
+2026-03-25 11:35:49 INFO New booking received for Mia Lopez, room 110
+2026-03-25 11:36:34 INFO Breakfast service started for guest Mia Brown
+2026-03-25 11:47:12 INFO Guest Liam Lopez checked out from room 119
+2026-03-25 12:01:59 INFO New booking received for Amelia Brown, room 108
+2026-03-25 12:08:53 INFO Guest Charlotte Anderson requested additional towels for room 115
+2026-03-25 12:09:16 INFO Guest Olivia Anderson requested additional towels for room 206
+2026-03-25 12:18:36 INFO Room 106 marked as cleaned by housekeeping
+2026-03-25 12:32:44 INFO Room 202 marked as cleaned by housekeeping
+2026-03-25 12:35:30 INFO Guest Amelia Williams checked out from room 107
+2026-03-25 12:42:58 INFO Room 101 marked as cleaned by housekeeping
+2026-03-25 12:55:33 INFO Room 111 marked as cleaned by housekeeping
+2026-03-25 13:07:11 INFO Payment of $216 processed for guest Emma Smith
+2026-03-25 13:17:33 INFO New booking received for Isabella Garcia, room 305
+2026-03-25 13:18:49 INFO Payment of $465 processed for guest Mason Williams
+2026-03-25 13:25:41 INFO Guest Noah Smith checked out from room 206
+2026-03-25 13:34:49 INFO Room 108 marked as cleaned by housekeeping
+2026-03-25 13:42:09 WARN Minibar restock required for room 111
+2026-03-25 13:49:39 INFO New booking received for Emma Smith, room 119
+2026-03-25 14:03:37 INFO Guest Liam Garcia requested additional towels for room 112
+2026-03-25 14:04:07 INFO Payment of $477 processed for guest Ava Williams
+2026-03-25 14:05:51 INFO Room 105 marked as cleaned by housekeeping
+2026-03-25 14:17:09 WARN Minibar restock required for room 205
+2026-03-25 14:18:43 WARN Late check-out requested for room 111
+2026-03-25 14:31:43 ERROR Failed to assign room 102 - Room already occupied
+2026-03-25 14:42:28 INFO Wi-Fi access granted for guest Mason Garcia (IP: 192.168.1.198)
+2026-03-25 14:48:04 INFO New booking received for Amelia Lopez, room 101
+2026-03-25 15:02:45 INFO Guest James Johnson checked into room 101
+2026-03-25 15:07:06 INFO New booking received for Noah Williams, room 119
+2026-03-25 15:19:58 INFO New booking received for Noah Garcia, room 117
+2026-03-25 15:22:26 INFO Guest Amelia Davis checked out from room 106
+2026-03-25 15:33:01 INFO Room 206 marked as cleaned by housekeeping
+2026-03-25 15:37:26 DEBUG Database query executed: SELECT * FROM bookings WHERE room=118
+2026-03-25 15:38:37 INFO Breakfast service started for guest Benjamin Rodriguez
+2026-03-25 15:42:09 DEBUG Database query executed: SELECT * FROM bookings WHERE room=112
+2026-03-25 15:51:48 INFO Guest Benjamin Johnson checked out from room 114
+2026-03-25 16:06:01 INFO Room 118 marked as cleaned by housekeeping
+2026-03-25 16:20:33 WARN Minibar restock required for room 309
+2026-03-25 16:20:56 ERROR Payment failed for guest Amelia Miller - Insufficient funds
+2026-03-25 16:34:41 INFO Breakfast service started for guest James Williams
+2026-03-25 16:39:59 INFO Wi-Fi access granted for guest John Smith (IP: 192.168.1.201)
+2026-03-25 16:53:53 WARN Late check-out requested for room 213
+2026-03-25 16:57:38 INFO Payment of $494 processed for guest Ava Rodriguez
+2026-03-25 16:58:41 INFO Wi-Fi access granted for guest James Jones (IP: 192.168.1.125)
+2026-03-25 17:05:34 DEBUG System internal state updated for room 113
+2026-03-25 17:19:55 ERROR Database connection timeout during guest lookup
+2026-03-25 17:24:53 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-25 17:34:32 INFO Breakfast service started for guest Sophia Brown
+2026-03-25 17:42:23 INFO Payment of $249 processed for guest John Jones
+2026-03-25 17:55:53 DEBUG System internal state updated for room 208
+2026-03-25 18:04:32 INFO Guest Sophia Rodriguez checked into room 101
+2026-03-25 18:12:41 WARN Late check-out requested for room 219
+2026-03-25 18:17:36 INFO Guest Ava Williams checked into room 219
+2026-03-25 18:28:09 INFO Guest Amelia Rodriguez checked out from room 115
+2026-03-25 18:36:23 INFO Wi-Fi access granted for guest Sophia Williams (IP: 192.168.1.43)
+2026-03-25 18:48:20 DEBUG System internal state updated for room 202
+2026-03-25 18:52:09 DEBUG Database query executed: SELECT * FROM bookings WHERE room=203
+2026-03-25 18:57:40 DEBUG System internal state updated for room 107
+2026-03-25 19:09:00 CRITICAL Unauthorized access attempt to admin panel from IP 192.168.1.138
+2026-03-25 19:17:59 INFO Guest Ava Davis requested additional towels for room 307
+2026-03-25 19:31:08 INFO Wi-Fi access granted for guest Lucas Williams (IP: 192.168.1.59)
+2026-03-25 19:33:38 INFO Guest Isabella Martinez checked into room 115
+2026-03-25 19:34:58 DEBUG System internal state updated for room 108
+2026-03-25 19:37:35 DEBUG System internal state updated for room 107
+2026-03-25 19:38:05 INFO Room 203 marked as cleaned by housekeeping
+2026-03-25 19:45:44 INFO New booking received for Liam Rodriguez, room 113
+2026-03-25 19:51:05 INFO Room 116 marked as cleaned by housekeeping
+2026-03-25 20:00:51 INFO New booking received for James Wilson, room 113
+2026-03-25 20:07:31 ERROR Database connection timeout during guest lookup
+2026-03-25 20:17:57 ERROR Database connection timeout during guest lookup
+2026-03-25 20:23:28 DEBUG Database query executed: SELECT * FROM bookings WHERE room=109
+2026-03-25 20:36:13 INFO Payment of $159 processed for guest Noah Anderson
+2026-03-25 20:38:22 INFO New booking received for Lucas Williams, room 308
+2026-03-25 20:46:58 INFO Breakfast service started for guest James Martinez
+2026-03-25 20:54:56 INFO Guest Olivia Martinez checked out from room 205
+2026-03-25 21:06:42 INFO Wi-Fi access granted for guest Isabella Lopez (IP: 192.168.1.236)
+2026-03-25 21:21:32 INFO Guest Liam Hernandez checked out from room 305
+2026-03-25 21:22:04 DEBUG Database query executed: SELECT * FROM bookings WHERE room=309
+2026-03-25 21:33:16 INFO Guest Charlotte Garcia checked out from room 113
+2026-03-25 21:45:26 INFO Payment of $226 processed for guest Benjamin Brown
+2026-03-25 21:59:50 WARN Late check-out requested for room 117
+2026-03-25 22:12:50 INFO Guest Benjamin Gonzalez requested additional towels for room 218
+2026-03-25 22:14:10 INFO Guest Liam Anderson requested additional towels for room 305
+2026-03-25 22:21:06 INFO Guest Olivia Anderson requested additional towels for room 306
+2026-03-25 22:25:20 INFO Breakfast service started for guest Charlotte Smith
+2026-03-25 22:30:10 INFO Guest Emma Brown checked into room 309
+2026-03-25 22:41:26 ERROR Payment failed for guest Emma Brown - Insufficient funds
+2026-03-25 22:48:17 DEBUG System internal state updated for room 115
+2026-03-25 22:55:44 INFO Breakfast service started for guest Charlotte Miller
+2026-03-25 23:09:14 INFO Guest Amelia Lopez requested additional towels for room 118
+2026-03-25 23:18:07 INFO Guest Emma Rodriguez checked out from room 214
+2026-03-25 23:18:37 INFO Guest Amelia Garcia requested additional towels for room 205
+2026-03-25 23:25:56 INFO Breakfast service started for guest Mason Brown
+2026-03-25 23:40:31 INFO Guest Noah Johnson requested additional towels for room 117
+2026-03-25 23:43:51 INFO Guest Mia Rodriguez checked out from room 210
+2026-03-25 23:48:19 INFO Guest Benjamin Wilson requested additional towels for room 304
+2026-03-25 23:49:24 INFO Guest James Davis checked out from room 309
+2026-03-25 23:55:06 INFO Payment of $111 processed for guest Noah Davis
+2026-03-26 00:07:55 ERROR Payment failed for guest Benjamin Brown - Insufficient funds
+2026-03-26 00:16:08 INFO Room 209 marked as cleaned by housekeeping
+2026-03-26 00:20:31 INFO New booking received for John Garcia, room 205
+2026-03-26 00:26:51 INFO Breakfast service started for guest Benjamin Rodriguez
+2026-03-26 00:33:37 DEBUG Database query executed: SELECT * FROM bookings WHERE room=306
+2026-03-26 00:39:33 INFO Guest Olivia Rodriguez checked out from room 302
+2026-03-26 00:52:36 INFO Wi-Fi access granted for guest Olivia Johnson (IP: 192.168.1.190)
+2026-03-26 00:55:56 INFO Wi-Fi access granted for guest Olivia Gonzalez (IP: 192.168.1.170)
+2026-03-26 01:06:36 INFO Guest Lucas Brown checked out from room 219
+2026-03-26 01:17:50 INFO Wi-Fi access granted for guest Mia Miller (IP: 192.168.1.188)
+2026-03-26 01:28:08 WARN Minibar restock required for room 107
+2026-03-26 01:38:22 WARN Late check-out requested for room 115
+2026-03-26 01:50:06 ERROR Payment failed for guest Mason Gonzalez - Insufficient funds
+2026-03-26 01:53:08 DEBUG Database query executed: SELECT * FROM bookings WHERE room=115
+2026-03-26 01:59:35 INFO New booking received for Noah Hernandez, room 113
+2026-03-26 02:08:13 DEBUG Database query executed: SELECT * FROM bookings WHERE room=303
+2026-03-26 02:21:52 INFO Guest Benjamin Brown checked into room 104
+2026-03-26 02:22:05 INFO New booking received for Emma Miller, room 117
+2026-03-26 02:28:43 DEBUG Database query executed: SELECT * FROM bookings WHERE room=216
+2026-03-26 02:33:57 INFO New booking received for James Anderson, room 105
+2026-03-26 02:40:36 WARN Late check-out requested for room 216
+2026-03-26 02:48:53 INFO Payment of $268 processed for guest Mia Miller
+2026-03-26 02:53:13 DEBUG Database query executed: SELECT * FROM bookings WHERE room=113
+2026-03-26 02:55:39 INFO New booking received for Isabella Miller, room 203
+2026-03-26 03:00:37 ERROR Payment failed for guest Mason Martinez - Insufficient funds
+2026-03-26 03:08:21 INFO Room 302 marked as cleaned by housekeeping
+2026-03-26 03:09:33 ERROR Failed to assign room 104 - Room already occupied
+2026-03-26 03:09:48 DEBUG Database query executed: SELECT * FROM bookings WHERE room=117
+2026-03-26 03:10:23 INFO Guest Ava Williams requested additional towels for room 303
+2026-03-26 03:22:35 INFO Wi-Fi access granted for guest Lucas Williams (IP: 192.168.1.97)
+2026-03-26 03:29:32 INFO Payment of $369 processed for guest Charlotte Gonzalez
+2026-03-26 03:39:01 INFO Breakfast service started for guest Sophia Miller
+2026-03-26 03:49:15 INFO Wi-Fi access granted for guest Noah Williams (IP: 192.168.1.245)
+2026-03-26 03:54:31 INFO Guest Noah Williams requested additional towels for room 113
+2026-03-26 03:56:12 DEBUG System internal state updated for room 215
+2026-03-26 04:08:24 DEBUG Database query executed: SELECT * FROM bookings WHERE room=308
+2026-03-26 04:08:37 DEBUG Database query executed: SELECT * FROM bookings WHERE room=103
+2026-03-26 04:16:54 DEBUG Database query executed: SELECT * FROM bookings WHERE room=207
+2026-03-26 04:29:01 WARN Late check-out requested for room 211
+2026-03-26 04:37:50 DEBUG Database query executed: SELECT * FROM bookings WHERE room=211
+2026-03-26 04:51:49 INFO Payment of $252 processed for guest Isabella Jones
+2026-03-26 04:56:40 INFO Wi-Fi access granted for guest Lucas Johnson (IP: 192.168.1.81)
+2026-03-26 04:57:38 DEBUG Database query executed: SELECT * FROM bookings WHERE room=101
+2026-03-26 05:09:26 INFO Breakfast service started for guest Sophia Rodriguez
+2026-03-26 05:19:56 ERROR Failed to assign room 202 - Room already occupied
+2026-03-26 05:20:42 INFO Guest Olivia Wilson checked out from room 306
+2026-03-26 05:22:18 INFO Room 119 marked as cleaned by housekeeping
+2026-03-26 05:29:48 INFO Guest Amelia Wilson checked into room 109
+2026-03-26 05:38:23 INFO Wi-Fi access granted for guest John Garcia (IP: 192.168.1.18)
+2026-03-26 05:48:46 INFO Breakfast service started for guest Olivia Brown
+2026-03-26 05:52:39 INFO Room 302 marked as cleaned by housekeeping
+2026-03-26 05:55:09 INFO Guest Emma Miller checked out from room 306
+2026-03-26 06:07:37 INFO New booking received for Noah Jones, room 101
+2026-03-26 06:15:23 WARN Late check-out requested for room 217
+2026-03-26 06:26:18 DEBUG System internal state updated for room 101
+2026-03-26 06:39:43 ERROR Payment failed for guest Amelia Martinez - Insufficient funds
+2026-03-26 06:43:33 ERROR Database connection timeout during guest lookup
+2026-03-26 06:47:13 INFO Guest Benjamin Garcia requested additional towels for room 306
+2026-03-26 07:01:42 ERROR Failed to assign room 215 - Room already occupied
+2026-03-26 07:06:34 INFO Guest Ava Brown checked into room 113
+2026-03-26 07:21:19 ERROR Failed to assign room 116 - Room already occupied
+2026-03-26 07:23:14 DEBUG Database query executed: SELECT * FROM bookings WHERE room=207
+2026-03-26 07:31:45 DEBUG System internal state updated for room 117
+2026-03-26 07:41:47 INFO Room 117 marked as cleaned by housekeeping
+2026-03-26 07:48:05 INFO Guest Charlotte Gonzalez requested additional towels for room 214
+2026-03-26 08:00:19 INFO New booking received for Mia Davis, room 216
+2026-03-26 08:04:48 INFO New booking received for Noah Davis, room 115
+2026-03-26 08:06:55 INFO Room 307 marked as cleaned by housekeeping
+2026-03-26 08:20:28 DEBUG Database query executed: SELECT * FROM bookings WHERE room=202
+2026-03-26 08:26:12 DEBUG System internal state updated for room 113
+2026-03-26 08:26:33 INFO Breakfast service started for guest Ava Miller
+2026-03-26 08:35:54 DEBUG System internal state updated for room 214
+2026-03-26 08:50:06 DEBUG Database query executed: SELECT * FROM bookings WHERE room=103
+2026-03-26 08:53:28 WARN Late check-out requested for room 215
+2026-03-26 09:00:31 INFO Room 206 marked as cleaned by housekeeping
+2026-03-26 09:02:19 INFO Guest Benjamin Davis requested additional towels for room 219
+2026-03-26 09:03:40 DEBUG Database query executed: SELECT * FROM bookings WHERE room=103
+2026-03-26 09:03:55 DEBUG Database query executed: SELECT * FROM bookings WHERE room=109
+2026-03-26 09:05:40 INFO Payment of $388 processed for guest Liam Smith
+2026-03-26 09:11:52 INFO New booking received for Mason Miller, room 208
+2026-03-26 09:18:26 INFO Breakfast service started for guest Noah Anderson
+2026-03-26 09:20:59 INFO Payment of $261 processed for guest Mia Johnson
+2026-03-26 09:28:04 WARN Late check-out requested for room 309
+2026-03-26 09:37:15 INFO Guest Lucas Brown requested additional towels for room 218
+2026-03-26 09:43:21 INFO Guest Lucas Wilson requested additional towels for room 211
+2026-03-26 09:45:28 INFO New booking received for Liam Hernandez, room 119
+2026-03-26 09:50:30 INFO Room 206 marked as cleaned by housekeeping
+2026-03-26 09:56:49 INFO Payment of $216 processed for guest Mia Hernandez
+2026-03-26 10:04:47 INFO Breakfast service started for guest Lucas Garcia
+2026-03-26 10:15:59 DEBUG Database query executed: SELECT * FROM bookings WHERE room=114
+2026-03-26 10:27:36 WARN Late check-out requested for room 106
+2026-03-26 10:27:50 INFO New booking received for Charlotte Hernandez, room 303
+2026-03-26 10:28:18 INFO Payment of $88 processed for guest John Jones
+2026-03-26 10:34:12 INFO Guest Ava Brown checked out from room 219
+2026-03-26 10:37:12 INFO New booking received for James Jones, room 218
+2026-03-26 10:50:10 INFO Breakfast service started for guest Olivia Rodriguez
+2026-03-26 11:00:20 INFO Guest Ava Lopez checked into room 306
+2026-03-26 11:01:35 CRITICAL Fire alarm system heartbeat failure detected in floor 2
+2026-03-26 11:01:45 INFO Guest John Smith requested additional towels for room 209
+2026-03-26 11:04:56 DEBUG Database query executed: SELECT * FROM bookings WHERE room=114
+2026-03-26 11:18:07 INFO New booking received for Sophia Anderson, room 204
+2026-03-26 11:18:48 INFO Guest Amelia Lopez checked out from room 117
+2026-03-26 11:25:19 INFO Wi-Fi access granted for guest Mason Davis (IP: 192.168.1.14)
+2026-03-26 11:35:28 WARN Minibar restock required for room 113
+2026-03-26 11:36:21 INFO Payment of $77 processed for guest James Jones
+2026-03-26 11:44:23 INFO Wi-Fi access granted for guest Olivia Rodriguez (IP: 192.168.1.148)
+2026-03-26 11:44:37 INFO Guest Olivia Williams checked into room 102
+2026-03-26 11:48:45 DEBUG System internal state updated for room 302
+2026-03-26 11:59:12 INFO Guest Amelia Smith requested additional towels for room 217
+2026-03-26 12:13:23 WARN Late check-out requested for room 101
+2026-03-26 12:19:50 INFO New booking received for Mason Hernandez, room 112
+2026-03-26 12:31:35 INFO Wi-Fi access granted for guest Charlotte Davis (IP: 192.168.1.78)
+2026-03-26 12:45:19 INFO Breakfast service started for guest Isabella Rodriguez
+2026-03-26 12:48:07 INFO Guest Lucas Jones requested additional towels for room 213
+2026-03-26 12:54:18 INFO New booking received for Lucas Anderson, room 214
+2026-03-26 13:07:59 INFO Guest Mason Martinez requested additional towels for room 215
+2026-03-26 13:19:26 INFO New booking received for Emma Johnson, room 211
+2026-03-26 13:23:44 WARN Minibar restock required for room 108
+2026-03-26 13:33:28 INFO Guest Benjamin Gonzalez checked out from room 304
+2026-03-26 13:48:02 INFO Guest Charlotte Lopez checked into room 108
+2026-03-26 13:54:12 WARN Minibar restock required for room 117
+2026-03-26 13:58:35 INFO Wi-Fi access granted for guest Mason Smith (IP: 192.168.1.243)
+2026-03-26 14:11:17 INFO Guest Sophia Wilson checked into room 207
+2026-03-26 14:15:56 INFO Wi-Fi access granted for guest Benjamin Anderson (IP: 192.168.1.38)
+2026-03-26 14:17:12 DEBUG System internal state updated for room 111
+2026-03-26 14:18:06 DEBUG System internal state updated for room 204
+2026-03-26 14:25:22 DEBUG System internal state updated for room 309
+2026-03-26 14:35:32 INFO Guest Lucas Brown checked into room 119
+2026-03-26 14:41:17 DEBUG System internal state updated for room 114
+2026-03-26 14:43:57 INFO Guest Olivia Williams checked out from room 109
+2026-03-26 14:55:02 INFO Payment of $270 processed for guest Mason Miller
+2026-03-26 14:59:50 INFO Wi-Fi access granted for guest Sophia Rodriguez (IP: 192.168.1.233)
+2026-03-26 15:13:13 INFO Guest John Johnson checked out from room 204
+2026-03-26 15:25:02 INFO New booking received for John Jones, room 308
+2026-03-26 15:33:32 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-26 15:36:59 INFO Guest Charlotte Jones checked out from room 306
+2026-03-26 15:50:43 DEBUG Database query executed: SELECT * FROM bookings WHERE room=215
+2026-03-26 15:58:36 INFO Guest Mason Hernandez checked into room 211
+2026-03-26 16:00:30 CRITICAL Unauthorized access attempt to admin panel from IP 192.168.1.155
+2026-03-26 16:13:47 ERROR Payment failed for guest Charlotte Anderson - Insufficient funds
+2026-03-26 16:14:28 WARN Late check-out requested for room 217
+2026-03-26 16:25:56 INFO Guest Benjamin Brown checked into room 210
+2026-03-26 16:31:40 DEBUG System internal state updated for room 203
+2026-03-26 16:36:11 INFO Guest Olivia Lopez checked into room 304
+2026-03-26 16:43:15 INFO New booking received for Liam Smith, room 105
+2026-03-26 16:53:14 INFO Guest Mason Miller checked out from room 301
+2026-03-26 17:05:00 INFO Wi-Fi access granted for guest James Davis (IP: 192.168.1.75)
+2026-03-26 17:19:32 INFO Wi-Fi access granted for guest Ava Lopez (IP: 192.168.1.65)
+2026-03-26 17:32:39 INFO Payment of $189 processed for guest Liam Hernandez
+2026-03-26 17:43:42 INFO Guest Mia Johnson checked into room 301
+2026-03-26 17:57:42 INFO Wi-Fi access granted for guest James Garcia (IP: 192.168.1.36)
+2026-03-26 18:02:26 DEBUG System internal state updated for room 116
+2026-03-26 18:08:46 INFO Room 203 marked as cleaned by housekeeping
+2026-03-26 18:13:40 INFO Guest Sophia Smith checked out from room 213
+2026-03-26 18:26:02 INFO New booking received for James Williams, room 204
+2026-03-26 18:32:29 INFO Wi-Fi access granted for guest Lucas Brown (IP: 192.168.1.86)
+2026-03-26 18:38:22 INFO Payment of $339 processed for guest Mia Jones
+2026-03-26 18:49:57 INFO Breakfast service started for guest Liam Jones
+2026-03-26 18:54:48 WARN Minibar restock required for room 209
+2026-03-26 18:55:24 DEBUG Database query executed: SELECT * FROM bookings WHERE room=107
+2026-03-26 19:01:51 INFO Guest Olivia Williams checked into room 303
+2026-03-26 19:05:27 INFO Room 104 marked as cleaned by housekeeping
+2026-03-26 19:13:39 INFO Guest Amelia Jones requested additional towels for room 203
+2026-03-26 19:15:05 INFO Payment of $376 processed for guest Mason Smith
+2026-03-26 19:20:18 INFO Room 116 marked as cleaned by housekeeping
+2026-03-26 19:29:54 INFO Payment of $135 processed for guest John Anderson
+2026-03-26 19:33:59 INFO Guest Amelia Davis requested additional towels for room 217
+2026-03-26 19:34:57 DEBUG Database query executed: SELECT * FROM bookings WHERE room=111
+2026-03-26 19:47:38 INFO Room 115 marked as cleaned by housekeeping
+2026-03-26 20:02:35 INFO Guest Charlotte Jones checked into room 204
+2026-03-26 20:08:06 INFO Breakfast service started for guest Olivia Gonzalez
+2026-03-26 20:09:21 INFO New booking received for Amelia Rodriguez, room 211
+2026-03-26 20:23:41 INFO Guest Amelia Hernandez requested additional towels for room 115
+2026-03-26 20:38:07 INFO Payment of $306 processed for guest Ava Rodriguez
+2026-03-26 20:51:23 INFO Guest Ava Brown checked into room 102
+2026-03-26 21:04:34 INFO Breakfast service started for guest Lucas Garcia
+2026-03-26 21:05:02 ERROR Database connection timeout during guest lookup
+2026-03-26 21:17:21 INFO New booking received for James Davis, room 305
+2026-03-26 21:20:05 ERROR Failed to assign room 204 - Room already occupied
+2026-03-26 21:22:33 INFO Room 201 marked as cleaned by housekeeping
+2026-03-26 21:34:18 WARN Minibar restock required for room 212
+2026-03-26 21:34:30 INFO Guest Mia Brown checked into room 303
+2026-03-26 21:38:37 INFO Breakfast service started for guest Isabella Gonzalez
+2026-03-26 21:48:56 ERROR Database connection timeout during guest lookup
+2026-03-26 21:54:27 INFO Room 303 marked as cleaned by housekeeping
+2026-03-26 22:04:18 CRITICAL Unauthorized access attempt to admin panel from IP 192.168.1.221
+2026-03-26 22:10:14 DEBUG System internal state updated for room 302
+2026-03-26 22:21:42 WARN Minibar restock required for room 309
+2026-03-26 22:25:09 INFO Guest Amelia Johnson checked into room 218
+2026-03-26 22:32:14 INFO Room 305 marked as cleaned by housekeeping
+2026-03-26 22:41:15 INFO Room 104 marked as cleaned by housekeeping
+2026-03-26 22:55:56 DEBUG Database query executed: SELECT * FROM bookings WHERE room=302
+2026-03-26 23:06:42 INFO New booking received for Olivia Garcia, room 115
+2026-03-26 23:16:24 INFO Payment of $386 processed for guest James Johnson
+2026-03-26 23:29:00 INFO Payment of $445 processed for guest Olivia Anderson
+2026-03-26 23:30:54 INFO Guest James Smith checked out from room 103
+2026-03-26 23:45:10 INFO Wi-Fi access granted for guest Mia Martinez (IP: 192.168.1.156)
+2026-03-26 23:57:13 INFO Breakfast service started for guest James Williams
+2026-03-27 00:06:12 INFO Guest Benjamin Anderson checked into room 303
+2026-03-27 00:16:32 INFO Guest James Martinez requested additional towels for room 211
+2026-03-27 00:18:17 INFO Wi-Fi access granted for guest Isabella Rodriguez (IP: 192.168.1.215)
+2026-03-27 00:28:14 INFO New booking received for Ava Gonzalez, room 211
+2026-03-27 00:34:20 INFO Breakfast service started for guest Charlotte Jones
+2026-03-27 00:42:52 INFO Guest Amelia Davis requested additional towels for room 101
+2026-03-27 00:55:26 INFO Guest Charlotte Gonzalez checked out from room 111
+2026-03-27 01:02:55 ERROR Database connection timeout during guest lookup
+2026-03-27 01:05:50 INFO New booking received for James Hernandez, room 216
+2026-03-27 01:10:25 INFO Breakfast service started for guest Emma Hernandez
+2026-03-27 01:20:30 INFO Guest Sophia Lopez checked into room 215
+2026-03-27 01:21:18 ERROR Payment failed for guest Mia Martinez - Insufficient funds
+2026-03-27 01:35:40 INFO Guest Sophia Rodriguez checked into room 216
+2026-03-27 01:48:15 INFO Payment of $358 processed for guest Mason Jones
+2026-03-27 01:49:02 DEBUG System internal state updated for room 305
+2026-03-27 01:49:18 DEBUG Database query executed: SELECT * FROM bookings WHERE room=209
+2026-03-27 02:00:36 INFO Guest Ava Miller checked into room 308
+2026-03-27 02:14:47 INFO Guest John Martinez checked into room 211
+2026-03-27 02:21:48 INFO Guest Ava Brown requested additional towels for room 208
+2026-03-27 02:35:35 INFO Guest Emma Jones checked out from room 304
+2026-03-27 02:44:24 INFO Room 210 marked as cleaned by housekeeping
+2026-03-27 02:46:50 INFO Breakfast service started for guest Isabella Jones
+2026-03-27 02:51:34 DEBUG System internal state updated for room 215
+2026-03-27 03:02:18 INFO Guest John Garcia checked into room 211
+2026-03-27 03:11:30 WARN Late check-out requested for room 108
+2026-03-27 03:24:47 ERROR Failed to assign room 106 - Room already occupied
+2026-03-27 03:39:19 DEBUG System internal state updated for room 104
+2026-03-27 03:50:27 ERROR Failed to assign room 219 - Room already occupied
+2026-03-27 03:54:10 INFO Breakfast service started for guest Lucas Garcia
+2026-03-27 04:04:23 ERROR Failed to assign room 113 - Room already occupied
+2026-03-27 04:17:30 DEBUG Database query executed: SELECT * FROM bookings WHERE room=112
+2026-03-27 04:29:14 INFO Guest Mason Davis checked out from room 105
+2026-03-27 04:35:59 DEBUG Database query executed: SELECT * FROM bookings WHERE room=214
+2026-03-27 04:41:35 INFO Guest Emma Johnson checked into room 110
+2026-03-27 04:53:22 INFO Guest Isabella Williams checked out from room 105
+2026-03-27 04:58:54 INFO New booking received for Ava Anderson, room 306
+2026-03-27 05:05:55 ERROR Database connection timeout during guest lookup
+2026-03-27 05:06:06 DEBUG Database query executed: SELECT * FROM bookings WHERE room=105
+2026-03-27 05:09:06 INFO Room 302 marked as cleaned by housekeeping
+2026-03-27 05:21:39 INFO Payment of $456 processed for guest Benjamin Williams
+2026-03-27 05:23:27 DEBUG System internal state updated for room 114
+2026-03-27 05:35:19 INFO Room 108 marked as cleaned by housekeeping
+2026-03-27 05:42:45 INFO New booking received for Emma Miller, room 305
+2026-03-27 05:43:00 ERROR Payment failed for guest Isabella Miller - Insufficient funds
+2026-03-27 05:53:20 INFO Guest Charlotte Wilson checked into room 208
+2026-03-27 06:06:11 INFO Room 304 marked as cleaned by housekeeping
+2026-03-27 06:09:49 INFO Room 205 marked as cleaned by housekeeping
+2026-03-27 06:20:05 INFO New booking received for John Rodriguez, room 106
+2026-03-27 06:32:36 INFO Guest Emma Hernandez checked out from room 203
+2026-03-27 06:38:05 INFO Payment of $468 processed for guest Liam Anderson
+2026-03-27 06:43:55 INFO Payment of $93 processed for guest Emma Davis
+2026-03-27 06:48:39 INFO Guest Charlotte Miller requested additional towels for room 110
+2026-03-27 06:55:55 ERROR Failed to assign room 114 - Room already occupied
+2026-03-27 06:57:52 WARN Late check-out requested for room 111
+2026-03-27 06:59:07 ERROR Database connection timeout during guest lookup
+2026-03-27 07:10:26 DEBUG Database query executed: SELECT * FROM bookings WHERE room=107
+2026-03-27 07:20:07 WARN Minibar restock required for room 111
+2026-03-27 07:21:16 INFO New booking received for Isabella Smith, room 109
+2026-03-27 07:24:42 INFO Room 219 marked as cleaned by housekeeping
+2026-03-27 07:37:34 INFO Guest Mason Rodriguez requested additional towels for room 215
+2026-03-27 07:40:04 ERROR Database connection timeout during guest lookup
+2026-03-27 07:47:42 INFO Guest Lucas Hernandez checked out from room 219
+2026-03-27 07:55:15 DEBUG Database query executed: SELECT * FROM bookings WHERE room=217
+2026-03-27 08:04:48 INFO New booking received for Liam Martinez, room 111
+2026-03-27 08:08:05 INFO Guest Sophia Wilson requested additional towels for room 204
+2026-03-27 08:13:03 INFO Guest Amelia Jones checked out from room 117
+2026-03-27 08:25:16 INFO Wi-Fi access granted for guest Lucas Lopez (IP: 192.168.1.203)
+2026-03-27 08:26:12 ERROR Database connection timeout during guest lookup
+2026-03-27 08:35:57 DEBUG Database query executed: SELECT * FROM bookings WHERE room=307
+2026-03-27 08:46:23 INFO Room 206 marked as cleaned by housekeeping
+2026-03-27 08:58:43 INFO Guest Liam Rodriguez checked out from room 119
+2026-03-27 09:03:06 WARN Minibar restock required for room 217
+2026-03-27 09:08:19 INFO Payment of $270 processed for guest Benjamin Johnson
+2026-03-27 09:09:01 CRITICAL Fire alarm system heartbeat failure detected in floor 1
+2026-03-27 09:10:45 INFO Guest Liam Hernandez requested additional towels for room 203
+2026-03-27 09:18:38 INFO Guest Mason Smith checked out from room 108
+2026-03-27 09:29:12 INFO Room 102 marked as cleaned by housekeeping
+2026-03-27 09:34:56 WARN Late check-out requested for room 208
+2026-03-27 09:45:39 INFO Guest Mason Anderson checked out from room 203
+2026-03-27 09:47:25 ERROR Database connection timeout during guest lookup
+2026-03-27 09:53:52 INFO New booking received for Mason Garcia, room 203
+2026-03-27 10:04:05 INFO Wi-Fi access granted for guest Benjamin Johnson (IP: 192.168.1.75)
+2026-03-27 10:10:11 INFO Room 118 marked as cleaned by housekeeping
+2026-03-27 10:20:41 DEBUG Database query executed: SELECT * FROM bookings WHERE room=208
+2026-03-27 10:27:21 DEBUG Database query executed: SELECT * FROM bookings WHERE room=119
+2026-03-27 10:39:50 INFO Room 215 marked as cleaned by housekeeping
+2026-03-27 10:42:59 INFO Wi-Fi access granted for guest Noah Smith (IP: 192.168.1.106)
+2026-03-27 10:48:00 INFO Breakfast service started for guest Liam Davis
+2026-03-27 10:51:34 INFO Wi-Fi access granted for guest Mason Jones (IP: 192.168.1.133)
+2026-03-27 11:06:12 INFO Guest John Wilson checked out from room 211
+2026-03-27 11:18:08 INFO Wi-Fi access granted for guest Isabella Rodriguez (IP: 192.168.1.23)
+2026-03-27 11:25:08 INFO Guest Benjamin Rodriguez checked out from room 304
+2026-03-27 11:33:32 DEBUG Database query executed: SELECT * FROM bookings WHERE room=119
+2026-03-27 11:36:20 INFO Wi-Fi access granted for guest Ava Hernandez (IP: 192.168.1.143)
+2026-03-27 11:42:45 INFO Wi-Fi access granted for guest Olivia Jones (IP: 192.168.1.216)
+2026-03-27 11:52:33 INFO New booking received for Lucas Rodriguez, room 210
+2026-03-27 12:06:12 INFO Breakfast service started for guest Liam Jones
+2026-03-27 12:17:49 INFO Guest Olivia Davis checked out from room 113
+2026-03-27 12:21:24 INFO Breakfast service started for guest Isabella Davis
+2026-03-27 12:26:11 INFO Room 107 marked as cleaned by housekeeping
+2026-03-27 12:37:58 WARN Minibar restock required for room 204
+2026-03-27 12:51:22 CRITICAL Unauthorized access attempt to admin panel from IP 192.168.1.77
+2026-03-27 12:51:41 DEBUG Database query executed: SELECT * FROM bookings WHERE room=302
+2026-03-27 12:58:59 INFO New booking received for Ava Gonzalez, room 118
+2026-03-27 13:08:48 WARN Late check-out requested for room 206
+2026-03-27 13:17:23 ERROR Payment failed for guest Amelia Gonzalez - Insufficient funds
+2026-03-27 13:31:09 INFO Wi-Fi access granted for guest Liam Lopez (IP: 192.168.1.103)
+2026-03-27 13:37:25 INFO Room 105 marked as cleaned by housekeeping
+2026-03-27 13:44:20 INFO Guest Isabella Smith requested additional towels for room 210
+2026-03-27 13:51:03 DEBUG Database query executed: SELECT * FROM bookings WHERE room=306
+2026-03-27 13:54:07 DEBUG Database query executed: SELECT * FROM bookings WHERE room=213
+2026-03-27 14:00:52 INFO Wi-Fi access granted for guest Mia Jones (IP: 192.168.1.35)
+2026-03-27 14:09:10 DEBUG Database query executed: SELECT * FROM bookings WHERE room=111
+2026-03-27 14:14:03 INFO Guest Lucas Martinez requested additional towels for room 103
+2026-03-27 14:25:17 DEBUG System internal state updated for room 115
+2026-03-27 14:37:42 INFO Payment of $442 processed for guest Olivia Smith
+2026-03-27 14:44:29 DEBUG System internal state updated for room 107
+2026-03-27 14:55:05 INFO Guest Emma Johnson checked into room 111
+2026-03-27 14:58:26 INFO Guest Ava Wilson checked into room 112
+2026-03-27 15:05:14 INFO Guest Noah Jones requested additional towels for room 110
+2026-03-27 15:11:30 INFO Guest Lucas Martinez requested additional towels for room 103
+2026-03-27 15:26:00 INFO Wi-Fi access granted for guest Olivia Gonzalez (IP: 192.168.1.216)
+2026-03-27 15:38:47 INFO Payment of $287 processed for guest Mason Garcia
+2026-03-27 15:44:07 INFO New booking received for Emma Lopez, room 309
+2026-03-27 15:54:26 INFO Wi-Fi access granted for guest Isabella Lopez (IP: 192.168.1.185)
+2026-03-27 16:00:33 ERROR Payment failed for guest Isabella Lopez - Insufficient funds
+2026-03-27 16:01:55 ERROR Payment failed for guest Charlotte Wilson - Insufficient funds
+2026-03-27 16:08:22 INFO Wi-Fi access granted for guest Isabella Lopez (IP: 192.168.1.209)
+2026-03-27 16:19:05 INFO Guest Amelia Brown requested additional towels for room 119
+2026-03-27 16:20:28 DEBUG System internal state updated for room 213
+2026-03-27 16:29:08 INFO Guest Isabella Jones checked into room 107
+2026-03-27 16:29:44 INFO Room 302 marked as cleaned by housekeeping
+2026-03-27 16:42:05 INFO Breakfast service started for guest Mason Brown
+2026-03-27 16:47:15 INFO Room 307 marked as cleaned by housekeeping
+2026-03-27 16:51:33 INFO Wi-Fi access granted for guest Amelia Jones (IP: 192.168.1.232)
+2026-03-27 17:03:18 INFO Wi-Fi access granted for guest James Anderson (IP: 192.168.1.129)
+2026-03-27 17:15:49 INFO Breakfast service started for guest John Anderson
+2026-03-27 17:21:30 WARN Minibar restock required for room 301
+2026-03-27 17:32:34 INFO New booking received for Amelia Rodriguez, room 309
+2026-03-27 17:33:29 WARN Minibar restock required for room 116
+2026-03-27 17:47:09 ERROR Database connection timeout during guest lookup
+2026-03-27 17:55:39 WARN Late check-out requested for room 214
+2026-03-27 18:09:10 DEBUG System internal state updated for room 211
+2026-03-27 18:16:01 INFO Guest Liam Martinez checked into room 214
+2026-03-27 18:26:23 INFO Payment of $425 processed for guest Amelia Williams
+2026-03-27 18:40:44 INFO New booking received for Lucas Lopez, room 208
+2026-03-27 18:49:54 ERROR Database connection timeout during guest lookup
+2026-03-27 19:00:41 INFO Guest Amelia Hernandez requested additional towels for room 216
+2026-03-27 19:07:33 INFO Breakfast service started for guest Emma Brown
+2026-03-27 19:10:09 ERROR Database connection timeout during guest lookup
+2026-03-27 19:21:41 INFO Guest Benjamin Martinez checked out from room 214
+2026-03-27 19:26:26 ERROR Database connection timeout during guest lookup
+2026-03-27 19:29:39 ERROR Payment failed for guest John Gonzalez - Insufficient funds
+2026-03-27 19:30:48 INFO Payment of $309 processed for guest Lucas Martinez
+2026-03-27 19:39:55 INFO Guest Liam Martinez requested additional towels for room 119
+2026-03-27 19:52:16 WARN Minibar restock required for room 217
+2026-03-27 19:57:06 INFO Breakfast service started for guest Mason Williams
+2026-03-27 19:58:30 WARN Minibar restock required for room 308
+2026-03-27 20:06:30 INFO New booking received for James Garcia, room 108
+2026-03-27 20:18:51 INFO Room 106 marked as cleaned by housekeeping
+2026-03-27 20:21:13 INFO New booking received for Olivia Lopez, room 115
+2026-03-27 20:33:11 INFO New booking received for Olivia Smith, room 219
+2026-03-27 20:35:14 INFO Guest Mason Johnson checked out from room 204
+2026-03-27 20:48:28 INFO Payment of $227 processed for guest Benjamin Smith
+2026-03-27 20:50:56 INFO Payment of $209 processed for guest Emma Lopez
+2026-03-27 20:59:39 INFO Breakfast service started for guest Emma Martinez
+2026-03-27 21:09:01 INFO Breakfast service started for guest Noah Gonzalez
+2026-03-27 21:19:36 INFO New booking received for Noah Davis, room 307
+2026-03-27 21:30:53 ERROR Database connection timeout during guest lookup
+2026-03-27 21:45:45 INFO Guest Mia Davis checked into room 213
+2026-03-27 21:57:58 INFO Guest Mia Lopez requested additional towels for room 209
+2026-03-27 22:08:41 INFO Guest Amelia Lopez checked into room 204
+2026-03-27 22:12:11 DEBUG System internal state updated for room 218
+2026-03-27 22:14:02 INFO Guest Emma Williams checked into room 302
+2026-03-27 22:27:25 INFO Guest Ava Lopez requested additional towels for room 205
+2026-03-27 22:30:48 DEBUG Database query executed: SELECT * FROM bookings WHERE room=219
+2026-03-27 22:43:19 INFO New booking received for Emma Brown, room 214
+2026-03-27 22:56:05 DEBUG Database query executed: SELECT * FROM bookings WHERE room=302
+2026-03-27 22:59:07 INFO Guest Sophia Williams requested additional towels for room 302
+2026-03-27 23:00:43 INFO Guest Charlotte Martinez requested additional towels for room 119
+2026-03-27 23:10:45 INFO Guest Isabella Gonzalez checked into room 114
+2026-03-27 23:13:32 INFO Wi-Fi access granted for guest Isabella Smith (IP: 192.168.1.126)
+2026-03-27 23:18:43 INFO Wi-Fi access granted for guest Sophia Rodriguez (IP: 192.168.1.110)
+2026-03-27 23:27:23 ERROR Database connection timeout during guest lookup
+2026-03-27 23:31:36 INFO Guest Noah Williams checked out from room 207
+2026-03-27 23:38:12 DEBUG System internal state updated for room 117
+2026-03-27 23:38:58 INFO Wi-Fi access granted for guest Olivia Jones (IP: 192.168.1.208)
+2026-03-27 23:39:09 WARN Late check-out requested for room 216
+2026-03-27 23:40:54 WARN Minibar restock required for room 202
+2026-03-27 23:52:39 WARN Late check-out requested for room 112
+2026-03-28 00:02:20 INFO Room 104 marked as cleaned by housekeeping
+2026-03-28 00:02:43 WARN Late check-out requested for room 218
+2026-03-28 00:17:32 WARN Late check-out requested for room 215
+2026-03-28 00:24:12 INFO Wi-Fi access granted for guest Charlotte Lopez (IP: 192.168.1.11)
+2026-03-28 00:35:24 INFO Breakfast service started for guest Liam Smith
+2026-03-28 00:38:00 INFO Wi-Fi access granted for guest Lucas Lopez (IP: 192.168.1.16)
+2026-03-28 00:43:10 INFO Guest Benjamin Hernandez requested additional towels for room 306
+2026-03-28 00:50:25 INFO New booking received for Lucas Martinez, room 214
+2026-03-28 00:59:01 INFO Wi-Fi access granted for guest Emma Lopez (IP: 192.168.1.17)
+2026-03-28 01:00:33 DEBUG Database query executed: SELECT * FROM bookings WHERE room=104
+2026-03-28 01:12:45 INFO New booking received for Lucas Garcia, room 307
+2026-03-28 01:24:22 INFO Payment of $141 processed for guest Mason Wilson
+2026-03-28 01:36:01 DEBUG System internal state updated for room 302
+2026-03-28 01:37:19 WARN Minibar restock required for room 213
+2026-03-28 01:46:41 DEBUG Database query executed: SELECT * FROM bookings WHERE room=309
+2026-03-28 01:48:54 INFO Room 103 marked as cleaned by housekeeping
+2026-03-28 01:56:56 INFO Payment of $350 processed for guest Sophia Johnson
+2026-03-28 02:08:56 WARN Late check-out requested for room 219
+2026-03-28 02:17:36 DEBUG Database query executed: SELECT * FROM bookings WHERE room=216
+2026-03-28 02:22:09 INFO Wi-Fi access granted for guest Noah Anderson (IP: 192.168.1.188)
+2026-03-28 02:33:35 INFO Guest Benjamin Rodriguez checked out from room 104
+2026-03-28 02:34:38 INFO Guest Isabella Johnson checked out from room 111
+2026-03-28 02:37:51 INFO Guest Emma Wilson requested additional towels for room 104
+2026-03-28 02:42:52 INFO New booking received for Olivia Hernandez, room 108
+2026-03-28 02:44:32 INFO Guest Mason Williams checked out from room 214
+2026-03-28 02:47:54 INFO Breakfast service started for guest Mason Lopez
+2026-03-28 02:55:05 INFO Guest Noah Rodriguez checked into room 117
+2026-03-28 03:05:29 INFO Breakfast service started for guest John Miller
+2026-03-28 03:06:53 INFO New booking received for Charlotte Lopez, room 209
+2026-03-28 03:21:14 INFO Guest Olivia Davis checked out from room 101
+2026-03-28 03:25:03 DEBUG Database query executed: SELECT * FROM bookings WHERE room=213
+2026-03-28 03:27:45 INFO Guest Benjamin Davis requested additional towels for room 219
+2026-03-28 03:37:10 WARN Minibar restock required for room 201
+2026-03-28 03:41:48 DEBUG Database query executed: SELECT * FROM bookings WHERE room=105
+2026-03-28 03:55:45 DEBUG System internal state updated for room 212
+2026-03-28 04:01:58 INFO Wi-Fi access granted for guest Isabella Brown (IP: 192.168.1.228)
+2026-03-28 04:09:20 DEBUG Database query executed: SELECT * FROM bookings WHERE room=305
+2026-03-28 04:16:12 WARN Minibar restock required for room 106
+2026-03-28 04:25:17 INFO Guest Emma Rodriguez checked into room 203
+2026-03-28 04:30:10 INFO Wi-Fi access granted for guest John Williams (IP: 192.168.1.200)
+2026-03-28 04:36:32 INFO Room 218 marked as cleaned by housekeeping
+2026-03-28 04:44:06 INFO Guest Amelia Johnson requested additional towels for room 119
+2026-03-28 04:54:54 INFO Guest Olivia Lopez checked into room 114
+2026-03-28 04:59:30 INFO Guest Benjamin Wilson checked into room 303
+2026-03-28 05:11:59 WARN Minibar restock required for room 219
+2026-03-28 05:26:04 INFO Room 108 marked as cleaned by housekeeping
+2026-03-28 05:27:34 CRITICAL Fire alarm system heartbeat failure detected in floor 3
+2026-03-28 05:41:29 DEBUG Database query executed: SELECT * FROM bookings WHERE room=215
+2026-03-28 05:43:10 INFO Guest Isabella Johnson checked into room 203
+2026-03-28 05:54:50 WARN Minibar restock required for room 201
+2026-03-28 06:08:16 INFO Guest Liam Anderson requested additional towels for room 218
+2026-03-28 06:20:58 INFO New booking received for Mia Rodriguez, room 104
+2026-03-28 06:35:43 INFO Room 111 marked as cleaned by housekeeping
+2026-03-28 06:36:02 DEBUG System internal state updated for room 306
+2026-03-28 06:40:57 INFO Wi-Fi access granted for guest Olivia Anderson (IP: 192.168.1.107)
+2026-03-28 06:46:08 INFO New booking received for Mia Lopez, room 105
+2026-03-28 06:56:04 WARN Late check-out requested for room 201
+2026-03-28 06:58:45 DEBUG Database query executed: SELECT * FROM bookings WHERE room=106
+2026-03-28 07:04:33 DEBUG Database query executed: SELECT * FROM bookings WHERE room=202
+2026-03-28 07:07:23 INFO Guest Isabella Wilson checked into room 206
+2026-03-28 07:08:27 INFO New booking received for Lucas Gonzalez, room 205
+2026-03-28 07:17:28 INFO Room 216 marked as cleaned by housekeeping
+2026-03-28 07:24:50 CRITICAL Fire alarm system heartbeat failure detected in floor 2
+2026-03-28 07:33:58 DEBUG Database query executed: SELECT * FROM bookings WHERE room=210
+2026-03-28 07:42:50 INFO Breakfast service started for guest Emma Williams
+2026-03-28 07:44:36 INFO Room 202 marked as cleaned by housekeeping
+2026-03-28 07:58:22 ERROR Payment failed for guest Liam Williams - Insufficient funds
+2026-03-28 08:13:19 INFO Wi-Fi access granted for guest Emma Miller (IP: 192.168.1.91)
+2026-03-28 08:15:39 DEBUG Database query executed: SELECT * FROM bookings WHERE room=115
+2026-03-28 08:29:50 INFO Breakfast service started for guest John Garcia
+2026-03-28 08:43:15 INFO Guest Benjamin Smith checked into room 109
+2026-03-28 08:51:13 ERROR Database connection timeout during guest lookup
+2026-03-28 09:00:42 DEBUG Database query executed: SELECT * FROM bookings WHERE room=308
+2026-03-28 09:14:33 ERROR Failed to assign room 109 - Room already occupied
+2026-03-28 09:17:35 ERROR Payment failed for guest Noah Gonzalez - Insufficient funds
+2026-03-28 09:30:32 INFO New booking received for James Jones, room 109
+2026-03-28 09:35:27 WARN Late check-out requested for room 206
+2026-03-28 09:43:40 INFO Room 211 marked as cleaned by housekeeping
+2026-03-28 09:52:45 INFO Guest Emma Brown requested additional towels for room 302
+2026-03-28 09:58:24 INFO Guest Amelia Wilson checked out from room 214
+2026-03-28 10:12:41 INFO Breakfast service started for guest Sophia Williams
+2026-03-28 10:16:26 ERROR Failed to assign room 209 - Room already occupied
+2026-03-28 10:27:51 INFO New booking received for Benjamin Johnson, room 213
+2026-03-28 10:41:08 WARN Late check-out requested for room 212
+2026-03-28 10:47:50 INFO New booking received for James Williams, room 309
+2026-03-28 10:51:35 INFO Breakfast service started for guest Liam Anderson
+2026-03-28 10:59:48 INFO Guest Benjamin Martinez checked out from room 101
+2026-03-28 11:01:59 DEBUG Database query executed: SELECT * FROM bookings WHERE room=111
+2026-03-28 11:09:49 INFO Guest Charlotte Martinez requested additional towels for room 204
+2026-03-28 11:20:03 INFO Guest Noah Miller checked out from room 209
+2026-03-28 11:29:06 INFO Room 105 marked as cleaned by housekeeping
+2026-03-28 11:32:04 WARN Minibar restock required for room 115
+2026-03-28 11:39:13 ERROR Payment failed for guest Ava Lopez - Insufficient funds
+2026-03-28 11:42:08 INFO Payment of $336 processed for guest John Johnson
+2026-03-28 11:48:07 WARN Minibar restock required for room 106
+2026-03-28 11:56:27 WARN Minibar restock required for room 210
+2026-03-28 12:03:15 INFO New booking received for Mia Gonzalez, room 109
+2026-03-28 12:13:06 INFO Guest John Wilson requested additional towels for room 116
+2026-03-28 12:14:46 INFO Wi-Fi access granted for guest Amelia Jones (IP: 192.168.1.84)
+2026-03-28 12:23:14 INFO Breakfast service started for guest Mia Williams
+2026-03-28 12:34:00 INFO Guest Olivia Gonzalez checked into room 303
+2026-03-28 12:44:34 INFO Breakfast service started for guest Ava Gonzalez
+2026-03-28 12:50:33 INFO Guest Sophia Garcia checked out from room 306
+2026-03-28 12:56:03 INFO Wi-Fi access granted for guest Ava Hernandez (IP: 192.168.1.173)
+2026-03-28 13:05:12 INFO Wi-Fi access granted for guest John Brown (IP: 192.168.1.244)
+2026-03-28 13:20:07 INFO Room 208 marked as cleaned by housekeeping
+2026-03-28 13:27:54 DEBUG Database query executed: SELECT * FROM bookings WHERE room=202
+2026-03-28 13:35:23 INFO Guest Ava Gonzalez checked out from room 205
+2026-03-28 13:49:37 DEBUG Database query executed: SELECT * FROM bookings WHERE room=103
+2026-03-28 13:53:27 INFO Payment of $206 processed for guest James Gonzalez
+2026-03-28 14:07:15 INFO Breakfast service started for guest Ava Anderson
+2026-03-28 14:16:56 INFO Guest Sophia Davis checked into room 115
+2026-03-28 14:26:10 INFO Room 212 marked as cleaned by housekeeping
+2026-03-28 14:37:01 INFO Breakfast service started for guest Charlotte Miller
+2026-03-28 14:43:37 INFO Guest Noah Miller checked into room 109
+2026-03-28 14:54:20 ERROR Payment failed for guest Emma Hernandez - Insufficient funds
+2026-03-28 14:58:37 INFO Guest Noah Davis checked into room 104
+2026-03-28 15:03:07 WARN Late check-out requested for room 204
+2026-03-28 15:16:51 INFO Guest Mason Hernandez checked into room 304
+2026-03-28 15:22:00 INFO Guest Benjamin Jones requested additional towels for room 214
+2026-03-28 15:34:40 INFO Payment of $288 processed for guest Emma Miller
+2026-03-28 15:47:48 DEBUG System internal state updated for room 116
+2026-03-28 15:48:38 INFO Wi-Fi access granted for guest Mason Martinez (IP: 192.168.1.128)
+2026-03-28 15:49:20 INFO Breakfast service started for guest Charlotte Williams
+2026-03-28 16:02:00 INFO Guest Noah Davis checked out from room 102
+2026-03-28 16:05:43 DEBUG Database query executed: SELECT * FROM bookings WHERE room=211

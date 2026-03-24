@@ -1,0 +1,14 @@
+2026-03-24 10:00:00 INFO System started
+2026-03-24 10:00:05 INFO User admin login successful from IP 192.168.1.10
+2026-03-24 10:00:10 INFO Database connection established
+2026-03-24 10:05:00 INFO Block 1023 replicated successfully
+2026-03-24 10:10:00 INFO Memory usage normal at 45%
+2026-03-24 10:15:00 WARN Authentication failed for user guest from IP 10.0.0.5
+2026-03-24 10:15:01 WARN Authentication failed for user guest from IP 10.0.0.5
+2026-03-24 10:15:02 WARN Authentication failed for user guest from IP 10.0.0.5
+2026-03-24 10:20:00 ERROR Database connection failed: connection refused
+2026-03-24 10:25:00 INFO Configuration loaded successfully
+2026-03-24 10:30:00 INFO Health check passed
+2026-03-24 10:35:00 INFO Serving request from 8.8.8.8
+2026-03-24 10:40:00 CRITICAL SQL injection attempt detected in payload
+2026-03-24 10:45:00 ERROR Transdimensional flux capacitor overload detected
