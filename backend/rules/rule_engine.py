@@ -182,3 +182,34 @@ def combine_with_ml(rule_result: RuleResult | None, ml_prediction: str) -> tuple
     if ml_anomaly:
         return 'Anomaly', 'ML', reason
     return 'Normal', 'ML', reason
+
+
+class RuleEngine:
+    """Wrapper class for rule-based anomaly detection."""
+    
+    def __init__(self):
+        self.rules_cache = {}
+    
+    def evaluate_log(self, log_record: dict) -> List[str]:
+        """Evaluate a single log record and return triggered rule names."""
+        triggered_rules = []
+        
+        message = log_record.get('message', '') + log_record.get('raw_message', '')
+        
+        # Check individual rules
+        checks = [
+            check_brute_force(message),
+            check_db_connection_failure(message),
+            check_unauthorized_access(message),
+            check_suspicious_ip(log_record),
+        ]
+        
+        for check in checks:
+            if check.triggered:
+                triggered_rules.append(check.rule_name)
+        
+        return triggered_rules
+    
+    def evaluate_batch(self, logs: List[dict]) -> List[List[str]]:
+        """Evaluate multiple logs and return triggered rules for each."""
+        return [self.evaluate_log(log) for log in logs]

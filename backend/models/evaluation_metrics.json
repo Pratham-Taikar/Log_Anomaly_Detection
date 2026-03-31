@@ -1,0 +1,169 @@
+{
+  "generated_at_utc": "2026-03-31T16:04:46.164360+00:00",
+  "dataset": {
+    "files": [
+      "comprehensive_logs_50k.txt",
+      "hotel_management_logs.txt",
+      "log_example.txt"
+    ],
+    "total_records": 48514,
+    "train_records": 38811,
+    "test_records": 9703,
+    "silver_label_distribution": {
+      "normal": 47797,
+      "anomaly": 717
+    }
+  },
+  "model": {
+    "algorithm": "IsolationForest",
+    "parameters": {
+      "n_estimators": 100,
+      "contamination": 0.1,
+      "max_samples": "auto",
+      "random_state": 42
+    },
+    "vectorizer": {
+      "type": "TfidfVectorizer",
+      "max_features": 5000,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "vocabulary_size": 5000
+    }
+  },
+  "metrics": {
+    "used_labeling": "silver",
+    "silver_metrics": {
+      "ml_only": {
+        "accuracy": 0.8853,
+        "precision": 0.0051,
+        "recall": 0.035,
+        "f1_score": 0.0089,
+        "confusion_matrix": {
+          "labels": [
+            "normal",
+            "anomaly"
+          ],
+          "matrix": [
+            [
+              8585,
+              975
+            ],
+            [
+              138,
+              5
+            ]
+          ],
+          "tn": 8585,
+          "fp": 975,
+          "fn": 138,
+          "tp": 5
+        },
+        "support": {
+          "normal": 9560,
+          "anomaly": 143,
+          "total": 9703
+        }
+      },
+      "hybrid_ml_rules": {
+        "accuracy": 0.8933,
+        "precision": 0.0784,
+        "recall": 0.5804,
+        "f1_score": 0.1382,
+        "confusion_matrix": {
+          "labels": [
+            "normal",
+            "anomaly"
+          ],
+          "matrix": [
+            [
+              8585,
+              975
+            ],
+            [
+              60,
+              83
+            ]
+          ],
+          "tn": 8585,
+          "fp": 975,
+          "fn": 60,
+          "tp": 83
+        },
+        "support": {
+          "normal": 9560,
+          "anomaly": 143,
+          "total": 9703
+        }
+      }
+    },
+    "gold_metrics": null,
+    "ml_only": {
+      "accuracy": 0.8853,
+      "precision": 0.0051,
+      "recall": 0.035,
+      "f1_score": 0.0089,
+      "confusion_matrix": {
+        "labels": [
+          "normal",
+          "anomaly"
+        ],
+        "matrix": [
+          [
+            8585,
+            975
+          ],
+          [
+            138,
+            5
+          ]
+        ],
+        "tn": 8585,
+        "fp": 975,
+        "fn": 138,
+        "tp": 5
+      },
+      "support": {
+        "normal": 9560,
+        "anomaly": 143,
+        "total": 9703
+      }
+    },
+    "hybrid_ml_rules": {
+      "accuracy": 0.8933,
+      "precision": 0.0784,
+      "recall": 0.5804,
+      "f1_score": 0.1382,
+      "confusion_matrix": {
+        "labels": [
+          "normal",
+          "anomaly"
+        ],
+        "matrix": [
+          [
+            8585,
+            975
+          ],
+          [
+            60,
+            83
+          ]
+        ],
+        "tn": 8585,
+        "fp": 975,
+        "fn": 60,
+        "tp": 83
+      },
+      "support": {
+        "normal": 9560,
+        "anomaly": 143,
+        "total": 9703
+      }
+    }
+  },
+  "notes": [
+    "If datasets/labeled_eval.csv exists and contains enough labeled rows for both classes, metrics use gold labels.",
+    "Otherwise metrics use silver labels (rule/heuristic-derived) aligned with this project's anomaly scope."
+  ]
+}

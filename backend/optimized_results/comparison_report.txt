@@ -1,0 +1,96 @@
+LOG ANOMALY DETECTION MODEL COMPARISON REPORT
+============================================================
+Generated: 2026-03-31 19:47:27
+Total Models Evaluated: 6
+
+MODEL COMPARISON TABLE:
+----------------------------------------
+             Model  accuracy  precision  recall  f1_score  roc_auc  pr_auc  support_positive  support_negative  optimal_threshold  max_tpr_minus_fpr
+       ML_Ensemble    0.9423     0.1215  0.6111    0.2028   0.0731 -0.0064                36              2964            -6.6355             0.0003
+  ML_Best_Ensemble    0.1120     0.0133  1.0000    0.0263   0.0731 -0.0064                36              2964            -6.6355             0.0003
+ Sequence_Detector    0.0133     0.0120  1.0000    0.0237   0.5007 -0.5060                36              2964             0.9200             0.0013
+   Hybrid_ML_Rules    0.1117     0.0049  0.3611    0.0097   0.0740 -0.0064                36              2964            -4.5848             0.0003
+Hybrid_ML_Sequence    0.1120     0.0133  1.0000    0.0263   0.0732 -0.0064                36              2964            -3.6133             0.0003
+       Hybrid_Full    0.0967     0.0055  0.4167    0.0109   0.0743 -0.0064                36              2964            -3.0737             0.0003
+
+BEST MODELS BY METRIC:
+------------------------------
+ACCURACY: ML_Ensemble (0.9423)
+PRECISION: ML_Ensemble (0.1215)
+RECALL: ML_Best_Ensemble (1.0000)
+F1_SCORE: ML_Ensemble (0.2028)
+ROC_AUC: Sequence_Detector (0.5007)
+
+DETAILED MODEL ANALYSIS:
+-----------------------------------
+
+ML_ENSEMBLE:
+  Accuracy: 0.9423
+  Precision: 0.1215
+  Recall: 0.6111
+  F1-Score: 0.2028
+  TP: 22, FP: 159
+  TN: 2805, FN: 14
+  ROC-AUC: 0.0731
+  PR-AUC: -0.0064
+
+ML_BEST_ENSEMBLE:
+  Accuracy: 0.1120
+  Precision: 0.0133
+  Recall: 1.0000
+  F1-Score: 0.0263
+  TP: 36, FP: 2664
+  TN: 300, FN: 0
+  ROC-AUC: 0.0731
+  PR-AUC: -0.0064
+
+SEQUENCE_DETECTOR:
+  Accuracy: 0.0133
+  Precision: 0.0120
+  Recall: 1.0000
+  F1-Score: 0.0237
+  TP: 36, FP: 2960
+  TN: 4, FN: 0
+  ROC-AUC: 0.5007
+  PR-AUC: -0.5060
+
+HYBRID_ML_RULES:
+  Accuracy: 0.1117
+  Precision: 0.0049
+  Recall: 0.3611
+  F1-Score: 0.0097
+  TP: 13, FP: 2642
+  TN: 322, FN: 23
+  ROC-AUC: 0.0740
+  PR-AUC: -0.0064
+
+HYBRID_ML_SEQUENCE:
+  Accuracy: 0.1120
+  Precision: 0.0133
+  Recall: 1.0000
+  F1-Score: 0.0263
+  TP: 36, FP: 2664
+  TN: 300, FN: 0
+  ROC-AUC: 0.0732
+  PR-AUC: -0.0064
+
+HYBRID_FULL:
+  Accuracy: 0.0967
+  Precision: 0.0055
+  Recall: 0.4167
+  F1-Score: 0.0109
+  TP: 15, FP: 2689
+  TN: 275, FN: 21
+  ROC-AUC: 0.0743
+  PR-AUC: -0.0064
+================================================================================
+BEFORE vs AFTER COMPARISON
+================================================================================
+F1-Score Improvement: 0.1382 → 0.2028 (+46.72%)
+
+TOP MODELS BY METRIC:
+  ACCURACY: ML_Ensemble (0.9423)
+  PRECISION: ML_Ensemble (0.1215)
+  RECALL: ML_Best_Ensemble (1.0000)
+  F1_SCORE: ML_Ensemble (0.2028)
+  ROC_AUC: Sequence_Detector (0.5007)
