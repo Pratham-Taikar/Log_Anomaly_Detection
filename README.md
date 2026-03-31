@@ -4,6 +4,7 @@
 
 > Detect unusual patterns in massive log datasets with 7.3% baseline anomaly detection rate | 1,210 TF-IDF features | Hybrid ML + Rules approach
 
+<<<<<<< HEAD
 ## 📊 Project Metrics
 
 | Category     | Metric                      | Value                    |
@@ -24,6 +25,8 @@
 |              | Anomalies Detected          | 717 (1.5%)                 |
 |              | Parser Formats Supported    | 6+                         |
 
+=======
+>>>>>>> 64124bd23f163bc359d47a9774f2765ceb01dcc4
 ## 🎯 Overview
 
 SEAPM CP is an enterprise-grade anomaly detection system that analyzes application and system logs in real-time. It combines:
@@ -443,6 +446,7 @@ CMD ["python", "-m", "api.server"]
 - **Backend**: PEP 8 Python style guide
 - **Commits**: Descriptive messages with context
 
+<<<<<<< HEAD
 ## 📝 License
 
 This project is licensed under the MIT License - see LICENSE file for details.
@@ -489,6 +493,8 @@ Database Schemas: 0 (in-memory for MVP)
 ```
 
 ---
+=======
+>>>>>>> 64124bd23f163bc359d47a9774f2765ceb01dcc4
 
 **Last Updated**: 2024  
 **Status**: Production Ready (MVP)  
@@ -530,6 +536,7 @@ The server includes an unsupervised Isolation Forest model that flags anomalous 
 
 3. **Re‑training** – to improve results, gather representative normal logs and, if possible, rarer anomalous samples. Re‑run <code>python backend/train.py</code>
    or restart the server (it will retrain automatically when it notices missing model files).
+<<<<<<< HEAD
 
 4. **Evaluation metrics (new)** – the training pipeline now reports:
    - accuracy
@@ -559,3 +566,5 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+=======
+>>>>>>> 64124bd23f163bc359d47a9774f2765ceb01dcc4
