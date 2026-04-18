@@ -85,8 +85,13 @@ def predict(
         if empty_rows[idx]:
             is_anomaly = True
             conf = max(conf, 0.9)
-        elif not is_anomaly and conf > 0.75:
+        # Lower threshold for ML anomaly detection - be more sensitive
+        elif not is_anomaly and conf > 0.60:
             is_anomaly = True
+        # Also consider decision score directly
+        elif not is_anomaly and score < -0.05:
+            is_anomaly = True
+            conf = max(conf, 0.7)
         results.append({
             'prediction': 'Anomaly' if is_anomaly else 'Normal',
             'confidence': round(conf, 2),

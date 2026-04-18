@@ -24,11 +24,19 @@ LOGIN_FAILURE_PATTERNS = [
     re.compile(r'login\s+failed', re.I),
     re.compile(r'invalid\s+credentials', re.I),
     re.compile(r'access\s+denied', re.I),
+    re.compile(r'failed\s+login', re.I),
+    re.compile(r'login\s+failure', re.I),
+    re.compile(r'authentication\s+error', re.I),
+    re.compile(r'bad\s+credentials', re.I),
+    re.compile(r'wrong\s+password', re.I),
+    re.compile(r'failed\s+authentication', re.I),
 ]
 BRUTE_FORCE_PATTERNS = [
     re.compile(r'brute\s+force', re.I),
     re.compile(r'multiple\s+login\s+attempts', re.I),
     re.compile(r'too\s+many\s+failed\s+attempts', re.I),
+    re.compile(r'brute\s+force\s+attack', re.I),
+    re.compile(r'suspicious\s+login\s+activity', re.I),
 ]
 DB_FAILURE_PATTERNS = [
     re.compile(r'database\s+connection\s+(?:failed|refused|timeout)', re.I),
@@ -37,6 +45,8 @@ DB_FAILURE_PATTERNS = [
     re.compile(r'sql\s+(?:error|exception)', re.I),
     re.compile(r'connection\s+refused', re.I),
     re.compile(r'database\s+node\s+unreachable', re.I),
+    re.compile(r'database\s+timeout', re.I),
+    re.compile(r'db\s+connection\s+(?:failed|timeout|lost)', re.I),
 ]
 UNAUTHORIZED_PATTERNS = [
     re.compile(r'unauthorized\s+access', re.I),
@@ -45,6 +55,21 @@ UNAUTHORIZED_PATTERNS = [
     re.compile(r'access\s+denied\s+for\s+resource', re.I),
     re.compile(r'forbidden', re.I),
     re.compile(r'403\s+forbidden', re.I),
+    re.compile(r'unauthorized\s+attempt', re.I),
+]
+CRITICAL_ERROR_PATTERNS = [
+    re.compile(r'critical\s+', re.I),
+    re.compile(r'fatal\s+', re.I),
+    re.compile(r'service\s+(?:crashed|failed|error)', re.I),
+    re.compile(r'system\s+(?:crashed|failed|error)', re.I),
+    re.compile(r'application\s+(?:crashed|failed|error)', re.I),
+    re.compile(r'out\s+of\s+memory', re.I),
+    re.compile(r'stack\s+overflow', re.I),
+    re.compile(r'memory\s+(?:corruption|leak)', re.I),
+    re.compile(r'error.*crashed', re.I),
+    re.compile(r'error.*failed', re.I),
+    re.compile(r'.*crashed.*error', re.I),
+    re.compile(r'.*crashed', re.I),
 ]
 SUSPICIOUS_IP_PREFIXES = ('10.', '192.168.', '172.16.', '0.0.0.0')
 KNOWN_BAD_PATTERNS = [
@@ -75,6 +100,15 @@ def check_repeated_login_failures(
         return RuleResult(True, 'HIGH', 'Anomaly', 'repeated_login_failures',
                           f'Multiple login failures ({failures}) detected')
     return RuleResult(False, 'LOW', 'Normal', 'repeated_login_failures', '')
+
+
+def check_login_failure(message: str) -> RuleResult:
+    """Detect login failure patterns."""
+    text = (message or '').lower()
+    if _match_any(text, LOGIN_FAILURE_PATTERNS):
+        return RuleResult(True, 'HIGH', 'Anomaly', 'login_failure',
+                          'Login failure detected')
+    return RuleResult(False, 'LOW', 'Normal', 'login_failure', '')
 
 
 def check_brute_force(message: str) -> RuleResult:
@@ -117,6 +151,15 @@ def check_unusual_request_frequency(
     return RuleResult(False, 'LOW', 'Normal', 'unusual_request_frequency', '')
 
 
+def check_critical_errors(message: str) -> RuleResult:
+    """Detect critical error patterns."""
+    text = (message or '').lower()
+    if _match_any(text, CRITICAL_ERROR_PATTERNS):
+        return RuleResult(True, 'HIGH', 'Anomaly', 'critical_error',
+                          'Critical error detected')
+    return RuleResult(False, 'LOW', 'Normal', 'critical_error', '')
+
+
 def check_suspicious_ip(log: dict) -> RuleResult:
     """Flag suspicious IP patterns (internal IPs in auth logs, etc.)."""
     ip = log.get('ip_address') or ''
@@ -140,6 +183,8 @@ def run_rules_single(log: dict, all_logs: List[dict], idx: int) -> RuleResult | 
     """
     message = log.get('message') or log.get('raw') or ''
     checks = [
+        check_critical_errors(message),
+        check_login_failure(message),
         check_brute_force(message),
         check_db_connection_failure(message),
         check_unauthorized_access(message),

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-31T16:04:46.164360+00:00",
+  "generated_at_utc": "2026-04-18T12:34:04.853072+00:00",
   "dataset": {
     "files": [
       "comprehensive_logs_50k.txt",
@@ -10,8 +10,8 @@
     "train_records": 38811,
     "test_records": 9703,
     "silver_label_distribution": {
-      "normal": 47797,
-      "anomaly": 717
+      "normal": 47534,
+      "anomaly": 980
     }
   },
   "model": {
@@ -36,10 +36,10 @@
     "used_labeling": "silver",
     "silver_metrics": {
       "ml_only": {
-        "accuracy": 0.8853,
-        "precision": 0.0051,
-        "recall": 0.035,
-        "f1_score": 0.0089,
+        "accuracy": 0.8765,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
         "confusion_matrix": {
           "labels": [
             "normal",
@@ -47,30 +47,30 @@
           ],
           "matrix": [
             [
-              8585,
-              975
+              8505,
+              1002
             ],
             [
-              138,
-              5
+              196,
+              0
             ]
           ],
-          "tn": 8585,
-          "fp": 975,
-          "fn": 138,
-          "tp": 5
+          "tn": 8505,
+          "fp": 1002,
+          "fn": 196,
+          "tp": 0
         },
         "support": {
-          "normal": 9560,
-          "anomaly": 143,
+          "normal": 9507,
+          "anomaly": 196,
           "total": 9703
         }
       },
       "hybrid_ml_rules": {
-        "accuracy": 0.8933,
-        "precision": 0.0784,
-        "recall": 0.5804,
-        "f1_score": 0.1382,
+        "accuracy": 0.8898,
+        "precision": 0.1141,
+        "recall": 0.6582,
+        "f1_score": 0.1944,
         "confusion_matrix": {
           "labels": [
             "normal",
@@ -78,32 +78,32 @@
           ],
           "matrix": [
             [
-              8585,
-              975
+              8505,
+              1002
             ],
             [
-              60,
-              83
+              67,
+              129
             ]
           ],
-          "tn": 8585,
-          "fp": 975,
-          "fn": 60,
-          "tp": 83
+          "tn": 8505,
+          "fp": 1002,
+          "fn": 67,
+          "tp": 129
         },
         "support": {
-          "normal": 9560,
-          "anomaly": 143,
+          "normal": 9507,
+          "anomaly": 196,
           "total": 9703
         }
       }
     },
     "gold_metrics": null,
     "ml_only": {
-      "accuracy": 0.8853,
-      "precision": 0.0051,
-      "recall": 0.035,
-      "f1_score": 0.0089,
+      "accuracy": 0.8765,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
       "confusion_matrix": {
         "labels": [
           "normal",
@@ -111,30 +111,30 @@
         ],
         "matrix": [
           [
-            8585,
-            975
+            8505,
+            1002
           ],
           [
-            138,
-            5
+            196,
+            0
           ]
         ],
-        "tn": 8585,
-        "fp": 975,
-        "fn": 138,
-        "tp": 5
+        "tn": 8505,
+        "fp": 1002,
+        "fn": 196,
+        "tp": 0
       },
       "support": {
-        "normal": 9560,
-        "anomaly": 143,
+        "normal": 9507,
+        "anomaly": 196,
         "total": 9703
       }
     },
     "hybrid_ml_rules": {
-      "accuracy": 0.8933,
-      "precision": 0.0784,
-      "recall": 0.5804,
-      "f1_score": 0.1382,
+      "accuracy": 0.8898,
+      "precision": 0.1141,
+      "recall": 0.6582,
+      "f1_score": 0.1944,
       "confusion_matrix": {
         "labels": [
           "normal",
@@ -142,22 +142,22 @@
         ],
         "matrix": [
           [
-            8585,
-            975
+            8505,
+            1002
           ],
           [
-            60,
-            83
+            67,
+            129
           ]
         ],
-        "tn": 8585,
-        "fp": 975,
-        "fn": 60,
-        "tp": 83
+        "tn": 8505,
+        "fp": 1002,
+        "fn": 67,
+        "tp": 129
       },
       "support": {
-        "normal": 9560,
-        "anomaly": 143,
+        "normal": 9507,
+        "anomaly": 196,
         "total": 9703
       }
     }
