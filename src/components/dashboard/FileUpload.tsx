@@ -30,6 +30,7 @@ export function FileUpload({ onPipelineComplete, onClearSystem, onBackendIngest 
   const [error, setError] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string>('');
   const [pipelineStage, setPipelineStage] = useState(0);
+  const [backendIngested, setBackendIngested] = useState<boolean | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // history helpers
@@ -61,6 +62,7 @@ export function FileUpload({ onPipelineComplete, onClearSystem, onBackendIngest 
   const processFile = useCallback(async (file: File) => {
     setError(null);
     setResult(null);
+    setBackendIngested(null);
     setFileName(file.name);
 
     // Validate extension
@@ -100,9 +102,10 @@ export function FileUpload({ onPipelineComplete, onClearSystem, onBackendIngest 
       if (onBackendIngest) {
         try {
           await onBackendIngest(content);
-          // View switches to ML Backend; user sees real ML + rule detection
+          setBackendIngested(true);
         } catch {
           // Client pipeline already ran; backend ingest failed (e.g. server down)
+          setBackendIngested(false);
         }
       }
 
@@ -281,8 +284,10 @@ export function FileUpload({ onPipelineComplete, onClearSystem, onBackendIngest 
             <div className="flex-1">
               <p className="text-sm font-medium text-foreground">Pipeline Complete — {fileName}</p>
               <p className="text-xs text-muted-foreground mt-0.5">
-                {onBackendIngest
+                {backendIngested
                   ? 'ML backend analysis complete. View Overview, Logs, and Anomalies for results.'
+                  : onBackendIngest
+                  ? 'File parsed successfully. Showing uploaded results; backend sync unavailable for this run.'
                   : 'All stages executed successfully. Data loaded into dashboard.'}
               </p>
             </div>
@@ -304,20 +309,6 @@ export function FileUpload({ onPipelineComplete, onClearSystem, onBackendIngest 
             >
               Clear System Detections
             </button>
-          </div>
-
-          <div className="grid grid-cols-4 gap-3">
-            {[
-              { label: 'Lines Processed', value: result.stats.totalLines, color: 'text-primary' },
-              { label: 'Parsed Entries', value: result.stats.parsedLogs, color: 'text-foreground' },
-              { label: 'Errors Found', value: result.stats.errorCount, color: 'text-destructive' },
-              { label: 'Anomalies', value: result.stats.anomalyCount, color: 'text-accent' },
-            ].map(stat => (
-              <div key={stat.label} className="glass-card rounded-lg border border-border p-4 text-center">
-                <p className={cn('text-xl font-bold font-mono', stat.color)}>{stat.value}</p>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mt-1">{stat.label}</p>
-              </div>
-            ))}
           </div>
 
           <div className="glass-card rounded-lg border border-border p-4">

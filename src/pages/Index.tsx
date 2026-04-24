@@ -122,9 +122,12 @@ const Index = () => {
   }, []);
 
   const logs = dataSource === 'backend' ? backendLogs : uploadedResult?.logs ?? [];
-  const timeSeriesData =
-    uploadedResult?.anomalies ?? (dataSource === 'backend' ? backendAnomalies : []);
-  const featureVectors = uploadedResult?.features ?? [];
+  const timeSeriesData = dataSource === 'backend'
+    ? backendAnomalies
+    : uploadedResult?.anomalies ?? [];
+  const featureVectors = dataSource === 'backend'
+    ? []
+    : uploadedResult?.features ?? [];
   const apiStats = dataSource === 'backend' ? backendStats : null;
 
   const tabTitles: Record<string, string> = {
