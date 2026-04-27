@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-24T08:51:08.038277+00:00",
+  "generated_at_utc": "2026-04-27T14:29:06.757978+00:00",
   "dataset": {
     "files": [
       "comprehensive_logs_50k.txt",
@@ -17,8 +17,8 @@
   "model": {
     "algorithm": "IsolationForest",
     "parameters": {
-      "n_estimators": 100,
-      "contamination": 0.1,
+      "n_estimators": 150,
+      "contamination": 0.15,
       "max_samples": "auto",
       "random_state": 42
     },
@@ -36,10 +36,10 @@
     "used_labeling": "silver",
     "silver_metrics": {
       "ml_only": {
-        "accuracy": 0.8765,
-        "precision": 0.0,
-        "recall": 0.0,
-        "f1_score": 0.0,
+        "accuracy": 0.834,
+        "precision": 0.0801,
+        "recall": 0.6888,
+        "f1_score": 0.1435,
         "confusion_matrix": {
           "labels": [
             "normal",
@@ -47,18 +47,18 @@
           ],
           "matrix": [
             [
-              8505,
-              1002
+              7957,
+              1550
             ],
             [
-              196,
-              0
+              61,
+              135
             ]
           ],
-          "tn": 8505,
-          "fp": 1002,
-          "fn": 196,
-          "tp": 0
+          "tn": 7957,
+          "fp": 1550,
+          "fn": 61,
+          "tp": 135
         },
         "support": {
           "normal": 9507,
@@ -67,10 +67,10 @@
         }
       },
       "hybrid_ml_rules": {
-        "accuracy": 0.8898,
-        "precision": 0.1141,
-        "recall": 0.6582,
-        "f1_score": 0.1944,
+        "accuracy": 0.8376,
+        "precision": 0.0988,
+        "recall": 0.8673,
+        "f1_score": 0.1775,
         "confusion_matrix": {
           "labels": [
             "normal",
@@ -78,18 +78,18 @@
           ],
           "matrix": [
             [
-              8505,
-              1002
+              7957,
+              1550
             ],
             [
-              67,
-              129
+              26,
+              170
             ]
           ],
-          "tn": 8505,
-          "fp": 1002,
-          "fn": 67,
-          "tp": 129
+          "tn": 7957,
+          "fp": 1550,
+          "fn": 26,
+          "tp": 170
         },
         "support": {
           "normal": 9507,
@@ -100,10 +100,10 @@
     },
     "gold_metrics": null,
     "ml_only": {
-      "accuracy": 0.8765,
-      "precision": 0.0,
-      "recall": 0.0,
-      "f1_score": 0.0,
+      "accuracy": 0.834,
+      "precision": 0.0801,
+      "recall": 0.6888,
+      "f1_score": 0.1435,
       "confusion_matrix": {
         "labels": [
           "normal",
@@ -111,18 +111,18 @@
         ],
         "matrix": [
           [
-            8505,
-            1002
+            7957,
+            1550
           ],
           [
-            196,
-            0
+            61,
+            135
           ]
         ],
-        "tn": 8505,
-        "fp": 1002,
-        "fn": 196,
-        "tp": 0
+        "tn": 7957,
+        "fp": 1550,
+        "fn": 61,
+        "tp": 135
       },
       "support": {
         "normal": 9507,
@@ -131,10 +131,10 @@
       }
     },
     "hybrid_ml_rules": {
-      "accuracy": 0.8898,
-      "precision": 0.1141,
-      "recall": 0.6582,
-      "f1_score": 0.1944,
+      "accuracy": 0.8376,
+      "precision": 0.0988,
+      "recall": 0.8673,
+      "f1_score": 0.1775,
       "confusion_matrix": {
         "labels": [
           "normal",
@@ -142,18 +142,18 @@
         ],
         "matrix": [
           [
-            8505,
-            1002
+            7957,
+            1550
           ],
           [
-            67,
-            129
+            26,
+            170
           ]
         ],
-        "tn": 8505,
-        "fp": 1002,
-        "fn": 67,
-        "tp": 129
+        "tn": 7957,
+        "fp": 1550,
+        "fn": 26,
+        "tp": 170
       },
       "support": {
         "normal": 9507,

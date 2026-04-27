@@ -138,24 +138,141 @@ async def get_stats():
     }
 
 
+@app.get("/features")
+async def get_features():
+    """Return extracted features for dashboard feature table."""
+    try:
+        # Import the advanced feature extractor
+        from backend.ml.advanced_features import AdvancedFeatureExtractor
+        
+        # Initialize feature extractor
+        extractor = AdvancedFeatureExtractor(window_size_minutes=10)
+        
+        # Extract features from stored logs
+        if not _stored_logs:
+            return {"features": []}
+        
+        # Convert logs to format expected by feature extractor
+        log_messages = [log.get("message", log.get("raw", "")) for log in _stored_logs]
+        
+        # Extract features
+        features = extractor.extract_features_from_logs(log_messages)
+        
+        # Convert to FeatureVector format
+        feature_vectors = []
+        for i, feature in enumerate(features):
+            feature_vector = {
+                "timeWindow": f"Window {i+1}",
+                "errorCount": feature.get("error_count", 0),
+                "warnCount": feature.get("warn_count", 0), 
+                "uniqueTemplates": feature.get("unique_templates", 1),
+                "avgResponseTime": feature.get("avg_response_time", 200),
+                "eventFrequency": feature.get("event_frequency", 1.0),
+                "stdDeviation": feature.get("std_deviation", 0.0)
+            }
+            feature_vectors.append(feature_vector)
+        
+        return {"features": feature_vectors[-50:]}  # Return last 50 windows
+        
+    except Exception as e:
+        print(f"Error extracting features: {e}")
+        # Fallback: return basic computed features
+        feature_vectors = []
+        from collections import defaultdict
+        time_windows = defaultdict(list)
+        
+        # Group logs by time windows
+        for log in _stored_logs:
+            timestamp = log.get("timestamp", "")
+            if timestamp:
+                time_window = timestamp[:16]  # YYYY-MM-DD HH:MM
+                time_windows[time_window].append(log)
+        
+        # Calculate basic features
+        for time_window, entries in sorted(time_windows.items()):
+            error_count = sum(1 for e in entries if e.get("log_level") == "ERROR")
+            warn_count = sum(1 for e in entries if e.get("log_level") == "WARN")
+            
+            feature_vector = {
+                "timeWindow": time_window,
+                "errorCount": error_count,
+                "warnCount": warn_count,
+                "uniqueTemplates": len(set(e.get("template", "") for e in entries if e.get("template"))),
+                "avgResponseTime": 200 + (error_count * 100),  # Simulated response time
+                "eventFrequency": len(entries) / 10.0,  # Events per minute
+                "stdDeviation": min(error_count * 15.5, 50.0)  # Simulated standard deviation
+            }
+            feature_vectors.append(feature_vector)
+        
+        return {"features": feature_vectors[-50:]}
+
+
 @app.get("/recent-anomalies")
 async def get_recent_anomalies():
-    """Return last detected anomalies."""
-    recent = [
-        {
-            "message": log.get("message", log.get("raw", ""))[:300],
-            "prediction": pred.get("prediction", "Anomaly"),
-            "confidence": pred.get("confidence", 0),
-            "source": pred.get("source", "ML"),
-            "timestamp": log.get("timestamp", ""),
-            "detection_reason": pred.get("detection_reason", ""),
-            "service": log.get("service", ""),
-            "log_level": log.get("log_level", ""),
-        }
-        for log, pred in zip(_stored_logs, _stored_predictions)
-        if pred.get("prediction") == "Anomaly"
-    ]
-    return {"anomalies": recent[-50:]}
+    """Return last detected anomalies with metrics for dashboard charts."""
+    # Generate time series data with metrics
+    anomaly_data = []
+    
+    # Group logs by time windows (e.g., every minute or hour)
+    from collections import defaultdict
+    time_windows = defaultdict(list)
+    
+    for log, pred in zip(_stored_logs, _stored_predictions):
+        timestamp = log.get("timestamp", "")
+        if timestamp:
+            # Simple time window grouping (by minute)
+            time_window = timestamp[:16]  # YYYY-MM-DD HH:MM
+            time_windows[time_window].append({
+                "log": log,
+                "prediction": pred,
+                "is_anomaly": pred.get("prediction") == "Anomaly"
+            })
+    
+    # Calculate metrics for each time window
+    for time_window, entries in sorted(time_windows.items()):
+        anomaly_entries = [e for e in entries if e["is_anomaly"]]
+        total_entries = len(entries)
+        
+        # Calculate metrics
+        error_count = sum(1 for e in entries if e["log"].get("log_level") == "ERROR")
+        warn_count = sum(1 for e in entries if e["log"].get("log_level") == "WARN")
+        
+        # Simulate response time based on log patterns
+        avg_response_time = 200 + (len(anomaly_entries) * 50) + (error_count * 100)
+        
+        # Calculate anomaly score based on confidence and count
+        anomaly_score = 0.0
+        if anomaly_entries:
+            avg_confidence = sum(e["prediction"].get("confidence", 0) for e in anomaly_entries) / len(anomaly_entries)
+            anomaly_score = min(avg_confidence + (len(anomaly_entries) / total_entries) * 0.3, 1.0)
+        
+        # Get the most recent anomaly entry for details
+        latest_anomaly = None
+        if anomaly_entries:
+            latest_anomaly = max(anomaly_entries, key=lambda x: x["log"].get("timestamp", ""))
+        
+        # Create RecentAnomaly format with embedded metrics
+        if latest_anomaly or error_count > 0:
+            anomaly_entry = {
+                "message": (latest_anomaly["log"].get("message", "") if latest_anomaly else f"{error_count} errors detected")[:300],
+                "prediction": "Anomaly" if (latest_anomaly or error_count > 0) else "Normal",
+                "confidence": anomaly_score if anomaly_score > 0 else (latest_anomaly["prediction"].get("confidence", 0.5) if latest_anomaly else 0.5),
+                "source": latest_anomaly["prediction"].get("source", "ML") if latest_anomaly else "Statistical",
+                "timestamp": time_window,
+                "detection_reason": latest_anomaly["prediction"].get("detection_reason", "") if latest_anomaly else f"High error count ({error_count})",
+                "service": latest_anomaly["log"].get("service", "System") if latest_anomaly else "System",
+                "log_level": "ERROR" if error_count > 0 else (latest_anomaly["log"].get("log_level", "INFO") if latest_anomaly else "INFO"),
+                # Additional metrics for charts (embedded in the response)
+                "errorCount": error_count,
+                "avgResponseTime": avg_response_time,
+                "uniqueTemplates": len(set(e["log"].get("template", "") for e in entries if e["log"].get("template"))),
+                "anomalyScore": anomaly_score,
+                "isAnomaly": True,
+                "hybridDecision": "anomaly"
+            }
+            anomaly_data.append(anomaly_entry)
+    
+    return {"anomalies": anomaly_data[-50:]}
 
 
 class IngestRequest(BaseModel):

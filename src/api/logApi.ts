@@ -3,6 +3,8 @@
  * Uses fetch to communicate with FastAPI backend.
  */
 
+import { FeatureVector } from '@/types/dataTypes';
+
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export interface ApiLogEntry {
@@ -75,6 +77,11 @@ export async function fetchStats(): Promise<StatsResponse> {
 
 export async function fetchRecentAnomalies(): Promise<{ anomalies: RecentAnomaly[] }> {
   const res = await fetch(`${API_BASE}/recent-anomalies`);
+  return handleResponse(res);
+}
+
+export async function fetchFeatures(): Promise<{ features: FeatureVector[] }> {
+  const res = await fetch(`${API_BASE}/features`);
   return handleResponse(res);
 }
 

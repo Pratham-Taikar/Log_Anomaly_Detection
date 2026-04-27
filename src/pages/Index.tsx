@@ -11,13 +11,14 @@ import {
   fetchLogs,
   fetchStats,
   fetchRecentAnomalies,
+  fetchFeatures,
   ingestLogs,
   checkBackend,
   type ApiLogEntry,
   type StatsResponse,
   type RecentAnomaly,
 } from '@/api/logApi';
-import { LogEntry, AnomalyPoint } from '@/types/dataTypes';
+import { LogEntry, AnomalyPoint, FeatureVector } from '@/types/dataTypes';
 import { Clock, Database, Cpu } from 'lucide-react';
 
 function apiLogToLogEntry(api: ApiLogEntry, i: number): LogEntry {
@@ -43,13 +44,19 @@ function apiAnomalyToPoint(a: RecentAnomaly, i: number): AnomalyPoint {
   return {
     time: a.timestamp ?? `#${i + 1}`,
     anomalyScore: a.confidence ?? 0,
-    isAnomaly: true,
-    hybridDecision: 'anomaly',
+    isAnomaly: a.prediction === 'Anomaly',
+    hybridDecision: a.prediction === 'Anomaly' ? 'anomaly' : 'normal',
     message: a.message,
     source: a.source,
     detection_reason: a.detection_reason,
     service: a.service,
     log_level: a.log_level,
+    // Extract embedded metrics for charts
+    errorCount: (a as any).errorCount ?? 0,
+    avgResponseTime: (a as any).avgResponseTime ?? 200,
+    uniqueTemplates: (a as any).uniqueTemplates ?? 1,
+    isolationForest: a.prediction === 'Anomaly' ? 'anomaly' : 'normal',
+    statistical: (a as any).errorCount > 5 ? 'anomaly' : 'normal',
   };
 }
 
@@ -61,24 +68,28 @@ const Index = () => {
   const [backendLogs, setBackendLogs] = useState<LogEntry[]>([]);
   const [backendStats, setBackendStats] = useState<StatsResponse | null>(null);
   const [backendAnomalies, setBackendAnomalies] = useState<AnomalyPoint[]>([]);
+  const [backendFeatures, setBackendFeatures] = useState<FeatureVector[]>([]);
   const [backendLoading, setBackendLoading] = useState(false);
   const [liveRefresh, setLiveRefresh] = useState(false);
 
   const refetchBackend = useCallback(async () => {
     setBackendLoading(true);
     try {
-      const [logsRes, statsRes, anomaliesRes] = await Promise.all([
+      const [logsRes, statsRes, anomaliesRes, featuresRes] = await Promise.all([
         fetchLogs(),
         fetchStats(),
         fetchRecentAnomalies(),
+        fetchFeatures(),
       ]);
       setBackendLogs((logsRes.logs ?? []).map(apiLogToLogEntry));
       setBackendStats(statsRes);
       setBackendAnomalies((anomaliesRes.anomalies ?? []).map(apiAnomalyToPoint));
+      setBackendFeatures(featuresRes.features ?? []);
     } catch {
       setBackendLogs([]);
       setBackendStats(null);
       setBackendAnomalies([]);
+      setBackendFeatures([]);
     } finally {
       setBackendLoading(false);
     }
@@ -126,7 +137,7 @@ const Index = () => {
     ? backendAnomalies
     : uploadedResult?.anomalies ?? [];
   const featureVectors = dataSource === 'backend'
-    ? []
+    ? backendFeatures
     : uploadedResult?.features ?? [];
   const apiStats = dataSource === 'backend' ? backendStats : null;
 
