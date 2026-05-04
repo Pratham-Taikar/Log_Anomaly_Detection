@@ -4,7 +4,6 @@
 
 > Detect unusual patterns in massive log datasets with 7.3% baseline anomaly detection rate | 1,210 TF-IDF features | Hybrid ML + Rules approach
 
-<<<<<<< HEAD
 ## 📊 Project Metrics
 
 | Category     | Metric                      | Value                    |
@@ -16,7 +15,7 @@
 | **Frontend** | React Components            | 57 (48 UI + 9 Dashboard) |
 |              | JavaScript/TypeScript Files | 85                       |
 | **Backend**  | Python Modules              | 12                       |
-|              | API Endpoints               | 5                        |
+|              | API Endpoints               | 6                        |
 | **ML Model** | Training Data Size          | 48,514 messages             |
 |              | TF-IDF Vocabulary           | 5,000 features              |
 |              | Isolation Forest Trees      | 100 estimators             |
@@ -24,9 +23,6 @@
 | **Testing**  | Test Dataset                | 9,703 log lines            |
 |              | Anomalies Detected          | 717 (1.5%)                 |
 |              | Parser Formats Supported    | 6+                         |
-
-=======
->>>>>>> 64124bd23f163bc359d47a9774f2765ceb01dcc4
 ## 🎯 Overview
 
 SEAPM CP is an enterprise-grade anomaly detection system that analyzes application and system logs in real-time. It combines:
@@ -99,86 +95,306 @@ SEAPM CP is an enterprise-grade anomaly detection system that analyzes applicati
 └─────────────────────────────────────────────────────────┘
 ```
 
-## 🛠️ Technology Stack
+## � Features
+
+### Core Capabilities
+- **Real-time Log Analysis**: Process logs in real-time with sub-second latency
+- **Multi-format Support**: Automatically detects and parses 6+ log formats (Apache, Nginx, Syslog, JSON, CSV, Custom)
+- **Hybrid Detection**: Combines machine learning with rule-based detection for higher accuracy
+- **Scalable Architecture**: Designed for enterprise-scale log volumes (tested on 50k+ messages)
+- **Interactive Dashboard**: Modern React-based UI with real-time charts and visualizations
+
+### Machine Learning
+- **Isolation Forest Algorithm**: Unsupervised anomaly detection with 100 estimators
+- **TF-IDF Vectorization**: 5,000 feature vocabulary for text pattern recognition
+- **Confidence Scoring**: Probabilistic anomaly scores for decision making
+- **Auto-training**: Automatic model training on startup if models are missing
+
+### Rule Engine
+- **6 Detection Patterns**: Covers common security and performance anomalies
+- **Temporal Analysis**: Time-window based detection for frequency-based attacks
+- **Signature Matching**: Known attack pattern recognition
+- **Configurable Thresholds**: Adjustable sensitivity for different environments
+
+### User Interface
+- **File Upload**: Drag-and-drop support for log files (CSV, JSON, TXT, LOG)
+- **Real-time Charts**: Anomaly trends, feature importance, and performance metrics
+- **Log Viewer**: Filtered log display with anomaly highlighting
+- **Pipeline Visualization**: Interactive display of the ML processing pipeline
+
+## 📦 Installation
+
+### Prerequisites
+- **Python 3.8+** with pip
+- **Node.js 18+** with npm
+- **Git** for cloning the repository
+
+### Backend Setup
+```bash
+# Navigate to backend directory
+cd backend
+
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Train the ML model (optional - auto-trains on first API call)
+python train.py
+```
+
+### Frontend Setup
+```bash
+# Install Node.js dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### Running the Application
+```bash
+# Terminal 1: Start backend API server
+cd backend
+uvicorn api.server:app --reload --host 0.0.0.0 --port 8000
+
+# Terminal 2: Start frontend development server
+npm run dev
+```
+
+The application will be available at:
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:8000
+- **API Documentation**: http://localhost:8000/docs (FastAPI Swagger UI)
+
+## 📖 Usage
+
+### Basic Workflow
+1. **Upload Logs**: Use the file upload component to ingest log files
+2. **Real-time Analysis**: View anomalies as they are detected in real-time
+3. **Review Results**: Examine detected anomalies with confidence scores and reasons
+4. **Export Data**: Download processed logs with anomaly classifications
+
+### API Usage
+```python
+import requests
+
+# Analyze single log message
+response = requests.post("http://localhost:8000/analyze-log",
+    json={"message": "2023-12-01 10:00:00 ERROR Database connection failed"})
+print(response.json())
+
+# Get statistics
+stats = requests.get("http://localhost:8000/stats").json()
+print(f"Anomalies detected: {stats['anomaly_count']}")
+```
+
+## 🔌 API Endpoints
+
+The SEAPM CP API provides RESTful endpoints for log analysis and data retrieval.
+
+### Core Endpoints
+
+#### `POST /analyze-log`
+Analyze a single log message for anomalies.
+
+**Request Body:**
+```json
+{
+  "message": "2023-12-01 10:00:00 ERROR Database connection failed"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "2023-12-01 10:00:00 ERROR Database connection failed",
+  "prediction": "Anomaly",
+  "confidence": 0.87,
+  "source": "Hybrid (ML + Rule)"
+}
+```
+
+#### `POST /ingest`
+Process and analyze a batch of logs from uploaded content.
+
+**Request Body:**
+```json
+{
+  "content": "2023-12-01 10:00:00 INFO User login successful\n2023-12-01 10:00:01 ERROR Database connection failed"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "OK",
+  "count": 2,
+  "anomalies": 1
+}
+```
+
+#### `GET /logs`
+Retrieve all processed logs with anomaly predictions.
+
+**Response:**
+```json
+{
+  "logs": [
+    {
+      "message": "Database connection failed",
+      "prediction": "Anomaly",
+      "confidence": 0.87,
+      "source": "Hybrid",
+      "detection_reason": "Database connection failure pattern",
+      "timestamp": "2023-12-01T10:00:01Z",
+      "log_level": "ERROR"
+    }
+  ]
+}
+```
+
+#### `GET /stats`
+Get dashboard statistics and metrics.
+
+**Response:**
+```json
+{
+  "total_logs": 150,
+  "anomaly_count": 12,
+  "normal_count": 138,
+  "anomaly_percentage": 8.0
+}
+```
+
+#### `GET /recent-anomalies`
+Retrieve recent anomalies with detailed metrics for charting.
+
+**Response:**
+```json
+{
+  "anomalies": [
+    {
+      "message": "Multiple database connection failures detected",
+      "prediction": "Anomaly",
+      "confidence": 0.92,
+      "source": "Hybrid",
+      "timestamp": "2023-12-01T10:00:00Z",
+      "detection_reason": "High error count (5)",
+      "service": "Database",
+      "log_level": "ERROR",
+      "errorCount": 5,
+      "avgResponseTime": 750,
+      "anomalyScore": 0.85
+    }
+  ]
+}
+```
+
+#### `GET /features`
+Get extracted features for machine learning analysis.
+
+**Response:**
+```json
+{
+  "features": [
+    {
+      "timeWindow": "2023-12-01 10:00",
+      "errorCount": 3,
+      "warnCount": 1,
+      "uniqueTemplates": 5,
+      "avgResponseTime": 250,
+      "eventFrequency": 2.1,
+      "stdDeviation": 15.5
+    }
+  ]
+}
+```
+
+## 🛠️ Technologies
 
 ### Frontend
-
-| Technology    | Purpose                 | Version |
-| ------------- | ----------------------- | ------- |
-| React         | UI Framework            | 18+     |
-| TypeScript    | Type Safety             | 5.0+    |
-| Vite          | Build Tool & Dev Server | 4.0+    |
-| Tailwind CSS  | Styling                 | 3.0+    |
-| shadcn/ui     | Component Library       | Latest  |
-| Framer Motion | Animations              | 10.0+   |
+- **React 18** - Modern UI framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **shadcn/ui** - High-quality UI components
+- **Recharts** - Data visualization library
+- **React Router** - Client-side routing
+- **React Query** - Data fetching and caching
 
 ### Backend
+- **FastAPI** - Modern Python web framework
+- **Uvicorn** - ASGI server
+- **scikit-learn** - Machine learning library
+- **Joblib** - Model serialization
+- **Pydantic** - Data validation
 
-| Technology   | Purpose             | Version |
-| ------------ | ------------------- | ------- |
-| Python       | Runtime             | 3.10+   |
-| FastAPI      | API Framework       | 0.100+  |
-| scikit-learn | ML Library          | 1.6.1   |
-| joblib       | Model Serialization | 1.3+    |
-| Pydantic     | Data Validation     | 2.0+    |
+### Machine Learning
+- **Isolation Forest** - Unsupervised anomaly detection
+- **TF-IDF Vectorizer** - Text feature extraction
+- **Custom Rule Engine** - Signature-based detection
 
-### ML Components
-
-| Component           | Algorithm         | Configuration                   |
-| ------------------- | ----------------- | ------------------------------- |
-| Anomaly Detector    | Isolation Forest  | 100 trees, 10% contamination    |
-| Vectorizer          | TF-IDF            | Max 5,000 features, (1,2)-grams |
-| Feature Engineering | TF-IDF            | Min freq 1, Max freq 95%        |
-| Vocabulary          | English Stopwords | 1,210 unique features           |
-
-## 🚀 Features
-
-### 1. **Multi-Format Log Parsing**
-
-- ✅ JSON logs
-- ✅ CSV formatted logs
-- ✅ Apache/Nginx access logs
-- ✅ Application-specific logs
-- ✅ Plain text logs
-- ✅ Auto-detection of format
-
-Extracted fields: `timestamp`, `service`, `log_level`, `message`, `ip_address`, `user_id`, `status_code`
-
-### 2. **Intelligent Log Preprocessing**
-
-- Automatic message cleaning (lowercase, special char removal)
-- Timestamp extraction and normalization
-- Stopword filtering (English)
-- Tokenization for feature extraction
-- Metadata preservation for forensics
-
-### 3. **Machine Learning Anomaly Detection**
-
-- **Algorithm**: Unsupervised Isolation Forest (100 trees)
-- **Features**: TF-IDF vectorization (1,210 features max)
-- **Confidence Scoring**: Sigmoid-scaled decision boundary
-- **Unknown Pattern Detection**: Flags messages with unseen vocabulary
-- **Inference Speed**: < 1ms per message
-
-### 4. **Rule-Based Detection Engine**
-
-6 specialized detection patterns:
-
-1. **Repeated Login Failures**: 3+ failures in 10-log sliding window
-2. **Brute Force Attacks**: 10+ consecutive failed login attempts
-3. **Database Issues**: Connection failures, timeout patterns
-4. **Unauthorized Access**: 401/403 HTTP status codes
-5. **Request Flooding**: 50+ requests in analysis window
-6. **Known Signatures**: Attack patterns & suspicious IPs
-
-### 5. **Hybrid Decision Logic**
+## 📁 Project Structure
 
 ```
-if (rule_triggered && ml_anomaly):
-    confidence = 0.95, source = "ML + Rules"
-elif rule_triggered:
-    confidence = 0.80, source = "Rules"
-elif ml_anomaly:
+SEAPM_CP/
+├── backend/                    # Python backend
+│   ├── api/
+│   │   └── server.py          # FastAPI server with endpoints
+│   ├── ml/                    # Machine learning components
+│   │   ├── anomaly_model.py   # Isolation Forest model
+│   │   ├── vectorizer.py      # TF-IDF vectorization
+│   │   └── advanced_features.py # Feature extraction
+│   ├── preprocessing/
+│   │   └── log_processor.py   # Text preprocessing
+│   ├── parser/
+│   │   └── log_parser.py      # Multi-format log parsing
+│   ├── rules/
+│   │   └── rule_engine.py     # Rule-based detection
+│   ├── models/                # Trained models storage
+│   └── requirements.txt       # Python dependencies
+├── src/                       # React frontend
+│   ├── components/
+│   │   ├── ui/                # Reusable UI components
+│   │   └── dashboard/         # Dashboard-specific components
+│   ├── pages/                 # Page components
+│   ├── api/                   # API client functions
+│   ├── lib/                   # Utilities and helpers
+│   └── types/                 # TypeScript type definitions
+├── public/                    # Static assets
+├── datasets/                  # Sample log datasets
+└── package.json               # Node.js dependencies
+```
+
+## 🤝 Contributing
+
+We welcome contributions to SEAPM CP! Please follow these steps:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+### Development Guidelines
+- Follow the existing code style and architecture patterns
+- Add tests for new features
+- Update documentation for API changes
+- Ensure all tests pass before submitting
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Support
+
+For questions, issues, or contributions:
+- **GitHub Issues**: Report bugs and request features
+- **Documentation**: Check the API docs at `/docs` when running locally
+- **Community**: Join discussions in GitHub Discussions
+
+---
+
+**Built with ❤️ for enterprise log analysis and security monitoring**
     confidence = ml_confidence, source = "ML"
 else:
     confidence = normal_score, source = "ML"
@@ -236,7 +452,7 @@ python -m api.server
 # 6. Start frontend (in another terminal)
 npm run dev
 
-# 7. Open http://localhost:5173
+# 7. Open http://localhost:8080
 ```
 
 ## 🧠 ML Model Documentation
@@ -553,18 +769,3 @@ The server includes an unsupervised Isolation Forest model that flags anomalous 
    - `message` (log line text)
    - `label` (use `1`/`0` or `anomaly`/`normal`)
 
-The rest of the README remains unchanged.
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
-=======
->>>>>>> 64124bd23f163bc359d47a9774f2765ceb01dcc4

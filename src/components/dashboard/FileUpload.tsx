@@ -311,28 +311,6 @@ export function FileUpload({ onPipelineComplete, onClearSystem, onBackendIngest 
             </button>
           </div>
 
-          <div className="glass-card rounded-lg border border-border p-4">
-            <h3 className="text-sm font-semibold text-foreground mb-3">Pipeline Summary</h3>
-            <div className="space-y-2 text-xs font-mono">
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Unique Templates Extracted</span>
-                <span className="text-foreground">{result.stats.uniqueTemplates}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Feature Windows</span>
-                <span className="text-foreground">{result.features.length}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">Warnings</span>
-                <span className="text-accent">{result.stats.warningCount}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-muted-foreground">High-Confidence Anomalies</span>
-                <span className="text-destructive">{result.stats.anomalyCount}</span>
-              </div>
-            </div>
-          </div>
-
           <p className="text-xs text-muted-foreground flex items-center gap-2">
             <ArrowRight className="w-3 h-3" />
             Navigate to <span className="text-primary font-medium">Overview</span>, <span className="text-primary font-medium">Logs</span>, <span className="text-primary font-medium">Anomalies</span>, or <span className="text-primary font-medium">Features</span> to explore results.

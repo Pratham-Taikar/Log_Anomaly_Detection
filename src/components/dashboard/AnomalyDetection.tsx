@@ -1,40 +1,58 @@
-import { useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { AnomalyPoint, LogEntry } from '@/types/dataTypes';
-import { cn } from '@/lib/utils';
-import { Shield, AlertTriangle } from 'lucide-react';
+import { useMemo } from "react";
+import { motion } from "framer-motion";
+import { AnomalyPoint, LogEntry } from "@/types/dataTypes";
+import { cn } from "@/lib/utils";
+import { Shield, AlertTriangle } from "lucide-react";
 
 interface AnomalyDetectionProps {
   data: AnomalyPoint[];
   logs?: LogEntry[];
-  dataSource?: 'uploaded' | 'backend';
+  dataSource?: "uploaded" | "backend";
 }
 
-const isBackendFormat = (d: AnomalyPoint) => d.message != null || d.source != null;
+const isBackendFormat = (d: AnomalyPoint) =>
+  d.message != null || d.source != null;
 
-export function AnomalyDetection({ data, logs = [], dataSource = 'uploaded' }: AnomalyDetectionProps) {
+export function AnomalyDetection({
+  data,
+  logs = [],
+  dataSource = "uploaded",
+}: AnomalyDetectionProps) {
   const anomalies = useMemo(
     () =>
-      data.filter(d =>
-        d.hybridDecision !== 'normal' || (isBackendFormat(d) && d.isAnomaly)
+      data.filter(
+        (d) =>
+          d.hybridDecision !== "normal" || (isBackendFormat(d) && d.isAnomaly),
       ),
-    [data]
+    [data],
   );
   const anomalyLogs = useMemo(
-    () => (logs.length > 0 && dataSource === 'backend' ? logs.filter(l => l.prediction === 'Anomaly') : []),
-    [logs, dataSource]
+    () =>
+      logs.length > 0 && dataSource === "backend"
+        ? logs.filter((l) => l.prediction === "Anomaly")
+        : [],
+    [logs, dataSource],
   );
-  const useBackendFormat = dataSource === 'backend' || (anomalies.length > 0 && isBackendFormat(anomalies[0]));
+  const useBackendFormat =
+    dataSource === "backend" ||
+    (anomalies.length > 0 && isBackendFormat(anomalies[0]));
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-lg border border-border bg-muted/20 p-4">
-        <h2 className="text-lg font-semibold text-foreground mb-1">Anomaly Detection Results</h2>
-        <p className="text-sm text-muted-foreground">
-          {useBackendFormat
-            ? 'Logs flagged as anomalous by ML (Isolation Forest) and/or rule-based patterns (brute force, DB failures, unauthorized access).'
-            : 'Time-window anomalies from client-side hybrid detection (ML + statistical thresholds).'}
-        </p>
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="rounded-lg border border-border bg-destructive/10 p-5 flex items-start gap-4">
+        <div className="bg-destructive/20 p-3 rounded-full">
+          <AlertTriangle className="w-6 h-6 text-destructive" />
+        </div>
+        <div>
+          <h2 className="text-base font-semibold text-foreground mb-1">
+            Threat Alerts Center
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            {useBackendFormat
+              ? "Security events automatically flagged by our AI and rule-based system (e.g., brute force attempts, unauthorized access)."
+              : "Potential security threats detected from your current data."}
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
@@ -43,15 +61,14 @@ export function AnomalyDetection({ data, logs = [], dataSource = 'uploaded' }: A
             <div className="w-8 h-8 rounded-lg bg-primary/15 flex items-center justify-center">
               <Shield className="w-4 h-4 text-primary" />
             </div>
-            <h3 className="text-sm font-semibold text-foreground">Isolation Forest</h3>
+            <h3 className="text-sm font-semibold text-foreground">
+              AI Threat Analysis
+            </h3>
           </div>
-          <p className="text-xs text-muted-foreground mb-3">Unsupervised ML model isolating rare events in feature space using random partitioning trees.</p>
-          <div className="space-y-2 text-xs font-mono">
-            <div className="flex justify-between"><span className="text-muted-foreground">Type</span><span className="text-foreground">Unsupervised</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Features</span><span className="text-foreground">6-dimensional</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Contamination</span><span className="text-primary">0.05</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Trees</span><span className="text-foreground">100</span></div>
-          </div>
+          <p className="text-xs text-muted-foreground mb-3">
+            Our AI model continuously learns normal behavior and identifies
+            rare, potentially malicious activities.
+          </p>
         </div>
 
         <div className="glass-card rounded-lg border border-border p-5">
@@ -59,25 +76,31 @@ export function AnomalyDetection({ data, logs = [], dataSource = 'uploaded' }: A
             <div className="w-8 h-8 rounded-lg bg-accent/15 flex items-center justify-center">
               <AlertTriangle className="w-4 h-4 text-accent" />
             </div>
-            <h3 className="text-sm font-semibold text-foreground">Statistical Thresholds</h3>
+            <h3 className="text-sm font-semibold text-foreground">
+              Security Rules Engine
+            </h3>
           </div>
-          <p className="text-xs text-muted-foreground mb-3">μ ± kσ and percentile-based limits computed from baseline system behavior.</p>
-          <div className="space-y-2 text-xs font-mono">
-            <div className="flex justify-between"><span className="text-muted-foreground">Method</span><span className="text-foreground">μ ± 3σ + P99</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Error threshold</span><span className="text-destructive">&gt; 12/min</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Latency limit</span><span className="text-accent">&gt; 700ms</span></div>
-            <div className="flex justify-between"><span className="text-muted-foreground">Baseline</span><span className="text-foreground">24h rolling</span></div>
-          </div>
+          <p className="text-xs text-muted-foreground mb-3">
+            Deterministic rules immediately flag known attack signatures and
+            critical system failures.
+          </p>
         </div>
       </div>
 
       <div className="glass-card rounded-lg border border-border overflow-hidden">
         <div className="px-5 py-3 border-b border-border bg-muted/30">
-          <h3 className="text-sm font-semibold text-foreground">
-            Detected Anomalies ({useBackendFormat ? anomalyLogs.length : anomalies.length})
+          <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-destructive opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-destructive"></span>
+            </span>
+            Active Alerts (
+            {useBackendFormat ? anomalyLogs.length : anomalies.length})
           </h3>
           <p className="text-xs text-muted-foreground mt-0.5">
-            {useBackendFormat ? 'Each row shows why the log was flagged.' : 'Time-window based detection.'}
+            {useBackendFormat
+              ? "Detailed view of flagged security events."
+              : "Time-window based threat detection."}
           </p>
         </div>
         {useBackendFormat && anomalyLogs.length > 0 ? (
@@ -100,14 +123,23 @@ export function AnomalyDetection({ data, logs = [], dataSource = 'uploaded' }: A
                   className="grid grid-cols-[130px_60px_90px_1fr_140px_70px] gap-4 px-5 py-2.5 text-xs font-mono border-b border-border/50 bg-destructive/5 hover:bg-destructive/10"
                 >
                   <span className="text-muted-foreground">{log.timestamp}</span>
-                  <span className="font-medium text-destructive">{log.level}</span>
-                  <span className="text-primary">{log.source ?? 'ML'}</span>
-                  <span className="text-foreground truncate" title={log.raw}>{log.raw}</span>
-                  <span className="text-muted-foreground text-[11px]" title={log.detection_reason}>
-                    {log.detection_reason ?? '—'}
+                  <span className="font-medium text-destructive">
+                    {log.level}
+                  </span>
+                  <span className="text-primary">{log.source ?? "ML"}</span>
+                  <span className="text-foreground truncate" title={log.raw}>
+                    {log.raw}
+                  </span>
+                  <span
+                    className="text-muted-foreground text-[11px]"
+                    title={log.detection_reason}
+                  >
+                    {log.detection_reason ?? "—"}
                   </span>
                   <span className="font-medium text-destructive">
-                    {log.confidence != null ? `${(log.confidence * 100).toFixed(0)}%` : '—'}
+                    {log.confidence != null
+                      ? `${(log.confidence * 100).toFixed(0)}%`
+                      : "—"}
                   </span>
                 </motion.div>
               ))}
@@ -134,31 +166,56 @@ export function AnomalyDetection({ data, logs = [], dataSource = 'uploaded' }: A
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.03 }}
                   className={cn(
-                    'grid grid-cols-[80px_100px_100px_120px_1fr] gap-4 px-5 py-2.5 text-xs font-mono border-b border-border/50',
-                    a.hybridDecision === 'anomaly' ? 'bg-destructive/5' : 'bg-accent/5'
+                    "grid grid-cols-[80px_100px_100px_120px_1fr] gap-4 px-5 py-2.5 text-xs font-mono border-b border-border/50",
+                    a.hybridDecision === "anomaly"
+                      ? "bg-destructive/5"
+                      : "bg-accent/5",
                   )}
                 >
                   <span className="text-foreground">{a.time}</span>
-                  <span className={a.isolationForest === 'anomaly' ? 'text-destructive' : 'text-success'}>
-                    {a.isolationForest === 'anomaly' ? '⚠ Anomaly' : '✓ Normal'}
+                  <span
+                    className={
+                      a.isolationForest === "anomaly"
+                        ? "text-destructive"
+                        : "text-success"
+                    }
+                  >
+                    {a.isolationForest === "anomaly" ? "⚠ Anomaly" : "✓ Normal"}
                   </span>
-                  <span className={a.statistical === 'anomaly' ? 'text-destructive' : 'text-success'}>
-                    {a.statistical === 'anomaly' ? '⚠ Anomaly' : '✓ Normal'}
+                  <span
+                    className={
+                      a.statistical === "anomaly"
+                        ? "text-destructive"
+                        : "text-success"
+                    }
+                  >
+                    {a.statistical === "anomaly" ? "⚠ Anomaly" : "✓ Normal"}
                   </span>
-                  <span className={cn(
-                    'font-semibold',
-                    a.hybridDecision === 'anomaly' ? 'text-destructive' : 'text-accent'
-                  )}>
-                    {a.hybridDecision === 'anomaly' ? '🔴 High' : '🟡 Warning'}
+                  <span
+                    className={cn(
+                      "font-semibold",
+                      a.hybridDecision === "anomaly"
+                        ? "text-destructive"
+                        : "text-accent",
+                    )}
+                  >
+                    {a.hybridDecision === "anomaly" ? "🔴 High" : "🟡 Warning"}
                   </span>
                   <div className="flex items-center gap-2">
                     <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
-                        className={cn('h-full rounded-full', (a.anomalyScore ?? 0) > 0.7 ? 'bg-destructive' : 'bg-accent')}
-                        style={{ width: `${((a.anomalyScore ?? 0) * 100)}%` }}
+                        className={cn(
+                          "h-full rounded-full",
+                          (a.anomalyScore ?? 0) > 0.7
+                            ? "bg-destructive"
+                            : "bg-accent",
+                        )}
+                        style={{ width: `${(a.anomalyScore ?? 0) * 100}%` }}
                       />
                     </div>
-                    <span className="text-muted-foreground w-10 text-right">{((a.anomalyScore ?? 0) * 100).toFixed(0)}%</span>
+                    <span className="text-muted-foreground w-10 text-right">
+                      {((a.anomalyScore ?? 0) * 100).toFixed(0)}%
+                    </span>
                   </div>
                 </motion.div>
               ))}
@@ -167,7 +224,8 @@ export function AnomalyDetection({ data, logs = [], dataSource = 'uploaded' }: A
         )}
         {!useBackendFormat && anomalies.length === 0 && (
           <div className="p-8 text-center text-muted-foreground text-sm">
-            No anomaly windows detected. Use ML Backend mode for per-log detection.
+            No anomaly windows detected. Use ML Backend mode for per-log
+            detection.
           </div>
         )}
       </div>

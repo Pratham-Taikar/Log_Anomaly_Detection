@@ -1,12 +1,13 @@
-import { useState, useCallback, useEffect } from 'react';
-import { Sidebar } from '@/components/dashboard/Sidebar';
-import { OverviewTab } from '@/components/dashboard/OverviewTab';
-import { LogViewer } from '@/components/dashboard/LogViewer';
-import { PipelineView } from '@/components/dashboard/PipelineView';
-import { AnomalyDetection } from '@/components/dashboard/AnomalyDetection';
-import { FeatureTable } from '@/components/dashboard/FeatureTable';
-import { FileUpload } from '@/components/dashboard/FileUpload';
-import { PipelineResult } from '@/lib/logParser';
+import { useState, useCallback, useEffect } from "react";
+import { Sidebar } from "@/components/dashboard/Sidebar";
+import { OverviewTab } from "@/components/dashboard/OverviewTab";
+import { LogViewer } from "@/components/dashboard/LogViewer";
+import { PipelineView } from "@/components/dashboard/PipelineView";
+import { AnomalyDetection } from "@/components/dashboard/AnomalyDetection";
+import { FeatureTable } from "@/components/dashboard/FeatureTable";
+import { FileUpload } from "@/components/dashboard/FileUpload";
+import { SystemMetrics } from "@/components/dashboard/SystemMetrics";
+import { PipelineResult } from "@/lib/logParser";
 import {
   fetchLogs,
   fetchStats,
@@ -17,23 +18,23 @@ import {
   type ApiLogEntry,
   type StatsResponse,
   type RecentAnomaly,
-} from '@/api/logApi';
-import { LogEntry, AnomalyPoint, FeatureVector } from '@/types/dataTypes';
-import { Clock, Database, Cpu } from 'lucide-react';
+} from "@/api/logApi";
+import { LogEntry, AnomalyPoint, FeatureVector } from "@/types/dataTypes";
+import { Clock, Database, Cpu } from "lucide-react";
 
 function apiLogToLogEntry(api: ApiLogEntry, i: number): LogEntry {
-  const level = (api.log_level?.toUpperCase() || 'INFO') as LogEntry['level'];
-  const validLevels: LogEntry['level'][] = ['INFO', 'WARN', 'ERROR', 'DEBUG'];
-  const lvl = validLevels.includes(level) ? level : 'INFO';
+  const level = (api.log_level?.toUpperCase() || "INFO") as LogEntry["level"];
+  const validLevels: LogEntry["level"][] = ["INFO", "WARN", "ERROR", "DEBUG"];
+  const lvl = validLevels.includes(level) ? level : "INFO";
   return {
     id: api.id ?? `api-${i}`,
-    timestamp: api.timestamp ?? '',
+    timestamp: api.timestamp ?? "",
     level: lvl,
-    raw: api.message ?? api.raw ?? '',
-    template: api.template ?? api.message ?? '',
+    raw: api.message ?? api.raw ?? "",
+    template: api.template ?? api.message ?? "",
     params: api.params ?? [],
-    component: api.service ?? api.component ?? 'System',
-    prediction: api.prediction as 'Normal' | 'Anomaly' | undefined,
+    component: api.service ?? api.component ?? "System",
+    prediction: api.prediction as "Normal" | "Anomaly" | undefined,
     confidence: api.confidence,
     source: api.source,
     detection_reason: api.detection_reason,
@@ -44,8 +45,8 @@ function apiAnomalyToPoint(a: RecentAnomaly, i: number): AnomalyPoint {
   return {
     time: a.timestamp ?? `#${i + 1}`,
     anomalyScore: a.confidence ?? 0,
-    isAnomaly: a.prediction === 'Anomaly',
-    hybridDecision: a.prediction === 'Anomaly' ? 'anomaly' : 'normal',
+    isAnomaly: a.prediction === "Anomaly",
+    hybridDecision: a.prediction === "Anomaly" ? "anomaly" : "normal",
     message: a.message,
     source: a.source,
     detection_reason: a.detection_reason,
@@ -55,15 +56,19 @@ function apiAnomalyToPoint(a: RecentAnomaly, i: number): AnomalyPoint {
     errorCount: (a as any).errorCount ?? 0,
     avgResponseTime: (a as any).avgResponseTime ?? 200,
     uniqueTemplates: (a as any).uniqueTemplates ?? 1,
-    isolationForest: a.prediction === 'Anomaly' ? 'anomaly' : 'normal',
-    statistical: (a as any).errorCount > 5 ? 'anomaly' : 'normal',
+    isolationForest: a.prediction === "Anomaly" ? "anomaly" : "normal",
+    statistical: (a as any).errorCount > 5 ? "anomaly" : "normal",
   };
 }
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('upload');
-  const [dataSource, setDataSource] = useState<'uploaded' | 'backend'>('uploaded');
-  const [uploadedResult, setUploadedResult] = useState<PipelineResult | null>(null);
+  const [activeTab, setActiveTab] = useState("overview");
+  const [dataSource, setDataSource] = useState<"uploaded" | "backend">(
+    "uploaded",
+  );
+  const [uploadedResult, setUploadedResult] = useState<PipelineResult | null>(
+    null,
+  );
   const [backendAvailable, setBackendAvailable] = useState(false);
   const [backendLogs, setBackendLogs] = useState<LogEntry[]>([]);
   const [backendStats, setBackendStats] = useState<StatsResponse | null>(null);
@@ -83,7 +88,9 @@ const Index = () => {
       ]);
       setBackendLogs((logsRes.logs ?? []).map(apiLogToLogEntry));
       setBackendStats(statsRes);
-      setBackendAnomalies((anomaliesRes.anomalies ?? []).map(apiAnomalyToPoint));
+      setBackendAnomalies(
+        (anomaliesRes.anomalies ?? []).map(apiAnomalyToPoint),
+      );
       setBackendFeatures(featuresRes.features ?? []);
     } catch {
       setBackendLogs([]);
@@ -96,13 +103,13 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    if (!liveRefresh || !backendAvailable || dataSource !== 'backend') return;
+    if (!liveRefresh || !backendAvailable || dataSource !== "backend") return;
     const id = setInterval(refetchBackend, 5000);
     return () => clearInterval(id);
   }, [liveRefresh, backendAvailable, dataSource, refetchBackend]);
 
   useEffect(() => {
-    checkBackend().then(ok => {
+    checkBackend().then((ok) => {
       setBackendAvailable(ok);
       if (ok) refetchBackend();
     });
@@ -110,7 +117,7 @@ const Index = () => {
 
   const handlePipelineComplete = useCallback((result: PipelineResult) => {
     setUploadedResult(result);
-    setDataSource('uploaded');
+    setDataSource("uploaded");
   }, []);
 
   const handleBackendIngest = useCallback(
@@ -119,35 +126,39 @@ const Index = () => {
       try {
         await ingestLogs(content);
         await refetchBackend();
-        setDataSource('backend');
+        setDataSource("backend");
       } catch {
         // Fallback to client pipeline
       }
     },
-    [backendAvailable, refetchBackend]
+    [backendAvailable, refetchBackend],
   );
 
   const handleClearSystem = useCallback(() => {
     setUploadedResult(null);
-    setDataSource('uploaded');
+    setDataSource("uploaded");
   }, []);
 
-  const logs = dataSource === 'backend' ? backendLogs : uploadedResult?.logs ?? [];
-  const timeSeriesData = dataSource === 'backend'
-    ? backendAnomalies
-    : uploadedResult?.anomalies ?? [];
-  const featureVectors = dataSource === 'backend'
-    ? backendFeatures
-    : uploadedResult?.features ?? [];
-  const apiStats = dataSource === 'backend' ? backendStats : null;
+  const logs =
+    dataSource === "backend" ? backendLogs : (uploadedResult?.logs ?? []);
+  const timeSeriesData =
+    dataSource === "backend"
+      ? backendAnomalies
+      : (uploadedResult?.anomalies ?? []);
+  const featureVectors =
+    dataSource === "backend"
+      ? backendFeatures
+      : (uploadedResult?.features ?? []);
+  const apiStats = dataSource === "backend" ? backendStats : null;
 
   const tabTitles: Record<string, string> = {
-    upload: 'Log File Upload',
-    overview: 'System Overview',
-    logs: 'Log Viewer',
-    pipeline: 'Processing Pipeline',
-    anomalies: 'Anomaly Detection',
-    features: 'Feature Extraction',
+    overview: "Dashboard",
+    anomalies: "Threat Alerts",
+    upload: "Import Data",
+    system: "How It Works",
+    logs: "Raw Data Explorer",
+    pipeline: "Processing Steps",
+    features: "ML Features",
   };
 
   return (
@@ -156,44 +167,50 @@ const Index = () => {
       <main className="flex-1 overflow-y-auto">
         <header className="sticky top-0 z-10 border-b border-border bg-background/80 backdrop-blur-md px-8 py-4 flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-foreground">{tabTitles[activeTab]}</h2>
-            <p className="text-xs text-muted-foreground font-mono">Monitoring Active</p>
+            <h2 className="text-lg font-semibold text-foreground">
+              {tabTitles[activeTab]}
+            </h2>
+            <p className="text-xs text-muted-foreground font-mono">
+              Monitoring Active
+            </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1 bg-secondary rounded-md p-0.5">
               <button
-                onClick={() => uploadedResult && setDataSource('uploaded')}
+                onClick={() => uploadedResult && setDataSource("uploaded")}
                 disabled={!uploadedResult}
                 className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
                   uploadedResult
-                    ? 'text-muted-foreground hover:text-foreground'
-                    : 'text-muted-foreground/40 cursor-not-allowed'
+                    ? "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground/40 cursor-not-allowed"
                 }`}
               >
                 <Database className="w-3 h-3 inline mr-1.5" />
                 Uploaded
               </button>
               <button
-                onClick={() => backendAvailable && setDataSource('backend')}
+                onClick={() => backendAvailable && setDataSource("backend")}
                 disabled={!backendAvailable || backendLoading}
                 className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
                   backendAvailable && !backendLoading
-                    ? 'text-muted-foreground hover:text-foreground'
-                    : 'text-muted-foreground/40 cursor-not-allowed'
+                    ? "text-muted-foreground hover:text-foreground"
+                    : "text-muted-foreground/40 cursor-not-allowed"
                 }`}
               >
                 <Cpu className="w-3 h-3 inline mr-1.5" />
                 ML Backend
               </button>
             </div>
-            {backendAvailable && dataSource === 'backend' && (
+            {backendAvailable && dataSource === "backend" && (
               <button
                 onClick={() => setLiveRefresh(!liveRefresh)}
                 className={`px-3 py-1.5 rounded text-xs font-medium transition-all ${
-                  liveRefresh ? 'bg-primary/20 text-primary' : 'bg-secondary text-muted-foreground hover:text-foreground'
+                  liveRefresh
+                    ? "bg-primary/20 text-primary"
+                    : "bg-secondary text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {liveRefresh ? '● Live' : '○ Live'}
+                {liveRefresh ? "● Live" : "○ Live"}
               </button>
             )}
             <div className="flex items-center gap-2 text-xs text-success">
@@ -202,31 +219,38 @@ const Index = () => {
             </div>
             <div className="flex items-center gap-2 px-3 py-1.5 bg-secondary rounded-md text-xs text-muted-foreground">
               <Clock className="w-3 h-3" />
-              {dataSource === 'backend' ? 'ML Backend' : 'Uploaded'}
+              {dataSource === "backend" ? "ML Backend" : "Uploaded"}
             </div>
           </div>
         </header>
         <div className="p-8">
-          {activeTab === 'upload' && (
+          {activeTab === "upload" && (
             <FileUpload
               onPipelineComplete={handlePipelineComplete}
               onClearSystem={handleClearSystem}
-              onBackendIngest={backendAvailable ? handleBackendIngest : undefined}
+              onBackendIngest={
+                backendAvailable ? handleBackendIngest : undefined
+              }
             />
           )}
-          {activeTab === 'overview' && (
+          {activeTab === "overview" && (
             <OverviewTab
               logs={logs}
               timeSeriesData={timeSeriesData}
               apiStats={apiStats}
             />
           )}
-          {activeTab === 'logs' && <LogViewer logs={logs} />}
-          {activeTab === 'pipeline' && <PipelineView />}
-          {activeTab === 'anomalies' && (
-            <AnomalyDetection data={timeSeriesData} logs={logs} dataSource={dataSource} />
+          {activeTab === "system" && <SystemMetrics />}
+          {activeTab === "logs" && <LogViewer logs={logs} />}
+          {activeTab === "pipeline" && <PipelineView />}
+          {activeTab === "anomalies" && (
+            <AnomalyDetection
+              data={timeSeriesData}
+              logs={logs}
+              dataSource={dataSource}
+            />
           )}
-          {activeTab === 'features' && <FeatureTable data={featureVectors} />}
+          {activeTab === "features" && <FeatureTable data={featureVectors} />}
         </div>
       </main>
     </div>

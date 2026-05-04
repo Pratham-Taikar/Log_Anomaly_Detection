@@ -4,11 +4,11 @@
     10000,
     234
   ],
-  "anomaly_rate": 0.0113,
+  "anomaly_rate": 0.0101,
   "best_models": {
-    "IsolationForest": "IF_nest_300_cont_0.05_maxsamp_auto",
-    "LOF": "LOF_neighbors_50_cont_0.05",
-    "OneClassSVM": "OCSVM_nu_0.1_gamma_auto_kernel_rbf"
+    "IsolationForest": "IF_nest_100_cont_0.05_maxsamp_auto",
+    "LOF": "LOF_neighbors_50_cont_0.02",
+    "OneClassSVM": "OCSVM_nu_0.02_gamma_auto_kernel_rbf"
   },
   "config": {
     "batch_size": 2000,
