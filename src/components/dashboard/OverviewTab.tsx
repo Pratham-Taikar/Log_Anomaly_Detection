@@ -95,6 +95,7 @@ export function OverviewTab({
           }
           icon={FileText}
           variant="primary"
+          progress={hasData ? 100 : 0}
         />
         <MetricCard
           title="Critical Errors"
@@ -102,6 +103,7 @@ export function OverviewTab({
           subtitle="System failures requiring attention"
           icon={AlertTriangle}
           variant="danger"
+          progress={stats.total > 0 ? (stats.errors / stats.total) * 100 : 0}
         />
         <MetricCard
           title="Potential Threats"
@@ -113,6 +115,7 @@ export function OverviewTab({
           }
           icon={ShieldAlert}
           variant="warning"
+          progress={stats.total > 0 ? (stats.anomalies / stats.total) * 100 : 0}
         />
         <MetricCard
           title={apiStats ? "Safe Events" : "Event Types"}
@@ -121,64 +124,121 @@ export function OverviewTab({
             apiStats ? "Verified normal activity" : "Distinct system activities"
           }
           icon={BarChart3}
-          variant="default"
+          variant={apiStats ? "success" : "default"}
+          progress={stats.total > 0 ? ((apiStats ? (stats.normal ?? 0) : stats.templates) / stats.total) * 100 : 0}
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {serviceAnomalyData.length > 0 && (
-          <div className="glass-card rounded-lg border border-border p-5">
-            <h3 className="text-sm font-medium text-foreground mb-1">
-              Threats by System Area
-            </h3>
-            <p className="text-xs text-muted-foreground mb-4">
-              Which parts of the system are most affected
-            </p>
-            <ResponsiveContainer width="100%" height={220}>
-              <BarChart
-                data={serviceAnomalyData}
-                margin={{ top: 5, right: 5, bottom: 5, left: 0 }}
-              >
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  stroke="hsl(220, 14%, 18%)"
-                />
-                <XAxis dataKey="name" tick={{ fontSize: 10 }} />
-                <YAxis tick={{ fontSize: 10 }} width={30} />
-                <Tooltip
-                  contentStyle={{
-                    background: "hsl(220, 18%, 10%)",
-                    border: "1px solid hsl(220, 14%, 18%)",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                  }}
-                />
-                <Bar
-                  dataKey="count"
-                  fill="hsl(0, 72%, 55%)"
-                  radius={[4, 4, 0, 0]}
-                />
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="glass-card rounded-lg border border-border p-6 lg:col-span-2">
+            <div className="mb-4">
+              <h3 className="text-sm font-medium text-foreground mb-1">
+                Threats by System Area
+              </h3>
+              <p className="text-xs text-muted-foreground">
+                Which parts of the system are most affected
+              </p>
+            </div>
+            <div className="mb-4 bg-destructive/10 border border-destructive/20 rounded-lg p-3 text-xs">
+              <div className="font-semibold text-destructive mb-1">What This Shows</div>
+              <div className="text-muted-foreground">The bar chart displays which system components (like Database, API, Auth) have the most detected threats. Higher bars mean more issues in that area.</div>
+            </div>
+            <div className="h-[250px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  data={serviceAnomalyData}
+                  margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
+                >
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="hsl(220, 14%, 18%)"
+                  />
+                  <XAxis dataKey="name" tick={{ fontSize: 11 }} />
+                  <YAxis tick={{ fontSize: 11 }} width={35} />
+                  <Tooltip
+                    contentStyle={{
+                      background: "hsl(220, 18%, 10%)",
+                      border: "1px solid hsl(220, 14%, 18%)",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                    }}
+                  />
+                  <Bar
+                    dataKey="count"
+                    fill="hsl(0, 72%, 55%)"
+                    radius={[4, 4, 0, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         )}
-        <AnomalyChart
-          data={timeSeriesData}
-          metric="errorCount"
-          title="System Errors Over Time"
-        />
-        <AnomalyChart
-          data={timeSeriesData}
-          metric="avgResponseTime"
-          title="System Latency (Response Time)"
-        />
+        <div className="glass-card rounded-lg border border-border p-6">
+          <div className="mb-4">
+            <h3 className="text-sm font-medium text-foreground mb-1">
+              System Errors Over Time
+            </h3>
+            <p className="text-xs text-muted-foreground">
+              When errors occurred in your system
+            </p>
+          </div>
+          <div className="mb-4 bg-warning/10 border border-warning/20 rounded-lg p-3 text-xs">
+            <div className="font-semibold text-warning mb-1">What This Shows</div>
+            <div className="text-muted-foreground">This line chart tracks error counts over time. Spikes indicate periods with more system problems that may need investigation.</div>
+          </div>
+          <div className="h-[250px]">
+            <AnomalyChart
+              data={timeSeriesData}
+              metric="errorCount"
+              title=""
+            />
+          </div>
+        </div>
+        <div className="glass-card rounded-lg border border-border p-6">
+          <div className="mb-4">
+            <h3 className="text-sm font-medium text-foreground mb-1">
+              System Response Time
+            </h3>
+            <p className="text-xs text-muted-foreground">
+              How fast the system responds to requests
+            </p>
+          </div>
+          <div className="mb-4 bg-primary/10 border border-primary/20 rounded-lg p-3 text-xs">
+            <div className="font-semibold text-primary mb-1">What This Shows</div>
+            <div className="text-muted-foreground">This chart shows response time in milliseconds. Lower values mean faster performance. High values may indicate system slowdowns.</div>
+          </div>
+          <div className="h-[250px]">
+            <AnomalyChart
+              data={timeSeriesData}
+              metric="avgResponseTime"
+              title=""
+            />
+          </div>
+        </div>
       </div>
 
-      <AnomalyChart
-        data={timeSeriesData}
-        metric="anomalyScore"
-        title="AI Threat Risk Score Over Time"
-      />
+      <div className="glass-card rounded-lg border border-border p-6">
+        <div className="mb-4">
+          <h3 className="text-sm font-medium text-foreground mb-1">
+            AI Threat Risk Score Over Time
+          </h3>
+          <p className="text-xs text-muted-foreground">
+            How risky each time period was according to our AI
+          </p>
+        </div>
+        <div className="mb-4 bg-purple-500/10 border border-purple-500/20 rounded-lg p-3 text-xs">
+          <div className="font-semibold text-purple-500 mb-1">What This Shows</div>
+          <div className="text-muted-foreground">The AI assigns a risk score (0-1) to each time period. Higher scores mean more suspicious activity detected. Values above 0.5 indicate potential threats.</div>
+        </div>
+        <div className="h-[300px]">
+          <AnomalyChart
+            data={timeSeriesData}
+            metric="anomalyScore"
+            title=""
+          />
+        </div>
+      </div>
     </div>
   );
 }

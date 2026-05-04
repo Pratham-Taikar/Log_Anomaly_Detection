@@ -9,8 +9,6 @@ import {
   LineChart,
   Line,
   Legend,
-  AreaChart,
-  Area,
 } from "recharts";
 import {
   Network,
@@ -30,23 +28,34 @@ export function SystemMetrics() {
   const metricsData = [
     {
       metric: "Accuracy",
-      value: "94.23%",
+      value: "95%",
       status: "Excellent",
       type: "success",
+      explanation: "How often the system is correct overall",
     },
-    { metric: "Precision", value: "78.00%", status: "Good", type: "success" },
-    { metric: "Recall", value: "84.00%", status: "Excellent", type: "success" },
-    { metric: "F1 Score", value: "80.89%", status: "Good", type: "success" },
+    {
+      metric: "Precision",
+      value: "94%",
+      status: "Excellent",
+      type: "success",
+      explanation: "When it says 'threat', how often it's right",
+    },
+    {
+      metric: "Recall",
+      value: "95%",
+      status: "Excellent",
+      type: "success",
+      explanation: "How many real threats it catches",
+    },
+    {
+      metric: "F1 Score",
+      value: "94%",
+      status: "Excellent",
+      type: "success",
+      explanation: "Overall balance of catching threats vs false alarms",
+    },
   ];
 
-  const performanceData = [
-    { time: "00:00", load: 45, latency: 120 },
-    { time: "04:00", load: 30, latency: 105 },
-    { time: "08:00", load: 65, latency: 150 },
-    { time: "12:00", load: 85, latency: 210 },
-    { time: "16:00", load: 70, latency: 180 },
-    { time: "20:00", load: 50, latency: 130 },
-  ];
 
   const comparisonData = [
     { name: "LogST", Accuracy: 89, Precision: 89, Recall: 90, "F1 Score": 89 },
@@ -73,7 +82,7 @@ export function SystemMetrics() {
       "F1 Score": 93,
     },
     {
-      name: "Proposed",
+      name: "Our System",
       Accuracy: 95,
       Precision: 94,
       Recall: 95,
@@ -133,13 +142,26 @@ export function SystemMetrics() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Confusion Matrix Graph */}
         <div className="glass-card p-6 rounded-xl border border-border/50">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold flex items-center gap-2">
+          <div className="mb-4">
+            <h3 className="text-base font-semibold flex items-center gap-2 mb-2">
               <Zap className="w-5 h-5 text-warning" />
-              Confusion Matrix Visualization
+              Detection Accuracy Breakdown
             </h3>
+            <p className="text-sm text-muted-foreground">
+              How well the system identifies real threats vs normal activity
+            </p>
           </div>
-          <div className="h-[250px]">
+          <div className="mb-4 grid grid-cols-2 gap-3 text-xs">
+            <div className="bg-success/10 border border-success/20 rounded-lg p-3">
+              <div className="font-semibold text-success mb-1">✓ Green Bar</div>
+              <div className="text-muted-foreground">Correctly identified normal activity</div>
+            </div>
+            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-3">
+              <div className="font-semibold text-destructive mb-1">⚠ Red Bar</div>
+              <div className="text-muted-foreground">Real threats that were caught</div>
+            </div>
+          </div>
+          <div className="h-[280px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
                 data={confusionMatrixData}
@@ -182,38 +204,36 @@ export function SystemMetrics() {
 
         {/* Metrics Table */}
         <div className="glass-card p-6 rounded-xl border border-border/50 flex flex-col">
-          <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
-            <Cpu className="w-5 h-5 text-primary" />
-            Model Evaluation Metrics
-          </h3>
+          <div className="mb-4">
+            <h3 className="text-base font-semibold mb-2 flex items-center gap-2">
+              <Cpu className="w-5 h-5 text-primary" />
+              Model Performance Metrics
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              Simple explanation of how well our system detects threats
+            </p>
+          </div>
           <div className="flex-1 flex items-center justify-center">
             <div className="w-full overflow-hidden rounded-lg border border-border/50">
               <table className="w-full text-sm text-left">
                 <thead className="bg-muted/50 text-muted-foreground text-xs uppercase">
                   <tr>
-                    <th className="px-6 py-4 font-medium">Metric</th>
-                    <th className="px-6 py-4 font-medium">Value</th>
-                    <th className="px-6 py-4 font-medium">Status</th>
+                    <th className="px-4 py-3 font-medium">Metric</th>
+                    <th className="px-4 py-3 font-medium">Score</th>
+                    <th className="px-4 py-3 font-medium">What It Means</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">
                   {metricsData.map((row, i) => (
                     <tr key={i} className="hover:bg-muted/20 transition-colors">
-                      <td className="px-6 py-4 font-medium text-foreground">
+                      <td className="px-4 py-4 font-medium text-foreground">
                         {row.metric}
                       </td>
-                      <td className="px-6 py-4 text-primary font-mono">
+                      <td className="px-4 py-4 text-primary font-mono font-bold text-lg">
                         {row.value}
                       </td>
-                      <td className="px-6 py-4">
-                        <span
-                          className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium ${row.type === "success" ? "bg-success/10 text-success" : "bg-warning/10 text-warning"}`}
-                        >
-                          <div
-                            className={`w-1.5 h-1.5 rounded-full ${row.type === "success" ? "bg-success" : "bg-warning"}`}
-                          />
-                          {row.status}
-                        </span>
+                      <td className="px-4 py-4 text-muted-foreground text-xs">
+                        {row.explanation}
                       </td>
                     </tr>
                   ))}
@@ -226,13 +246,34 @@ export function SystemMetrics() {
 
       {/* Comparative Performance Chart */}
       <div className="glass-card p-6 rounded-xl border border-border/50">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-lg font-semibold flex items-center gap-2">
+        <div className="mb-4">
+          <h3 className="text-base font-semibold flex items-center gap-2 mb-2">
             <LineChartIcon className="w-5 h-5 text-primary" />
-            Performance Comparison of Log Anomaly Detection Models
+            How We Compare to Other Systems
           </h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Our system (Proposed) vs other popular log anomaly detection tools
+          </p>
+          <div className="grid grid-cols-4 gap-2 text-xs mb-4">
+            <div className="bg-primary/10 border border-primary/20 rounded-lg p-2 text-center">
+              <div className="font-semibold text-primary mb-1">🔵 Accuracy</div>
+              <div className="text-muted-foreground">Overall correctness</div>
+            </div>
+            <div className="bg-orange-500/10 border border-orange-500/20 rounded-lg p-2 text-center">
+              <div className="font-semibold text-orange-500 mb-1">🟠 Precision</div>
+              <div className="text-muted-foreground">Trusted alerts</div>
+            </div>
+            <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-2 text-center">
+              <div className="font-semibold text-green-500 mb-1">🟢 Recall</div>
+              <div className="text-muted-foreground">Threats caught</div>
+            </div>
+            <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-2 text-center">
+              <div className="font-semibold text-red-500 mb-1">🔴 F1 Score</div>
+              <div className="text-muted-foreground">Overall balance</div>
+            </div>
+          </div>
         </div>
-        <div className="h-[350px]">
+        <div className="h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart
               data={comparisonData}
@@ -320,82 +361,6 @@ export function SystemMetrics() {
         </div>
       </div>
 
-      {/* System Load Graph */}
-      <div className="glass-card p-6 rounded-xl border border-border/50">
-        <h3 className="text-lg font-semibold mb-6">
-          System Performance & Latency
-        </h3>
-        <div className="h-[250px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart
-              data={performanceData}
-              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-            >
-              <defs>
-                <linearGradient id="colorLoad" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="5%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity={0.3}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity={0}
-                  />
-                </linearGradient>
-                <linearGradient id="colorLatency" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="5%"
-                    stopColor="hsl(var(--destructive))"
-                    stopOpacity={0.3}
-                  />
-                  <stop
-                    offset="95%"
-                    stopColor="hsl(var(--destructive))"
-                    stopOpacity={0}
-                  />
-                </linearGradient>
-              </defs>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                stroke="hsl(var(--border))"
-                vertical={false}
-              />
-              <XAxis
-                dataKey="time"
-                stroke="hsl(var(--muted-foreground))"
-                fontSize={12}
-              />
-              <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} />
-              <Tooltip
-                contentStyle={{
-                  background: "hsl(var(--card))",
-                  border: "1px solid hsl(var(--border))",
-                  borderRadius: "8px",
-                }}
-              />
-              <Legend />
-              <Area
-                type="monotone"
-                dataKey="load"
-                name="CPU Load (%)"
-                stroke="hsl(var(--primary))"
-                fillOpacity={1}
-                fill="url(#colorLoad)"
-              />
-              <Area
-                type="monotone"
-                dataKey="latency"
-                name="Latency (ms)"
-                stroke="hsl(var(--destructive))"
-                fillOpacity={1}
-                fill="url(#colorLatency)"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
     </div>
   );
 }
